@@ -126,7 +126,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void GetLiveMap()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/livemap?maxx=12,044663&maxy=57,685421&minx=11,913214&miny=57,721867&onlyRealtime=no&format=json";
+            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/livemap?maxx=12.044663&maxy=57.685421&minx=11.913214&miny=57.721867&onlyRealtime=no&format=json";
             var mock = GetNetworkServiceMock(absoluteUrl, LiveMapJson.Json);
 
             var sut = new JourneyPlannerService(VtKey, VtSecret)

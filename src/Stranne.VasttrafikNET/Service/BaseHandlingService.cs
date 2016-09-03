@@ -96,6 +96,8 @@ namespace Stranne.VasttrafikNET.Service
 
                 if (property.PropertyType == typeof(bool))
                     actualValue = (bool)actualValue ? 1 : 0;
+                else if (property.PropertyType == typeof(double?))
+                    actualValue = ((double?)actualValue)?.ToString(new CultureInfo("en-US"));
                 else if (property.PropertyType == typeof(DateTime))
                 {
                     queryParameters.Add("date", ((DateTime)actualValue).ToString("yyyy-MM-dd"));
