@@ -97,10 +97,10 @@ namespace Stranne.VasttrafikNET
         {
             var options = new LiveMapOptions
             {
-                Minx = longitudeMin,
-                Maxx = longitudeMax,
-                Miny = latitudeMin,
-                Maxy = latitudeMax,
+                Minx = longitudeMin * 1000000,
+                Maxx = longitudeMax * 1000000,
+                Miny = latitudeMin * 1000000,
+                Maxy = latitudeMax * 1000000,
                 OnlyRealtime = onlyRealtime
             };
             var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("/livemap", options)).LiveMap;
