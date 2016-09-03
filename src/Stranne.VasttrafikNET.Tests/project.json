@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+  "testRunner": "xunit",
+  "dependencies":
+  {
+    "Stranne.VasttrafikNET": "1.0.0-*",
+    "dotnet-test-xunit": "2.2.0-*",
+    "xunit": "2.2.0-*",
+    "Moq": "4.6.25-*"
+  },
+  "runtimes":
+  {
+    "win10-x64": {} 
+  },
+  "frameworks":
+  {
+    "netcoreapp1.0":
+    {
+      "dependencies":
+      {
+        "System.Diagnostics.TraceSource": "4.0.0-*"
+      },
+      "imports": "dotnet5.4"
+    },
+    "net451":
+    {
+    } 
+  }
+}

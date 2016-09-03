@@ -1,0 +1,64 @@
+﻿namespace Stranne.VasttrafikNET.Tests.Json
+{
+    public static class LocationNameJson
+    {
+        public const string Json = @"
+{
+  ""LocationList"":
+  {
+    ""noNamespaceSchemaLocation"": ""http://api.vasttrafik.se/v1/hafasRestLocation.xsd"",
+    ""servertime"": ""18:30"",
+    ""serverdate"": ""2016-07-31"",
+    ""StopLocation"":
+    [
+      {
+        ""name"": ""Centralstationen, Göteborg"",
+        ""lon"": ""11.973740"",
+        ""lat"": ""57.707898"",
+        ""id"": ""9021014001950000"",
+        ""idx"": ""1""
+      },
+      {
+        ""name"": ""MÖLNDAL STATION/CENTRUM"",
+        ""lon"": ""12.017014"",
+        ""lat"": ""57.656129"",
+        ""id"": ""0000000800000002"",
+        ""idx"": ""7""
+      },
+      {
+        ""name"": ""Kabelstationen, Falköping"",
+        ""lon"": ""13.547877"",
+        ""lat"": ""58.235286"",
+        ""id"": ""9021014041107000"",
+        ""idx"": ""8""
+      }
+    ],
+    ""CoordLocation"":
+    [
+      {
+        ""name"": ""Pressbyrån, Centralstationen Entrehallen"",
+        ""lon"": ""11.972993"",
+        ""lat"": ""57.708725"",
+        ""type"": ""POI"",
+        ""idx"": ""2""
+      },
+      {
+        ""name"": ""Pressbyrån, Centralstationen spår 1"",
+        ""lon"": ""11.972643"",
+        ""lat"": ""57.709021"",
+        ""type"": ""POI"",
+        ""idx"": ""3""
+      },
+      {
+        ""name"": ""Pressbyrån, Centralstationen spår 7-8"",
+        ""lon"": ""11.972643"",
+        ""lat"": ""57.709021"",
+        ""type"": ""POI"",
+        ""idx"": ""4""
+      }
+    ]
+  }
+}
+";
+    }
+}

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Docs>
+  <Member name="GetParkings" >
+    <summary>
+      Returns all commuter parking areas with parking lots and stop areas.
+    </summary>
+    <param name="parkingOptions">Search parameters</param>
+  </Member>
+  <Member name="GetParking" >
+    <summary>
+      Returns all commuter parking areas with parking lots and stop areas.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+  </Member>
+  <Member name="GetHistoricalAvailability" >
+    <summary>
+      Returns the number of historical free spaces for one commuter parking area or one parking lot between the specified date.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="from">Get history from</param>
+    <param name="to">Get history to</param>
+    <returns>If record of free spaces exists they will be returned</returns>
+  </Member>
+  <Member name="GetAvailableCapacity" >
+    <summary>
+      Returns availible capacity for one commuter parking area or one parking lot.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+  </Member>
+  <Member name="GetParkingImage" >
+    <summary>
+      Returns the latest captured image (GIF) for the specified camera on the specified parking lot.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="cameraId">Cameras are numbered from 1 and up within each parking lot</param>
+  </Member>
+</Docs>

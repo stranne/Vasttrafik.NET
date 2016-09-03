@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Docs>
+  <Member name="GetArrivalBoard" >
+    <summary>
+      This method will return the next 20 arrivals (or less if not existing) from a given point in time or the next arrivals in a given <see cref="BoardOptions.TimeSpan"/>. This method can only be called for stops/stations by using according <see cref="BoardOptions.Id"/> retrieved by the location methods;
+      <list type="bullet">
+        <item>
+          <see cref="GetLocationNameAsync(string)"/>
+        </item>
+        <item>
+          <see cref="GetLocationNearbyAddressAsync(Coordinate)"/>
+        </item>
+        <item>
+          <see cref="GetLocationNearbyStopsAsync(Coordinate, int?, int?)"/>
+        </item>
+        <item>
+          <see cref="GetLocationAllStopsAsync"/>
+        </item>
+      </list>
+      The parameter is called <see cref="StopLocation.Id"/>. The time and date are defined with the property <see cref="BoardOptions.DateTime"/>.
+    </summary>
+    <param name="boardOptions"></param>
+    <returns>The next 20 arrivals (or less if not existing) from a given point in time or the next arrivals in a given TimeSpan</returns>
+  </Member>
+  <Member name="GetDepartureBoard" >
+    <summary>
+      This method will return the next 20 departures (or less if not existing) from a given point in time or the next departures in a given <see cref="BoardOptions.TimeSpan"/>. This method can only be called for stops/stations by using according <see cref="BoardOptions.Id"/> retrieved by the location methods;
+      <list type="bullet">
+        <item>
+          <see cref="GetLocationNameAsync(string)"/>
+        </item>
+        <item>
+          <see cref="GetLocationNearbyAddressAsync(Coordinate)"/>
+        </item>
+        <item>
+          <see cref="GetLocationNearbyStopsAsync(Coordinate, int?, int?)"/>
+        </item>
+        <item>
+          <see cref="GetLocationAllStopsAsync"/>
+        </item>
+      </list>
+      The parameter is called <see cref="StopLocation.Id"/>. The time and date are defined with the property <see cref="BoardOptions.DateTime"/>.
+    </summary>
+    <param name="boardOptions"></param>
+    <returns>The next 20 departures (or less if not existing) from a given point in time or the next departures in a given TimeSpan</returns>
+  </Member>
+  <Member name="GetGeometry" >
+    <summary>
+      Returns the polyline for a leg. This service can not be called directly but only by reference URLs in a result of a trip or JourneyDetail request. The result contains a list of WGS84 coordinates which can be used to display the polyline on a map.If the parameter needItinerary=1 is passed in the URL of the trip request that contained the reference to the Geometry service, the geometry reference link will also contain an itinerary for walk, bike and car legs, that can be used to generate turn-by-turn instructions.
+    </summary>
+    <param name="geometryRef"></param>
+    <returns>The polyline for a leg</returns>
+  </Member>
+  <Member name="GetJourneyDetail" >
+    <summary>
+      Delivers information about the complete route of a trip. This service can not be called directly but only by reference URLs in a result of a trip or departureBoard request. It contains a list of all stops/stations of this journey including all departure and arrival times (with real-time data if available) and additional information like specific attributes about facilities and other texts.
+    </summary>
+    <param name="journeyDetailRef"></param>
+    <returns>Information about the complete route of a trip</returns>
+  </Member>
+  <Member name="GetLiveMap" >
+    <summary>
+      This method will return the positions of all vehicles in a given bounding box. Seams that Västtrafik doesn't return vehicles to this request. Used at your own risk.
+    </summary>
+    <param name="longitudeMin">Left border (longitude) of the bounding box in WGS84 </param>
+    <param name="longitudeMax">Right border (longitude) of the bounding box in WGS84</param>
+    <param name="latitudeMin">Lower border (latitude) of the bounding box in WGS84 </param>
+    <param name="latitudeMax">Upper border (latitude) of the bounding box in WGS84</param>
+    <param name="onlyRealtime">Only vehicles which have realtime information</param>
+    <returns>The positions of all vehicles in a given bounding box</returns>
+  </Member>
+  <Member name="GetLocationNearbyAddress" >
+    <summary>
+    </summary>
+    <param name="coordinate"></param>
+    <returns>Address nearest a given coordinate.</returns>
+  </Member>
+  <Member name="GetLocationNearbyStops" >
+    <summary>
+      Returns a list of stops around a given center coordinate. The returned results are ordered by their distance to the center coordinate.
+    </summary>
+    <param name="coordinate"></param>
+    <param name="maxNo"></param>
+    <param name="maxDist"></param>
+    <returns>List of stops around a given center coordinate</returns>
+  </Member>
+  <Member name="GetLocationAllStops" >
+    <summary>
+      Returns a list of all stops available in the journey planner.
+      Be aware that a call of this service is very time consuming and should be only requested when it is really needed.
+    </summary>
+    <returns>List of all stops available in the journey planner</returns>
+  </Member>
+  <Member name="GetLocationName" >
+    <summary>
+      Performs a pattern matching of a user input to retrieve a list of possible matches in the journey planner database. Possible matches might be stops/stations, points of interest and addresses.
+    </summary>
+    <param name="input">Search term</param>
+    <returns>List of possible matches in the journey planner database</returns>
+  </Member>
+  <Member name="GetSystemInfo" >
+    <summary>
+      Provides information about the journey planner and underlying data. It will return the begin of end of the timetable period and the creation date of the timetable data.
+    </summary>
+    <returns>Provides information about the journey planner and the underlying data</returns>
+  </Member>
+  <Member name="GetTrip" >
+     <summary>
+       Calculates a trip from a specified origin to a specified destination. These might be stop/station IDs or coordinates based on addresses and points of interest validated by the location service or coordinates freely defined by the client. Parameters specifying both origin and destination are  mandatory in calls to the trip service. When specifying a stop as origin, the parameter <see cref="TripOptions.OriginId"/> is used, while <see cref="TripOptions.OriginCoordinate"/> and <see cref="TripOptions.OriginCoordName"/> are used to specify a (named) coordinate. For the destination, the corresponding parameters are either <see cref="TripOptions.DestId"/> or <see cref="TripOptions.DestCoordinate"/> and <see cref="TripOptions.DestCoordName"/>. It is also possible to define a via-stop/station. This forces the journey planner to search for trips which pass the defined station. The parameter is called <see cref="TripOptions.ViaId"/>. When searching for a trip that goes via a coordinate, rather than a stop, two separate trip requests need to be combined into one.
+     </summary>
+     <param name="tripOptions"></param>
+     <returns>Calculates a trip from a specified origin to a specified destination.</returns>
+  </Member>
+</Docs>
