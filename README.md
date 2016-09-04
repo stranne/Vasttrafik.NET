@@ -31,14 +31,14 @@ Library to acquire real-time information from Västtrafik’s APIs built on .NET
 
 ## Supported frameworks
 
-* .NET 4.5.1
-* [.NET Standard Libraries 1.1](https://docs.microsoft.com/en-us/dotnet/articles/standard/library)
-  * .NET Core 1.0
-  * .NET Framework 4.5+
-  * Mono/Xamarin Platforms
-  * Universal Windows Platform 10.0
-  * Windows 8.0, 8.1
-  * Windows Phone 8.1
+Built with [.NET Standard Libraries 1.1](https://docs.microsoft.com/en-us/dotnet/articles/standard/library) and support the following frameworks:
+
+* .NET Core 1.0
+* .NET Framework 4.5+
+* Mono/Xamarin Platforms
+* Universal Windows Platform 10.0
+* Windows 8.0, 8.1
+* Windows Phone 8.1
 
 ## Usage
 
