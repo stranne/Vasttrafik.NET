@@ -84,7 +84,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Real time arrival datetime
         /// </summary>
-        public DateTime? RtArrivalDateTime => $"{RtArrDate} {RtArrTime}".ToDateTimeNullable();
+        public DateTime? RealtimeArrivalDateTime => $"{RtArrDate} {RtArrTime}".ToDateTimeNullable();
 
         /// <summary>
         /// Real time track
