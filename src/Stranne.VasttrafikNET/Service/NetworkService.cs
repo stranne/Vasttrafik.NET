@@ -20,17 +20,17 @@ namespace Stranne.VasttrafikNET.Service
 
         private static ConcurrentDictionary<string, Token> _tokens;
 
-        internal string Key { private get; set; }
-        internal string Secret { private get; set; }
+        private readonly string _key;
+        private readonly string _secret;
         internal string DeviceId { private get; set; }
 
         public NetworkService(string vtKey, string vtSecret, string vtDeviceId)
         {
             vtKey.ThrowIfNullOrWhiteSpace(nameof(vtKey));
-            Key = vtKey;
+            _key = vtKey;
 
             vtSecret.ThrowIfNullOrWhiteSpace(nameof(vtSecret));
-            Secret = vtSecret;
+            _secret = vtSecret;
 
             if (vtDeviceId == null)
                 vtDeviceId = Guid.NewGuid().ToString();
@@ -107,7 +107,7 @@ namespace Stranne.VasttrafikNET.Service
             if (IsTokenValid(token))
                 return token;
 
-            token = await CreateToken(Key, Secret, DeviceId);
+            token = await CreateToken(_key, _secret, DeviceId);
             _tokens.AddOrUpdate(DeviceId, token, (d, t) => token);
             return token;
         }
