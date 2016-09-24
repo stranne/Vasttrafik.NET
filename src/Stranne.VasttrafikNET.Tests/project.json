@@ -4,9 +4,9 @@
   "dependencies":
   {
     "Stranne.VasttrafikNET": "1.0.0-*",
-    "dotnet-test-xunit": "2.2.0-*",
-    "xunit": "2.2.0-*",
-    "Moq": "4.6.25-*"
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "xunit": "2.2.0-beta2-build3300",
+    "Moq": "4.6.38-alpha"
   },
   "runtimes":
   {
@@ -31,7 +31,7 @@
       {
         "System.Diagnostics.TraceSource": "4.0.0-*"
       },
-      "imports": "dotnet5.4"
+      "imports": "net451"
     }
   }
 }
