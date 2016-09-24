@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Västtrafik.NET",
   "description": "Library to acquire real-time information from Västtrafik’s APIs",
   "language": "en-US",

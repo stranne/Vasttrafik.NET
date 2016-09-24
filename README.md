@@ -57,7 +57,7 @@ By adding a reference directly in the dependencies list in the project.json-file
 ```json
   "dependencies":
   {
-    "Stranne.VasttrafikNET": "1.0.0"
+    "Stranne.VasttrafikNET": "1.0.1"
   },
 ```
 
@@ -343,7 +343,7 @@ project.json
       "type": "platform",
       "version": "1.0.0"
     },
-    "Stranne.VasttrafikNET": "1.0.0"
+    "Stranne.VasttrafikNET": "1.0.1"
   },
 
   "frameworks": {
