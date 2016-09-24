@@ -11,6 +11,7 @@
   {
     "projectUrl": "https://github.com/stranne/Vasttrafik.NET",
     "licenseUrl": "https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE",
+    "iconUrl": "https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/resources/logo.png",
     "repository":
     {
       "type": "git",
