@@ -1,6 +1,8 @@
 # Vasttrafik.NET
 
-[![Build status](https://ci.appveyor.com/api/projects/status/k10x9ttx3dof7aqu?svg=true)](https://ci.appveyor.com/project/stranne/vasttrafik-net) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/k10x9ttx3dof7aqu?svg=true)](https://ci.appveyor.com/project/stranne/vasttrafik-net)
+[![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=2592000)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE)
 
 Library to acquire real-time information from Västtrafik’s APIs built on .NET Core.
 
@@ -39,6 +41,26 @@ Built with [.NET Standard Libraries 1.1](https://docs.microsoft.com/en-us/dotnet
 * Universal Windows Platform 10.0
 * Windows 8.0, 8.1
 * Windows Phone 8.1
+
+## NuGet
+
+Install from [NuGet](https://www.nuget.org/packages/Stranne.VasttrafikNET/) with one of the following two ways.
+
+With command:
+
+```cmd
+Install-Package Stranne.VasttrafikNET
+```
+
+By adding a reference directly in the dependencies list in the project.json-file (.NET Core projects only):
+
+```json
+  "dependencies":
+  {
+    ...
+    "Stranne.VasttrafikNET": "1.0.0"
+  },
+```
 
 ## Usage
 
