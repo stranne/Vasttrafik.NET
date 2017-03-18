@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Library to acquire real-time information from Västtrafik’s APIs</Description>
+    <AssemblyTitle>Västtrafik.NET</AssemblyTitle>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <Authors>Olof Stranne</Authors>
+    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Stranne.VasttrafikNET</AssemblyName>
+    <PackageId>Stranne.VasttrafikNET</PackageId>
+    <PackageTags>Västtrafik;public transport service;journey planner;commuter parking</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/resources/logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/stranne/Vasttrafik.NET</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/stranne/Vasttrafik.NET</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>
