@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.Converters;
 using Xunit;
 
@@ -8,9 +9,15 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     public class BoolInvertJsonConverterTest
     {
         [Fact]
-        public void WriteJson()
+        public void CanWriteJson()
         {
             Assert.False(new BoolInvertJsonConverter().CanWrite);
+        }
+
+        [Fact]
+        public void WriteJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new BoolInvertJsonConverter().WriteJson(null, null, null));
         }
 
         [Theory]

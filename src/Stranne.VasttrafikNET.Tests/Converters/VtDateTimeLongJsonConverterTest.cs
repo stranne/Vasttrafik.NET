@@ -19,9 +19,15 @@ namespace Stranne.VasttrafikNET.Tests.Converters
         }
 
         [Fact]
-        public void ReadJson()
+        public void CanReadJson()
         {
             Assert.False(new VtDateTimeLongJsonConverter().CanRead);
+        }
+
+        [Fact]
+        public void ReadJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new VtDateTimeLongJsonConverter().ReadJson(null, null, null, null));
         }
     }
 }

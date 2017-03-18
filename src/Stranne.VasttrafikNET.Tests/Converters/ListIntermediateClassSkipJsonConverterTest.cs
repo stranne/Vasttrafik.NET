@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
@@ -12,13 +13,19 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     {
 
         [Fact]
-        public void WriteJson()
+        public void CanWriteJson()
         {
             Assert.False(new ListIntermediateClassSkipJsonConverter().CanWrite);
         }
 
         [Fact]
-        public void ReadJson()
+        public void WriteJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new ListIntermediateClassSkipJsonConverter().WriteJson(null, null, null));
+        }
+
+        [Fact]
+        public void ReadJsonList()
         {
             const string value = @"{
               ""Note"":
@@ -43,6 +50,25 @@ namespace Stranne.VasttrafikNET.Tests.Converters
             Assert.Equal(2, actual.Count);
             Assert.Equal("1", actual.First().Priority);
             Assert.Equal("2", actual.Last().Priority);
+        }
+
+        [Fact]
+        public void ReadJsonObject()
+        {
+            const string value = @"{
+              ""Note"":
+              {
+                ""key"": ""disruption-message"",
+                ""severity"": ""low"",
+                ""priority"": ""1"",
+                ""$"": ""Linje 4, 7, 9 och 11, kör efter Centralstationen via Olskrokstorget, Redbergsplatsen och Ejdergatan till Gamlestadstorget och omvänt på grund av ett spårarbete. Detta beräknas pågå den 25 juli klockan 04:00 till 7 augusti klockan 04:00. Räkna med längre restid på sträckan. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren.""
+              }
+            }";
+
+            var actual = JsonConvert.DeserializeObject<IEnumerable<Note>>(value, new ListIntermediateClassSkipJsonConverter()).ToList();
+
+            Assert.Equal(1, actual.Count);
+            Assert.Equal("1", actual.First().Priority);
         }
     }
 }

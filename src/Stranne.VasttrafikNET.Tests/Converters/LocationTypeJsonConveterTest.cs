@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Converters;
 using Xunit;
@@ -9,9 +10,15 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     public class LocationTypeJsonConveterTest
     {
         [Fact]
-        public void WriteJson()
+        public void CanWriteJson()
         {
             Assert.False(new LocationTypeJsonConverter().CanWrite);
+        }
+
+        [Fact]
+        public void WriteJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new LocationTypeJsonConverter().WriteJson(null, null, null));
         }
 
         [Theory]
@@ -23,6 +30,13 @@ namespace Stranne.VasttrafikNET.Tests.Converters
             var actual = JsonConvert.DeserializeObject<LocationType>(value, new LocationTypeJsonConverter());
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(@"""Other""")]
+        public void ReadJsonDefault(string value)
+        {
+            Assert.Throws<ArgumentException>(() => JsonConvert.DeserializeObject<LocationType>(value, new LocationTypeJsonConverter()));
         }
     }
 }

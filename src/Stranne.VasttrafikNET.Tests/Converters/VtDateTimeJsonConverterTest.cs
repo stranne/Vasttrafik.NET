@@ -9,17 +9,23 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     public class VtDateTimeJsonConverterTest
     {
         [Fact]
-        public void WriteJson()
+        public void CanWriteJson()
         {
             Assert.False(new VtDateTimeJsonConverter().CanWrite);
         }
 
         [Fact]
+        public void WriteJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new VtDateTimeJsonConverter().WriteJson(null, null, null));
+        }
+
+        [Fact]
         public void ReadJson()
         {
-            var value = @"{
-          ""$"": ""2016-06-01""
-        }";
+            const string value = @"{
+              ""$"": ""2016-06-01""
+            }";
 
             var actual = JsonConvert.DeserializeObject<DateTime>(value, new VtDateTimeJsonConverter());
 

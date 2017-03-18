@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.Converters;
 using Xunit;
 
@@ -18,9 +19,15 @@ namespace Stranne.VasttrafikNET.Tests.Converters
         }
 
         [Fact]
-        public void ReadJson()
+        public void CanReadJson()
         {
             Assert.False(new YesNoJsonConverter().CanRead);
+        }
+
+        [Fact]
+        public void ReadJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new YesNoJsonConverter().ReadJson(null, null, null, null));
         }
     }
 }

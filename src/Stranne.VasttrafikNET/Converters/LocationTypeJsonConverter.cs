@@ -13,9 +13,6 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.Value == null)
-                return null;
-
             switch (reader.Value.ToString().ToUpper())
             {
                 case "ADR":
@@ -24,9 +21,9 @@ namespace Stranne.VasttrafikNET.Converters
                     return LocationType.PointOfInterest;
                 case "ST":
                     return LocationType.StopOrStation;
+                default:
+                    throw new ArgumentException();
             }
-
-            throw new ArgumentException();
         }
 
         public override bool CanConvert(Type objectType)

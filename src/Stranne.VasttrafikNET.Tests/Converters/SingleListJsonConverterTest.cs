@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.Converters;
 using System.Linq;
@@ -10,9 +11,15 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     public class SingleListJsonConverterTest
     {
         [Fact]
-        public void WriteJson()
+        public void CanWriteJson()
         {
             Assert.False(new SingleListJsonConverter().CanWrite);
+        }
+
+        [Fact]
+        public void WriteJson()
+        {
+            Assert.Throws<NotImplementedException>(() => new SingleListJsonConverter().WriteJson(null, null, null));
         }
 
         [Theory]

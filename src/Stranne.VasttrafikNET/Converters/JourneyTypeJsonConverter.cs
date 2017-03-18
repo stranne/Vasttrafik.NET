@@ -13,9 +13,6 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.Value == null)
-                return null;
-
             switch (reader.Value.ToString().ToUpper())
             {
                 case "VAS":
@@ -38,9 +35,9 @@ namespace Stranne.VasttrafikNET.Converters
                     return JourneyType.Bike;
                 case "CAR":
                     return JourneyType.Car;
+                default:
+                    throw new ArgumentException();
             }
-
-            throw new ArgumentException();
         }
 
         public override bool CanConvert(Type objectType)

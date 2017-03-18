@@ -7,9 +7,6 @@ namespace Stranne.VasttrafikNET.Converters
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (value == null)
-                return;
-
             writer.WriteRawValue(((DateTime)value).ToString("yyyyMMddHHmmss"));
         }
 
