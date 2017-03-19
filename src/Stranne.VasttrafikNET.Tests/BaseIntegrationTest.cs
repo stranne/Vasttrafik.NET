@@ -28,27 +28,34 @@ namespace Stranne.VasttrafikNET.Tests
 
         internal Mock<NetworkService> GetNetworkServiceMock(string absoluteUrl, HttpContent mainContent)
         {
+            return GetNetworkServiceMock(absoluteUrl, new HttpResponseMessage
+            {
+                Content = mainContent
+            });
+        }
+
+        internal Mock<NetworkService> GetNetworkServiceMock(string absoluteUrl, HttpResponseMessage mainResponseMessage)
+        {
             var mock = new Mock<NetworkService>(VtKey, VtSecret, VtDeviceId) { CallBase = true };
 
             mock.Setup(x => x.SendAsync(It.IsAny<HttpClient>(), It.IsAny<HttpRequestMessage>())).Returns<HttpClient, HttpRequestMessage>(
                 (httpClient, httpRequestMessage) =>
                 {
                     var uri = httpRequestMessage.RequestUri;
-                    HttpContent content = null;
+                    HttpResponseMessage responseMessage = null;
                     if (CompareUri(uri, TokenAbsoluteUrl) && httpRequestMessage.Method == HttpMethod.Post)
-                        content = new StringContent(DefaultTokenJson.Json);
+                        responseMessage = new HttpResponseMessage
+                        {
+                            Content = new StringContent(DefaultTokenJson.Json)
+                        };
 
                     if (CompareUri(uri, absoluteUrl) && httpRequestMessage.Method == HttpMethod.Get)
-                        content = mainContent;
+                        responseMessage = mainResponseMessage;
 
-                    if (content == null)
+                    if (responseMessage == null)
                         throw new ArgumentException($"Incorrect url; expected: {absoluteUrl}, actual: {uri.AbsoluteUri}");
 
-                    return Task.FromResult(
-                        new HttpResponseMessage
-                        {
-                            Content = content
-                        });
+                    return Task.FromResult(responseMessage);
                 });
 
             return mock;

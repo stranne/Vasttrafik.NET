@@ -31,6 +31,8 @@ namespace Stranne.VasttrafikNET.Tests
             mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(AbsoluteUrl, HttpMethod.Get)), Times.Never);
             mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(TokenAbsoluteUrl, HttpMethod.Post)), Times.AtMostOnce);
             Assert.Equal(HttpStatusCode.NotFound, exception.StatusCode);
+            Assert.Equal(TokenAbsoluteUrl, exception.RequestUri.AbsoluteUri);
+            Assert.Equal(null, exception.Content);
         }
 
         [Fact]
@@ -108,6 +110,29 @@ namespace Stranne.VasttrafikNET.Tests
             mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(absoluteUrl, HttpMethod.Get)), Times.Exactly(2));
             mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(firstTokenAbsoluteUrl, HttpMethod.Post)), Times.AtMostOnce);
             mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(secondTokenAbsoluteUrl, HttpMethod.Post)), Times.Once);
+        }
+
+        [Fact]
+        public async Task UnauthorizedWithToken()
+        {
+            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?id=0000000800000022&date=2016-07-16&time=16:50&format=json";
+            var mock = GetNetworkServiceMock(absoluteUrl, new HttpResponseMessage(HttpStatusCode.Unauthorized));
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            var sut = mock.Object;
+
+            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(absoluteUrl));
+
+            mock.Verify(
+                x => x.SendAsync(
+                    It.IsAny<HttpClient>(),
+                    GetHttpRequestMessage(TokenAbsoluteUrl, HttpMethod.Post)),
+                Times.Between(1, 2, Range.Inclusive));
+            mock.Verify(
+                x => x.SendAsync(
+                    It.IsAny<HttpClient>(),
+                    GetHttpRequestMessage(absoluteUrl, HttpMethod.Get)),
+                Times.Exactly(2));
+            Assert.Equal("Authentication failed with Västtrafik's servers. Verify Key and Secret are correct and that the application has access to the API in question.", execption.Message);
         }
     }
 }
