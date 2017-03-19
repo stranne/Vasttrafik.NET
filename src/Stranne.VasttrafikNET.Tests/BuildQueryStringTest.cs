@@ -87,6 +87,7 @@ namespace Stranne.VasttrafikNET.Tests
         {
             var exception = Assert.Throws<MissingRequiredParameterException>(() => BaseHandlingService.BuildParameterString(new BoardOptions()));
             Assert.Contains("Id", exception.MissingParameters);
+            Assert.Equal("Missing the required parameters: Id", exception.Message);
         }
 
         [Fact]
@@ -111,11 +112,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void LiveMapOptionsMissingRequiredProperties()
         {
             var exception = Assert.Throws<MissingRequiredParameterException>(() => BaseHandlingService.BuildParameterString(new LiveMapOptions()));
+            Assert.Contains("Maxy", exception.MissingParameters);
+            Assert.Contains("Maxy", exception.MissingParameters);
             Assert.Contains("Minx", exception.MissingParameters);
-            Assert.Contains("Maxy", exception.MissingParameters);
             Assert.Contains("Miny", exception.MissingParameters);
-            Assert.Contains("Maxy", exception.MissingParameters);
             Assert.Contains("OnlyRealtime", exception.MissingParameters);
+            Assert.Equal("Missing the required parameters: Maxx, Maxy, Minx, Miny, OnlyRealtime", exception.Message);
         }
 
         [Fact]
@@ -324,6 +326,7 @@ namespace Stranne.VasttrafikNET.Tests
         {
             var exception = Assert.Throws<MissingRequiredParameterException>(() => BaseHandlingService.BuildParameterString(new LocationNearbyStopsOptions()));
             Assert.Contains("OriginCoordinate", exception.MissingParameters);
+            Assert.Equal("Missing the required parameters: OriginCoordinate", exception.Message);
         }
 
         public static TheoryData ParkingOptionsParameters => new TheoryData<string, object, string>

@@ -121,6 +121,7 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.IsType(typeof(ServerException), actual.InnerException);
             Assert.Equal("TI001 traininfoError", ((ServerException)actual.InnerException).Name);
             Assert.Equal("No trip journey information available.", ((ServerException)actual.InnerException).Description);
+            Assert.Equal("TI001 traininfoError: No trip journey information available.", ((ServerException)actual.InnerException).Message);
         }
 
         [Fact]
