@@ -42,6 +42,7 @@
             ""type"": ""ST"",
             ""id"": ""9022014001950003"",
             ""routeIdx"": ""13"",
+            ""cancelled"": ""true"",
             ""time"": ""20:50"",
             ""date"": ""2016-07-31"",
             ""track"": ""C"",
@@ -84,6 +85,8 @@
           ""bgColor"": ""#ffffff"",
           ""stroke"": ""Solid"",
           ""accessibility"": ""wheelChair"",
+          ""booking"": ""true"",
+          ""night"": ""true"",
           ""Origin"":
           {
             ""name"": ""Mölndal centrum, Mölndal"",
@@ -144,6 +147,9 @@
           ""fgColor"": ""#fff014"",
           ""bgColor"": ""#00394d"",
           ""stroke"": ""Solid"",
+          ""kcal"": ""50"",
+          ""reachable"": ""False"",
+          ""percentBikeRoad"": ""70"",
           ""accessibility"": ""wheelChair"",
           ""Origin"":
           {
@@ -154,8 +160,12 @@
             ""time"": ""20:47"",
             ""date"": ""2016-07-31"",
             ""track"": ""A"",
+            ""rtTrack"": ""A"",
             ""rtTime"": ""20:47"",
             ""rtDate"": ""2016-07-31"",
+            ""time"": ""20:47"",
+            ""directtime"": ""20:47"",
+            ""directdate"": ""2016-07-31"",
             ""$"": ""\n""
           },
           ""Destination"":
@@ -167,6 +177,7 @@
             ""time"": ""21:05"",
             ""date"": ""2016-07-31"",
             ""track"": ""C"",
+            ""rtTrack"": ""C"",
             ""rtTime"": ""21:05"",
             ""rtDate"": ""2016-07-31"",
             ""Notes"":

@@ -43,7 +43,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
                     continue;
                 }
 
-                currentProperty = currentProperty.GetType().GetProperty(step).GetValue(currentProperty);
+                currentProperty = currentProperty.GetType().GetProperty(step, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(currentProperty);
             }
 
             return currentProperty;

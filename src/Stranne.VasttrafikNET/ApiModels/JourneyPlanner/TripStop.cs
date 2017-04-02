@@ -25,25 +25,10 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         public bool Cancelled { get; set; }
 
         /// <summary>
-        /// Track information, if available
-        /// </summary>
-        public string Track { get; set; }
-
-        /// <summary>
-        /// Realtime track information, if available
-        /// </summary>
-        public string RtTrack { get; set; }
-
-        /// <summary>
         /// Type of location
         /// </summary>
         [JsonProperty("type")]
         public LocationType LocationType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Date { get; set; }
 
         /// <summary>
         /// List of notes related, if any
@@ -56,11 +41,31 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// </summary>
         public string Id { get; set; }
 
+        /// <summary>
+        /// Track information, if available
+        /// </summary>
+        public string Track { get; set; }
+
+        /// <summary>
+        /// Realtime track information, if available
+        /// </summary>
+        [JsonProperty("rtTrack")]
+        public string RealtimeTrack { get; set; }
+
         [JsonProperty]
         internal string RtDate { get; set; }
 
         [JsonProperty]
+        internal string RtTime { get; set; }
+
+        [JsonProperty]
+        internal string Date { get; set; }
+
+        [JsonProperty]
         internal string Time { get; set; }
+
+        [JsonProperty]
+        internal string Directtime { get; set; }
 
         [JsonProperty]
         internal string Directdate { get; set; }
@@ -69,12 +74,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// Contains the name of the location
         /// </summary>
         public string Name { get; set; }
-
-        [JsonProperty]
-        internal string RtTime { get; set; }
-
-        [JsonProperty]
-        internal string Directtime { get; set; }
         
         /// <summary>
         /// 

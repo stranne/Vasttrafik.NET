@@ -12,7 +12,7 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return reader.Value.ToString() == "1";
+            return reader.Value.ToString() == "1" || reader.Value.ToString().ToLower() == "true";
         }
 
         public override bool CanConvert(Type objectType)

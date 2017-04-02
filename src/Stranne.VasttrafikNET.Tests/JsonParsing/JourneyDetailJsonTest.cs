@@ -12,6 +12,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
+            { "JourneyDetail.ServerDateTime", new DateTime(2016, 8, 4, 17, 41, 0) },
             { "JourneyDetail.Stops", 32 },
             { "JourneyDetail.Stops[0].Name", "Hornkamsgatan, Göteborg" },
             { "JourneyDetail.Stops[0].Id", "9022014003215001" },
