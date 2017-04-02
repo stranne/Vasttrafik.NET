@@ -11,12 +11,8 @@ before_build:
 build:
     project: Stranne.VasttrafikNET.sln
     verbosity: normal
-after_build:
-    - dotnet pack "src\Stranne.VasttrafikNET" -c %CONFIGURATION% --no-build --version-suffix %APPVEYOR_BUILD_VERSION% -o artifacts
 after_test:
     - .\packages\OpenCover.4.6.519\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\src\Stranne.VasttrafikNET.Tests\bin\Debug\netcoreapp1.0\Stranne.VasttrafikNET.Tests.dll" -filter:"+[Stranne.VasttrafikNET]*  -[Stranne.VasttrafikNET.Tests]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\Stranne.VasttrafikNET_coverage.xml
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "Stranne.VasttrafikNET_coverage.xml"
-artifacts:
-    - path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
