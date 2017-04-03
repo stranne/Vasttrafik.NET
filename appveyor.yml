@@ -6,27 +6,27 @@ environment:
     DOTNET_CLI_TELEMETRY_OPTOUT: 1
 cache: '%USERPROFILE%\.nuget\packages'
 before_build:
-    - cmd: dotnet restore
+- cmd: dotnet restore
 build:
     project: Stranne.VasttrafikNET.sln
     verbosity: normal
 test_script:
-    - ps: >-
-        $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
-        $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Console.exe'
-        $target = '-target:C:\Program Files\dotnet\dotnet.exe'
+- ps: >-
+    $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
+    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Console.exe'
+    $target = '-target:C:\Program Files\dotnet\dotnet.exe'
         
-        $targetArgs = '-targetargs: test ' + $ENV:APPVEYOR_BUILD_FOLDER + '\src\Stranne.VasttrafikNET.Tests -c ' + $ENV:CONFIGURATION
-        $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
-        $output = '-output:' + $resultsFile
-        & $openCoverConsole $target $targetArgs '-register:user' $filter $output '-oldStyle'
+    $targetArgs = '-targetargs: test ' + $ENV:APPVEYOR_BUILD_FOLDER + '\src\Stranne.VasttrafikNET.Tests -c ' + $ENV:CONFIGURATION
+    $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
+    $output = '-output:' + $resultsFile
+    & $openCoverConsole $target $targetArgs '-register:user' $filter $output '-oldStyle'
 
-        $artifactsFolder = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts'
-        Copy-Item $resultsFile $artifactsFolder
+    $artifactsFolder = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts'
+    Copy-Item $resultsFile $artifactsFolder
 
-        $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
-        python -m pip install --upgrade pip
-        pip install git+git://github.com/codecov/codecov-python.git
-        codecov -f $resultsFile -X gcov
+    $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
+    python -m pip install --upgrade pip
+    pip install git+git://github.com/codecov/codecov-python.git
+    codecov -f $resultsFile -X gcov
 artifacts:
-    - path: artifacts\**\*.*
+- path: artifacts\**\*.*
