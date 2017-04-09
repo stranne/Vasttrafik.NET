@@ -13,7 +13,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
-            { "DepartureBoard.ServerDateTime", new DateTimeOffset(2016, 7, 16, 21, 50, 0, new TimeSpan(2, 0, 0)) },
+            { "DepartureBoard.ServerDateTime", new DateTimeOffset(2016, 7, 16, 16, 48, 0, new TimeSpan(2, 0, 0)) },
             { "DepartureBoard.Departures", 5 },
             { "DepartureBoard.Departures[0].Name", "Spårvagn 2" },
             { "DepartureBoard.Departures[0].ShortName", "2" },

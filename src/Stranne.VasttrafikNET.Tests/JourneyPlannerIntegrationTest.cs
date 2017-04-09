@@ -30,10 +30,11 @@ namespace Stranne.VasttrafikNET.Tests
                 DateTime = new DateTimeOffset(2016, 7, 16, 9, 50, 0, new TimeSpan(-5, 0, 0))
             };
 
-            var actual = sut.GetDepartureBoard(boardOptions);
+            var actual = sut.GetDepartureBoard(boardOptions).ToList();
 
             VerifyNetworkMock(mock, absoluteUrl);
-            Assert.Equal(5, actual.Count());
+            Assert.Equal(5, actual.Count);
+            Assert.Equal(2, actual.First().Minutes);
         }
 
         [Fact]
@@ -55,10 +56,11 @@ namespace Stranne.VasttrafikNET.Tests
                 DateTime = new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0))
             };
 
-            var actual = sut.GetArrivalBoard(boardOptions);
+            var actual = sut.GetArrivalBoard(boardOptions).ToList();
 
             VerifyNetworkMock(mock, absoluteUrl);
-            Assert.Equal(5, actual.Count());
+            Assert.Equal(5, actual.Count);
+            Assert.Equal(2, actual.First().Minutes);
         }
 
         [Fact]

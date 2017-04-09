@@ -7,7 +7,7 @@
   ""ArrivalBoard"":
   {
     ""noNamespaceSchemaLocation"": ""http: //api.vasttrafik.se/v1/hafasRestArrivalBoard.xsd"",
-    ""servertime"": ""21:50"",
+    ""servertime"": ""16:48"",
     ""serverdate"": ""2016-07-16"",
     ""Arrival"":
     [
