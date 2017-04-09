@@ -12,7 +12,7 @@ namespace Stranne.VasttrafikNET.ApiModels.CommuterParking
         /// Date and time of record
         /// </summary>
         [JsonProperty("Date")]
-        public DateTime DateTime { get; set; }
+        public DateTimeOffset DateTime { get; set; }
 
         /// <summary>
         /// Number of free parking spaces

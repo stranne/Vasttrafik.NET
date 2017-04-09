@@ -27,9 +27,9 @@ namespace Stranne.VasttrafikNET.Tests.Converters
               ""$"": ""2016-06-01""
             }";
 
-            var actual = JsonConvert.DeserializeObject<DateTime>(value, new VtDateTimeJsonConverter());
+            var actual = JsonConvert.DeserializeObject<DateTimeOffset>(value, new VtDateTimeJsonConverter());
 
-            Assert.Equal(new DateTime(2016, 6, 1), actual);
+            Assert.Equal(new DateTimeOffset(2016, 6, 1, 0, 0, 0, new TimeSpan(2, 0, 0)), actual);
         }
     }
 }

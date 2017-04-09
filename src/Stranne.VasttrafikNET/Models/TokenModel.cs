@@ -4,7 +4,7 @@ namespace Stranne.VasttrafikNET.Models
 {
     internal class Token
     {
-        private DateTime _createDate = DateTime.Now;
+        private DateTimeOffset _createDate = DateTimeOffset.Now;
 
         public string Scope { get; set; }
 
@@ -16,6 +16,6 @@ namespace Stranne.VasttrafikNET.Models
 
         public string Access_Token { get; set; }
         
-        public bool IsValid() => _createDate.AddSeconds(Expires_In) < DateTime.Now;
+        public bool IsValid() => _createDate.AddSeconds(Expires_In) < DateTimeOffset.Now;
     }
 }

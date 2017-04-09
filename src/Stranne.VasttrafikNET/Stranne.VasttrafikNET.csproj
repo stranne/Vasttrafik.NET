@@ -6,7 +6,7 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>Olof Stranne</Authors>
-    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Stranne.VasttrafikNET</AssemblyName>

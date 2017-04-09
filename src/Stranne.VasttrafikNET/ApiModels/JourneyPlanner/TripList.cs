@@ -18,7 +18,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         [JsonProperty]
         internal string Servertime { get; set; }
         
-        public DateTime ServerDateTime => $"{Serverdate} {Servertime}".ToDateTime();
+        public DateTimeOffset ServerDateTime => $"{Serverdate} {Servertime}".ToDateTimeOffset();
         
         [JsonProperty("Trip")]
         public IEnumerable<Trip> Trips { get; set; }

@@ -13,12 +13,12 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// Begin of timetable
         /// </summary>
         [JsonConverter(typeof(VtDateTimeJsonConverter))]
-        public DateTime DateBegin { get; set; }
+        public DateTimeOffset DateBegin { get; set; }
 
         /// <summary>
         /// End of timetable
         /// </summary>
         [JsonConverter(typeof(VtDateTimeJsonConverter))]
-        public DateTime DateEnd { get; set; }
+        public DateTimeOffset DateEnd { get; set; }
     }
 }

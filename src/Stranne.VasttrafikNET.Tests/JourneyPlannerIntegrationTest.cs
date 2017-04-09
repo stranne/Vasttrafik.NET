@@ -27,7 +27,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2016, 7, 16, 16, 50, 0)
+                DateTime = new DateTimeOffset(2016, 7, 16, 9, 50, 0, new TimeSpan(-5, 0, 0))
             };
 
             var actual = sut.GetDepartureBoard(boardOptions);
@@ -52,7 +52,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2016, 7, 16, 16, 50, 0)
+                DateTime = new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0))
             };
 
             var actual = sut.GetArrivalBoard(boardOptions);

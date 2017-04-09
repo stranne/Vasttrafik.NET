@@ -18,7 +18,7 @@ namespace Stranne.VasttrafikNET.Models
         /// Date and time, default is current date and time
         /// </summary>
         [Parameter(required: true)]
-        public DateTime DateTime { get; set; } = DateTime.Now;
+        public DateTimeOffset DateTime { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
         /// Stop id in order to get only departures of vehicles with a specified direction

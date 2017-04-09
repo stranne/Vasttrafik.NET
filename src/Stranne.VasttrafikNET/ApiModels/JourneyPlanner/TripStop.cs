@@ -78,17 +78,17 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// 
         /// </summary>
-        public DateTime DateTime => $"{Date} {Time}".ToDateTime();
+        public DateTimeOffset DateTime => $"{Date} {Time}".ToDateTimeOffset();
 
         /// <summary>
         /// Realtime
         /// </summary>
-        public DateTime? RealtimeDateTime => $"{RtDate} {RtTime}".ToDateTimeNullable();
+        public DateTimeOffset? RealtimeDateTime => $"{RtDate} {RtTime}".ToDateTimeOffsetNullable();
 
         /// <summary>
         /// Based on the direct travel time
         /// </summary>
-        public DateTime? DirectDateTime => $"{Directdate} {Directtime}".ToDateTimeNullable();
+        public DateTimeOffset? DirectDateTime => $"{Directdate} {Directtime}".ToDateTimeOffsetNullable();
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)

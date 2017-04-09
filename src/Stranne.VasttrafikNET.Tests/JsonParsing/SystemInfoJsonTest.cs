@@ -11,9 +11,9 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
-            { "SystemInfo.TimetableInfo.TimetablePeriod.DateBegin", new DateTime(2016, 6, 1) },
-            { "SystemInfo.TimetableInfo.TimetablePeriod.DateEnd", new DateTime(2016, 10, 29) },
-            { "SystemInfo.TimetableInfo.TimeTableData.CreationDate", new DateTime(2016, 7, 31) }
+            { "SystemInfo.TimetableInfo.TimetablePeriod.DateBegin", new DateTimeOffset(2016, 6, 1, 0, 0, 0, new TimeSpan(2, 0, 0)) },
+            { "SystemInfo.TimetableInfo.TimetablePeriod.DateEnd", new DateTimeOffset(2016, 10, 29, 0, 0, 0, new TimeSpan(2, 0, 0)) },
+            { "SystemInfo.TimetableInfo.TimeTableData.CreationDate", new DateTimeOffset(2016, 7, 31, 0, 0, 0, new TimeSpan(2, 0, 0)) }
         };
 
         [Theory, MemberData(nameof(TestParameters))]

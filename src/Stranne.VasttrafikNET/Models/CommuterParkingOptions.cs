@@ -15,10 +15,10 @@ namespace Stranne.VasttrafikNET.Models
 
         [JsonConverter(typeof(VtDateTimeLongJsonConverter))]
         [Parameter(queryString: false, order: 2)]
-        public DateTime? From { get; set; }
+        public DateTimeOffset? From { get; set; }
 
         [JsonConverter(typeof(VtDateTimeLongJsonConverter))]
         [Parameter(queryString: false, order: 3)]
-        public DateTime? To { get; set; }
+        public DateTimeOffset? To { get; set; }
     }
 }

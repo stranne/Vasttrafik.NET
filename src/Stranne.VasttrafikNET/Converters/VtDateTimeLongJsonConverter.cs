@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Stranne.VasttrafikNET.Extensions;
 
 namespace Stranne.VasttrafikNET.Converters
 {
@@ -7,7 +8,7 @@ namespace Stranne.VasttrafikNET.Converters
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue(((DateTime)value).ToString("yyyyMMddHHmmss"));
+            writer.WriteRawValue(((DateTimeOffset)value).ConvertToVasttrafikTimeZone().ToString("yyyyMMddHHmmss"));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -17,7 +18,7 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(DateTime?) || objectType == typeof(DateTime);
+            return objectType == typeof(DateTimeOffset?) || objectType == typeof(DateTimeOffset);
         }
 
         public override bool CanRead => false;

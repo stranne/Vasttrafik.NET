@@ -58,7 +58,7 @@ namespace Stranne.VasttrafikNET.Models
         /// Date and time of the trip
         /// </summary>
         [Parameter]
-        public DateTime? DateTime { get; set; }
+        public DateTimeOffset? DateTime { get; set; }
 
         /// <summary>
         /// <see cref="DateTime"/> is not the departure time but the latest time to arrive at the destination, false by default

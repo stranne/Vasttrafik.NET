@@ -22,17 +22,18 @@ namespace Stranne.VasttrafikNET.Extensions
             return Convert.ToBase64String(bytes);
         }
 
-        public static DateTime ToDateTime(this string value)
+        public static DateTimeOffset ToDateTimeOffset(this string value)
         {
-            return DateTime.ParseExact(value, "yyyy-MM-dd HH:mm", new CultureInfo("en-US"));
+            var dateTimeOffset = DateTimeOffset.ParseExact(value, "yyyy-MM-dd HH:mm", new CultureInfo("en-US"));
+            return dateTimeOffset.AddVasttrafikTimeSpan();
         }
 
-        public static DateTime? ToDateTimeNullable(this string value)
+        public static DateTimeOffset? ToDateTimeOffsetNullable(this string value)
         {
-            if (!DateTimeStringRegex.Match(value).Success)
+            if (value == null || !DateTimeStringRegex.Match(value).Success)
                 return null;
 
-            return value.ToDateTime();
+            return value.ToDateTimeOffset();
         }
 
         public static string ThrowIfNullOrWhiteSpace(this string value, string propertyName)

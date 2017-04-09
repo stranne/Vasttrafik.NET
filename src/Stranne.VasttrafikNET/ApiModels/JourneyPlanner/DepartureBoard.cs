@@ -19,7 +19,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         [JsonProperty]
         internal string ServerDate { get; set; }
 
-        public DateTime ServerDateTime => $"{ServerDate} {ServerTime}".ToDateTime();
+        public DateTimeOffset ServerDateTime => $"{ServerDate} {ServerTime}".ToDateTimeOffset();
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)

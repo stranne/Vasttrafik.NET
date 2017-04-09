@@ -46,7 +46,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Departure datetime
         /// </summary>
-        public DateTime? DepartureDateTime => $"{DepDate} {DepTime}".ToDateTimeNullable();
+        public DateTimeOffset? DepartureDateTime => $"{DepDate} {DepTime}".ToDateTimeOffsetNullable();
                                                               
         [JsonProperty]
         internal string ArrTime { get; set; }
@@ -57,7 +57,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Arrival datetime
         /// </summary>
-        public DateTime? ArrivalDateTime => $"{ArrDate} {ArrTime}".ToDateTimeNullable();
+        public DateTimeOffset? ArrivalDateTime => $"{ArrDate} {ArrTime}".ToDateTimeOffsetNullable();
 
         /// <summary>
         /// Track
@@ -73,7 +73,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Real time departure datetime
         /// </summary>
-        public DateTime? RtDepartureDateTime => $"{RtDepDate} {RtDepDate}".ToDateTimeNullable();
+        public DateTimeOffset? RtDepartureDateTime => $"{RtDepDate} {RtDepDate}".ToDateTimeOffsetNullable();
 
         [JsonProperty]
         internal string RtArrTime { get; set; }
@@ -84,7 +84,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Real time arrival datetime
         /// </summary>
-        public DateTime? RealtimeArrivalDateTime => $"{RtArrDate} {RtArrTime}".ToDateTimeNullable();
+        public DateTimeOffset? RealtimeArrivalDateTime => $"{RtArrDate} {RtArrTime}".ToDateTimeOffsetNullable();
 
         /// <summary>
         /// Real time track

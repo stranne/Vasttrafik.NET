@@ -12,7 +12,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
-            { "TripList.ServerDateTime", new DateTime(2016, 7, 31, 20, 30, 0) },
+            { "TripList.ServerDateTime", new DateTimeOffset(2016, 7, 31, 20, 30, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips", 3 },
             { "TripList.Trips[0].TravelWarrenty", true },
             { "TripList.Trips[0].Alternative", false },
@@ -46,8 +46,8 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[0].Legs[0].Origin.Notes", 0 },
             { "TripList.Trips[0].Legs[0].Origin.Id","9022014012110001"  },
             { "TripList.Trips[0].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
-            { "TripList.Trips[0].Legs[0].Origin.DateTime", new DateTime(2016, 7, 31, 20, 32, 0) },
-            { "TripList.Trips[0].Legs[0].Origin.RealtimeDateTime", new DateTime(2016, 7, 31, 20, 32, 0) },
+            { "TripList.Trips[0].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 32, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[0].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 32, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Origin.DirectDateTime", null },
             
             { "TripList.Trips[0].Legs[0].Destination.RouteIndex", "13" },
@@ -69,8 +69,8 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "TripList.Trips[0].Legs[0].Destination.Id","9022014001950003"  },
             { "TripList.Trips[0].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
-            { "TripList.Trips[0].Legs[0].Destination.DateTime", new DateTime(2016, 7, 31, 20, 50, 0) },
-            { "TripList.Trips[0].Legs[0].Destination.RealtimeDateTime", new DateTime(2016, 7, 31, 20, 50, 0) },
+            { "TripList.Trips[0].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 20, 50, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[0].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 50, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Destination.DirectDateTime", null },
             
             { "TripList.Trips[1].TravelWarrenty", true },
@@ -105,8 +105,8 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[1].Legs[0].Origin.Notes", 0 },
             { "TripList.Trips[1].Legs[0].Origin.Id","9022014012110001"  },
             { "TripList.Trips[1].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
-            { "TripList.Trips[1].Legs[0].Origin.DateTime", new DateTime(2016, 7, 31, 20, 37, 0) },
-            { "TripList.Trips[1].Legs[0].Origin.RealtimeDateTime", new DateTime(2016, 7, 31, 20, 38, 0) },
+            { "TripList.Trips[1].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 37, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[1].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 38, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Origin.DirectDateTime", null },
 
             { "TripList.Trips[1].Legs[0].Destination.RouteIndex", "15" },
@@ -128,8 +128,8 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "TripList.Trips[1].Legs[0].Destination.Id","9022014001950001"  },
             { "TripList.Trips[1].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
-            { "TripList.Trips[1].Legs[0].Destination.DateTime", new DateTime(2016, 7, 31, 20, 58, 0) },
-            { "TripList.Trips[1].Legs[0].Destination.RealtimeDateTime", new DateTime(2016, 7, 31, 20, 57, 0) },
+            { "TripList.Trips[1].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 20, 58, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[1].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 57, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Destination.DirectDateTime", null },
             
             { "TripList.Trips[2].TravelWarrenty", true },
@@ -164,9 +164,9 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].Origin.Notes", 0 },
             { "TripList.Trips[2].Legs[0].Origin.Id","9022014012110001"  },
             { "TripList.Trips[2].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
-            { "TripList.Trips[2].Legs[0].Origin.DateTime", new DateTime(2016, 7, 31, 20, 47, 0) },
-            { "TripList.Trips[2].Legs[0].Origin.RealtimeDateTime", new DateTime(2016, 7, 31, 20, 47, 0) },
-            { "TripList.Trips[2].Legs[0].Origin.DirectDateTime", new DateTime(2016, 7, 31, 20, 47, 0) },
+            { "TripList.Trips[2].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 47, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[2].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 47, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[2].Legs[0].Origin.DirectDateTime", new DateTimeOffset(2016, 7, 31, 20, 47, 0, new TimeSpan(2, 0, 0)) },
 
             { "TripList.Trips[2].Legs[0].Destination.RouteIndex", "13" },
             { "TripList.Trips[2].Legs[0].Destination.Cancelled", false },
@@ -182,8 +182,8 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "TripList.Trips[2].Legs[0].Destination.Id","9022014001950003"  },
             { "TripList.Trips[2].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
-            { "TripList.Trips[2].Legs[0].Destination.DateTime", new DateTime(2016, 7, 31, 21, 5, 0) },
-            { "TripList.Trips[2].Legs[0].Destination.RealtimeDateTime", new DateTime(2016, 7, 31, 21, 5, 0) },
+            { "TripList.Trips[2].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 21, 5, 0, new TimeSpan(2, 0, 0)) },
+            { "TripList.Trips[2].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 21, 5, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[2].Legs[0].Destination.DirectDateTime", null }
         };
 

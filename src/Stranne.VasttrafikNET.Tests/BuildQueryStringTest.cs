@@ -17,7 +17,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2020, 1, 1, 12, 0, 0),
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0)),
                 ExcludeDr = true
             };
 
@@ -41,7 +41,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2020, 1, 1, 12, 0, 0)
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0))
             };
             typeof(BoardOptions).GetProperty(propertyName).SetValue(boardOptions, value, null);
 
@@ -57,7 +57,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2020, 1, 1, 12, 0, 0)
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0))
             };
 
             const string expected = "?date=2020-01-01&time=12:00&id=0000000800000022&format=json";
@@ -72,7 +72,7 @@ namespace Stranne.VasttrafikNET.Tests
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTime(2020, 1, 1, 12, 0, 0),
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0)),
                 TimeSpan = new TimeSpan(1, 30, 5)
             };
 

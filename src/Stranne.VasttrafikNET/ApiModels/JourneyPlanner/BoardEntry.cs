@@ -56,7 +56,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Timetable
         /// </summary>
-        public DateTime DateTime => $"{Date} {Time}".ToDateTime();
+        public DateTimeOffset DateTime => $"{Date} {Time}".ToDateTimeOffset();
 
         /// <summary>
         /// Timetable in minutes
@@ -77,7 +77,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Realtime date, if available
         /// </summary>
-        public DateTime? RealtimeDateTime => $"{RtDate} {RtTime}".ToDateTimeNullable();
+        public DateTimeOffset? RealtimeDateTime => $"{RtDate} {RtTime}".ToDateTimeOffsetNullable();
 
         /// <summary>
         /// Realtime minutes, if avalible

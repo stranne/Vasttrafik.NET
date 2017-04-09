@@ -8,14 +8,19 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     [Trait("Area", "Converter")]
     public class VtDateTimeLongJsonConverterTest
     {
-        [Fact]
-        public void WriteJson()
+        public static TheoryData TestParameters => new TheoryData<DateTimeOffset, object>
         {
-            var value = new DateTime(2016, 8, 1, 9, 30, 15);
+            { new DateTimeOffset(2016, 8, 1, 9, 30, 15, new TimeSpan(2, 0, 0)), "20160801093015" },
+            { new DateTimeOffset(2016, 8, 1, 9, 30, 15, new TimeSpan(-5, 0, 0)), "20160801163015" }
+        };
 
-            var actual = JsonConvert.SerializeObject(value, new VtDateTimeLongJsonConverter());
+        [Theory]
+        [MemberData(nameof(TestParameters))]
+        public void WriteJson(DateTimeOffset dateTimeOffset, string expected)
+        {
+            var actual = JsonConvert.SerializeObject(dateTimeOffset, new VtDateTimeLongJsonConverter());
 
-            Assert.Equal("20160801093015", actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

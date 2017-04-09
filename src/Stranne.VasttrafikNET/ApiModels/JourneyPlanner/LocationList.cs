@@ -21,7 +21,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         [JsonProperty]
         internal string Servertime { get; set; }
         
-        internal DateTime ServerDateTime => $"{Serverdate} {Servertime}".ToDateTime();
+        internal DateTimeOffset ServerDateTime => $"{Serverdate} {Servertime}".ToDateTimeOffset();
         
         /// <summary>
         /// List of stops or stations

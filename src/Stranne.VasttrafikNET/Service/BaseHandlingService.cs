@@ -74,7 +74,7 @@ namespace Stranne.VasttrafikNET.Service
 
                 if (parameterAttribute.Required && (
                     actualValue == null ||
-                    property.PropertyType == typeof(DateTime) && Equals(actualValue, new DateTime())
+                    property.PropertyType == typeof(DateTimeOffset) && Equals(actualValue, new DateTimeOffset())
                     ))
                 {
                     missingParameters.Add(property.Name);
@@ -98,10 +98,11 @@ namespace Stranne.VasttrafikNET.Service
                     actualValue = (bool)actualValue ? 1 : 0;
                 else if (property.PropertyType == typeof(double?))
                     actualValue = ((double?)actualValue)?.ToString(new CultureInfo("en-US"));
-                else if (property.PropertyType == typeof(DateTime))
+                else if (property.PropertyType == typeof(DateTimeOffset))
                 {
-                    queryParameters.Add("date", ((DateTime)actualValue).ToString("yyyy-MM-dd"));
-                    queryParameters.Add("time", ((DateTime)actualValue).ToString("HH:mm"));
+                    var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();                    
+                    queryParameters.Add("date", dateTimeOffset.ToString("yyyy-MM-dd"));
+                    queryParameters.Add("time", dateTimeOffset.ToString("HH:mm"));
                     continue;
                 }
                 else if (property.PropertyType == typeof(TimeSpan?))

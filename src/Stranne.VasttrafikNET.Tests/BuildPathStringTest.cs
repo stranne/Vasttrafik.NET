@@ -26,8 +26,8 @@ namespace Stranne.VasttrafikNET.Tests
             var options = new CommuterParkingOptions
             {
                 Id = 1,
-                To = new DateTime(2016, 8, 1, 9, 0, 0),
-                From = new DateTime(2016, 8, 1, 8, 0, 0)
+                To = new DateTimeOffset(2016, 8, 1, 9, 0, 0, new TimeSpan(2, 0, 0)),
+                From = new DateTimeOffset(2016, 8, 1, 8, 0, 0, new TimeSpan(2, 0, 0))
             };
 
             var actual = BaseHandlingService.BuildParameterString(options);
