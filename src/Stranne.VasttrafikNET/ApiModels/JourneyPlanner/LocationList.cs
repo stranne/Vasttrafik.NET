@@ -11,10 +11,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
     /// </summary>
     public class LocationList
     {
-        internal string ErrorText { get; set; }
-
-        internal string Error { get; set; }
-
         [JsonProperty]
         internal string Serverdate { get; set; }
 

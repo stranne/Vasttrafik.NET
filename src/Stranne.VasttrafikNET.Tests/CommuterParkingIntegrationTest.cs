@@ -95,5 +95,12 @@ namespace Stranne.VasttrafikNET.Tests
             VerifyNetworkMock(mock, absoluteUrl);
             Assert.Equal(streamContent, new StreamReader(actual).ReadToEnd());
         }
+
+        [Fact]
+        public void Dispose()
+        {
+            var sut = new CommuterParkingService(VtKey, VtSecret);
+            sut.Dispose();
+        }
     }
 }

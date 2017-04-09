@@ -12,6 +12,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
+            { "LocationList.ServerDateTime", new DateTimeOffset(2016, 7, 31, 18, 30, 0, new TimeSpan(2, 0, 0)) },
             { "LocationList.CoordLocation", 3 },
             { "LocationList.CoordLocation[0].Name", "Pressbyrån, Centralstationen Entrehallen" },
             { "LocationList.CoordLocation[0].Index", "2" },

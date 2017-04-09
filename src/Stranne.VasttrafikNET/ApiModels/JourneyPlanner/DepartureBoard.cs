@@ -11,8 +11,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         [JsonProperty("Departure")]
         public IEnumerable<Departure> Departures { get; set; }
 
-        public string Error { get; set; }
-
         [JsonProperty]
         internal string ServerTime { get; set; }
 

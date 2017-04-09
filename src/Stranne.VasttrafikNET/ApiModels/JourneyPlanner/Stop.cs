@@ -73,7 +73,7 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Real time departure datetime
         /// </summary>
-        public DateTimeOffset? RtDepartureDateTime => $"{RtDepDate} {RtDepDate}".ToDateTimeOffsetNullable();
+        public DateTimeOffset? RealtimeDepartureDateTime => $"{RtDepDate} {RtDepTime}".ToDateTimeOffsetNullable();
 
         [JsonProperty]
         internal string RtArrTime { get; set; }

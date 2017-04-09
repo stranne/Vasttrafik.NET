@@ -257,5 +257,12 @@ namespace Stranne.VasttrafikNET.Tests
             VerifyNetworkMock(mock, absoluteUrl);
             Assert.Equal(3, actual.Count());
         }
+
+        [Fact]
+        public void Dispose()
+        {
+            var sut = new JourneyPlannerService(VtKey, VtSecret);
+            sut.Dispose();
+        }
     }
 }

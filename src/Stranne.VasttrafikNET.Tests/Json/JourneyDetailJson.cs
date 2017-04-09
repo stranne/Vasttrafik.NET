@@ -41,9 +41,14 @@
         ""routeIdx"": ""2"",
         ""arrTime"": ""16:23"",
         ""arrDate"": ""2016-07-16"",
+        ""rtArrTime"": ""16:23"",
+        ""rtArrDate"": ""2016-07-16"",
         ""depTime"": ""16:23"",
         ""depDate"": ""2016-07-16"",
-        ""track"": ""A""
+        ""rtDepTime"": ""16:23"",
+        ""rtDepDate"": ""2016-07-16"",
+        ""track"": ""A"",
+        ""rtTrack"": ""A""
       },
       {
         ""name"": ""Runskriftsgatan, Göteborg"",
@@ -445,6 +450,14 @@
         ""routeIdxFrom"": ""20"",
         ""routeIdxTo"": ""31"",
         ""$"": ""Jonsered""
+      }
+    ],
+    ""Notes"":
+    [
+      {
+        ""routeIdxFrom"": ""0"",
+        ""routeIdxTo"": ""31"",
+        ""text"": ""Text""
       }
     ]
   }

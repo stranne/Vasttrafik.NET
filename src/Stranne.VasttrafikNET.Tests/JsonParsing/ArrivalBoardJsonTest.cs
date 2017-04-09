@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -12,6 +13,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
+            { "ArrivalBoard.ServerDateTime", new DateTimeOffset(2016, 7, 16, 21, 50, 0, new TimeSpan(2, 0, 0)) },
             { "ArrivalBoard.Arrivals", 5 },
             { "ArrivalBoard.Arrivals[0].Name", "Spårvagn 2" },
             { "ArrivalBoard.Arrivals[0].ShortName", "2" },
@@ -104,17 +106,17 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "ArrivalBoard.Arrivals[4].Stop", "Centralstationen, Göteborg" },
             { "ArrivalBoard.Arrivals[4].DateTime", new DateTimeOffset(2016, 7, 16, 16, 51, 0, new TimeSpan(2, 0, 0)) },
             { "ArrivalBoard.Arrivals[4].Minutes", 0 },
-            { "ArrivalBoard.Arrivals[4].RealtimeDateTime", null },
+            { "ArrivalBoard.Arrivals[4].RealtimeDateTime", new DateTimeOffset(2016, 7, 16, 16, 51, 0, new TimeSpan(2, 0, 0)) },
             { "ArrivalBoard.Arrivals[4].RealtimeMinutes", null },
             { "ArrivalBoard.Arrivals[4].JourneyId", "9015014500204077" },
             { "ArrivalBoard.Arrivals[4].Origin", "Mölndal" },
             { "ArrivalBoard.Arrivals[4].Track", "A" },
-            { "ArrivalBoard.Arrivals[4].RealtimeTrack", null },
+            { "ArrivalBoard.Arrivals[4].RealtimeTrack", "A" },
             { "ArrivalBoard.Arrivals[4].ForegroundColor", "#fff014" },
             { "ArrivalBoard.Arrivals[4].BackgroundColor", "#00394d" },
             { "ArrivalBoard.Arrivals[4].Stroke", "Solid" },
-            { "ArrivalBoard.Arrivals[4].Booking", false },
-            { "ArrivalBoard.Arrivals[4].Night", false },
+            { "ArrivalBoard.Arrivals[4].Booking", true },
+            { "ArrivalBoard.Arrivals[4].Night", true },
             { "ArrivalBoard.Arrivals[4].Accessibility", null },
             { "ArrivalBoard.Arrivals[4].JourneyDetailReference.Reference", "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=702918%2F253010%2F766880%2F149136%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950001%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26" }
         };
@@ -123,6 +125,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         public void ArrivalBoardJsonParsing(string property, object expected)
         {
             TestValue<ArrivalBoardRoot>(property, expected);
+        }
+
+        [Fact]
+        public void ArrivalBoardOnDeserialized()
+        {
+            JsonConvert.DeserializeObject<ArrivalBoard>("{}");
         }
     }
 }

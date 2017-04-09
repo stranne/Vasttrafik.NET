@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -12,6 +13,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
+            { "DepartureBoard.ServerDateTime", new DateTimeOffset(2016, 7, 16, 21, 50, 0, new TimeSpan(2, 0, 0)) },
             { "DepartureBoard.Departures", 5 },
             { "DepartureBoard.Departures[0].Name", "Spårvagn 2" },
             { "DepartureBoard.Departures[0].ShortName", "2" },
@@ -123,6 +125,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         public void DepartureBoardJsonParsing(string property, object expected)
         {
             TestValue<DepartureBoardRoot>(property, expected);
+        }
+
+        [Fact]
+        public void DepartureBoardOnDeserialized()
+        {
+            JsonConvert.DeserializeObject<DepartureBoard>("{}");
         }
     }
 }

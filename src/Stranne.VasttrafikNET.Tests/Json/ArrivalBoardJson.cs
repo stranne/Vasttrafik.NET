@@ -99,9 +99,14 @@
         ""journeyid"": ""9015014500204077"",
         ""origin"": ""Mölndal"",
         ""track"": ""A"",
+        ""rtTrack"": ""A"",
+        ""rtTime"": ""16:51"",
+        ""rtDate"": ""2016-07-16"",
         ""fgColor"": ""#fff014"",
         ""bgColor"": ""#00394d"",
         ""stroke"": ""Solid"",
+        ""booking"": ""true"",
+        ""night"": ""true"",
         ""JourneyDetailRef"":
         {
           ""ref"": ""http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=702918%2F253010%2F766880%2F149136%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950001%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26""

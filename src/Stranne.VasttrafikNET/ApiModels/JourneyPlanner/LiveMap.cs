@@ -8,8 +8,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
     /// </summary>
     public class LiveMap
     {
-        internal string Time { get; set; }
-        
         /// <summary>
         /// Right border (longitude) of the bounding box in WGS84
         /// </summary>

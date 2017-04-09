@@ -6,7 +6,7 @@ using Stranne.VasttrafikNET.Extensions;
 namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
 {
     /// <summary>
-    /// An entry for either <see cref="Arrival"/> or <see cref="Departure"/>  from a stop
+    /// An entry for either <see cref="Arrival"/> or <see cref="Departure"/> from a stop
     /// </summary>
     public abstract class BoardEntry
     {

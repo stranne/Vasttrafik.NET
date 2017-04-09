@@ -19,6 +19,7 @@
           ""type"": ""TRAM"",
           ""id"": ""9015014500204112"",
           ""direction"": ""Frölunda via Järntorget"",
+          ""cancelled"": ""true"",
           ""fgColor"": ""#fff014"",
           ""bgColor"": ""#00394d"",
           ""stroke"": ""Solid"",
@@ -137,6 +138,10 @@
         }
       },
       {
+        ""travelWarrenty"": ""false"",
+        ""alternative"": ""true"",
+        ""type"": ""8"",
+        ""valid"": ""false"",
         ""Leg"":
         {
           ""name"": ""Spårvagn 2"",
@@ -151,6 +156,10 @@
           ""reachable"": ""False"",
           ""percentBikeRoad"": ""70"",
           ""accessibility"": ""wheelChair"",
+          ""geometryRef"": 
+          {
+            ""ref"": ""ABC""
+          },
           ""Origin"":
           {
             ""name"": ""Mölndal centrum, Mölndal"",

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -23,7 +24,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[0].Legs[0].Booking", false },
             { "TripList.Trips[0].Legs[0].Direction", "Frölunda via Järntorget" },
             { "TripList.Trips[0].Legs[0].JourneyDetailReference.Reference", "https://api.vasttrafik.se/bin/rest.exe/v2/journeyDetail?ref=924501%2F336535%2F458390%2F78978%2F80%3Fdate%3D2016-07-31%26station_evaId%3D12110001%26station_type%3Ddep%26format%3Djson%26" },
-            { "TripList.Trips[0].Legs[0].Cancelled", false },
+            { "TripList.Trips[0].Legs[0].Cancelled", true },
             { "TripList.Trips[0].Legs[0].Kcal", null },
             { "TripList.Trips[0].Legs[0].Sname", "2" },
             { "TripList.Trips[0].Legs[0].Type", JourneyType.Tram },
@@ -132,10 +133,10 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[1].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 57, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Destination.DirectDateTime", null },
             
-            { "TripList.Trips[2].TravelWarrenty", true },
-            { "TripList.Trips[2].Alternative", false },
-            { "TripList.Trips[2].Type", null },
-            { "TripList.Trips[2].Valid", true },
+            { "TripList.Trips[2].TravelWarrenty", false },
+            { "TripList.Trips[2].Alternative", true },
+            { "TripList.Trips[2].Type", TripType.Walk },
+            { "TripList.Trips[2].Valid", false },
             { "TripList.Trips[2].Legs", 1 },
             { "TripList.Trips[2].Legs[0].ForegroundColor", "#fff014" },
             { "TripList.Trips[2].Legs[0].Booking", false },
@@ -146,7 +147,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].PercentBikeRoad", 70f },
             { "TripList.Trips[2].Legs[0].Sname", "2" },
             { "TripList.Trips[2].Legs[0].Type", JourneyType.Tram },
-            { "TripList.Trips[2].Legs[0].GeometryReference", null },
+            { "TripList.Trips[2].Legs[0].GeometryReference.Reference", "ABC" },
             { "TripList.Trips[2].Legs[0].BackgroundColor", "#00394d" },
             { "TripList.Trips[2].Legs[0].Notes", 0 },
             { "TripList.Trips[2].Legs[0].Id", "9015014500204114" },
@@ -191,6 +192,13 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         public void TripJsonParsing(string property, object expected)
         {
             TestValue<TripRoot>(property, expected);
+        }
+
+        [Fact]
+        public void TripOnDeserialized()
+        {
+            JsonConvert.DeserializeObject<Trip>("{}");
+            JsonConvert.DeserializeObject<TripList>("{}");
         }
     }
 }

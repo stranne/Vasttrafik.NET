@@ -28,6 +28,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Altitude
         /// </summary>
-        public string Altitude { get; set; }
+        public int? Altitude { get; set; }
     }
 }

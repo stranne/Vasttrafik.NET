@@ -17,13 +17,13 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// </summary>
         /// <example>0</example>
         [JsonProperty("routeIdxFrom")]
-        public string RouteIndexFrom { get; set; }
+        public int RouteIndexFrom { get; set; }
 
         /// <summary>
         /// Note is valid used to stop index. Stop index is the index of all stops for a specific line.
         /// </summary>
         /// <example>31</example>
         [JsonProperty("routeIdxTo")]
-        public string RouteIndexTo { get; set; }
+        public int RouteIndexTo { get; set; }
     }
 }

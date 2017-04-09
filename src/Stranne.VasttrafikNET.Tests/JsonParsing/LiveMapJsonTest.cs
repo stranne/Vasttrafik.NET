@@ -1,4 +1,5 @@
-﻿using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
+﻿using Newtonsoft.Json;
+using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
 using Xunit;
@@ -42,6 +43,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         public void LiveMapJsonParsing(string property, object expected)
         {
             TestValue<LiveMapRoot>(property, expected);
+        }
+
+        [Fact]
+        public void LiveMapOnDeserialized()
+        {
+            JsonConvert.DeserializeObject<LiveMap>("{}");
         }
     }
 }

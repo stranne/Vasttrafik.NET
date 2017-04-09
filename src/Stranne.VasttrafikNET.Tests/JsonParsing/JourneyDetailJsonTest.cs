@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -22,7 +23,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "JourneyDetail.Stops[0].ArrivalDateTime", null },
             { "JourneyDetail.Stops[0].RealtimeArrivalDateTime", null },
             { "JourneyDetail.Stops[0].DepartureDateTime", new DateTimeOffset(2016, 7, 16, 16, 22, 0, new TimeSpan(2, 0, 0)) },
-            { "JourneyDetail.Stops[0].RtDepartureDateTime", null },
+            { "JourneyDetail.Stops[0].RealtimeDepartureDateTime", null },
             { "JourneyDetail.Stops[0].Track", "A" },
             { "JourneyDetail.Stops[0].RtTrack", null },
 
@@ -34,7 +35,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "JourneyDetail.Stops[1].ArrivalDateTime", new DateTimeOffset(2016, 7, 16, 16, 22, 0, new TimeSpan(2, 0, 0)) },
             { "JourneyDetail.Stops[1].RealtimeArrivalDateTime", null },
             { "JourneyDetail.Stops[1].DepartureDateTime", new DateTimeOffset(2016, 7, 16, 16, 22, 0, new TimeSpan(2, 0, 0)) },
-            { "JourneyDetail.Stops[1].RtDepartureDateTime", null },
+            { "JourneyDetail.Stops[1].RealtimeDepartureDateTime", null },
             { "JourneyDetail.Stops[1].Track", "A" },
             { "JourneyDetail.Stops[1].RtTrack", null },
 
@@ -44,11 +45,11 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "JourneyDetail.Stops[2].Longitude", 11.762691 },
             { "JourneyDetail.Stops[2].RouteIndex", "2" },
             { "JourneyDetail.Stops[2].ArrivalDateTime", new DateTimeOffset(2016, 7, 16, 16, 23, 0, new TimeSpan(2, 0, 0)) },
-            { "JourneyDetail.Stops[2].RealtimeArrivalDateTime", null },
+            { "JourneyDetail.Stops[2].RealtimeArrivalDateTime", new DateTimeOffset(2016, 7, 16, 16, 23, 0, new TimeSpan(2, 0, 0)) },
             { "JourneyDetail.Stops[2].DepartureDateTime", new DateTimeOffset(2016, 7, 16, 16, 23, 0, new TimeSpan(2, 0, 0)) },
-            { "JourneyDetail.Stops[2].RtDepartureDateTime", null },
+            { "JourneyDetail.Stops[2].RealtimeDepartureDateTime", new DateTimeOffset(2016, 7, 16, 16, 23, 0, new TimeSpan(2, 0, 0)) },
             { "JourneyDetail.Stops[2].Track", "A" },
-            { "JourneyDetail.Stops[2].RtTrack", null },
+            { "JourneyDetail.Stops[2].RtTrack", "A" },
 
             { "JourneyDetail.Color.ForegroundColor", "#ffdd00" },
             { "JourneyDetail.Color.BackgroundColor", "#00394d" },
@@ -83,13 +84,24 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "JourneyDetail.Direction[0].RouteIndexTo", 20 },
             { "JourneyDetail.Direction[1].Name", "Jonsered" },
             { "JourneyDetail.Direction[1].RouteIndexFrom", 20 },
-            { "JourneyDetail.Direction[1].RouteIndexTo", 31 }
+            { "JourneyDetail.Direction[1].RouteIndexTo", 31 },
+
+            { "JourneyDetail.Notes", 1 },
+            { "JourneyDetail.Notes[0].Text", "Text" },
+            { "JourneyDetail.Notes[0].RouteIndexFrom", 0 },
+            { "JourneyDetail.Notes[0].RouteIndexTo", 31 }
         };
 
         [Theory, MemberData(nameof(TestParameters))]
         public void JourneyDetailJsonParsing(string property, object expected)
         {
             TestValue<JourneyDetailRoot>(property, expected);
+        }
+
+        [Fact]
+        public void JourneyDetailOnDeserialized()
+        {
+            JsonConvert.DeserializeObject<JourneyDetail>("{}");
         }
     }
 }

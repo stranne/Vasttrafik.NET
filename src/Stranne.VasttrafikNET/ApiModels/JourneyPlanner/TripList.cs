@@ -8,9 +8,6 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
 {
     internal class TripList
     {
-        internal string ErrorText { get; set; }
-
-        internal string Error { get; set; }
 
         [JsonProperty]
         internal string Serverdate { get; set; }
