@@ -13,6 +13,7 @@ namespace Stranne.VasttrafikNET.Tests.Converters
         [InlineData(BikeProfile.Easy, "E")]
         [InlineData(BikeProfile.Normal, "N")]
         [InlineData(BikeProfile.Powerful, "P")]
+        [InlineData((BikeProfile)int.MaxValue, "")]
         public void WriteJson(BikeProfile value, string expected)
         {
             var actual = JsonConvert.SerializeObject(value, new BikeProfileJsonConverter());

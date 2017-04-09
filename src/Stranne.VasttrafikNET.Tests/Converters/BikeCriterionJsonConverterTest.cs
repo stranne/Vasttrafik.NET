@@ -12,6 +12,7 @@ namespace Stranne.VasttrafikNET.Tests.Converters
         [Theory]
         [InlineData(BikeCriterion.DedicatedBikeRoads, "D")]
         [InlineData(BikeCriterion.FastRoute, "F")]
+        [InlineData((BikeCriterion)int.MaxValue, "")]
         public void WriteJson(BikeCriterion value, string expected)
         {
             var actual = JsonConvert.SerializeObject(value, new BikeCriterionJsonConverter());
