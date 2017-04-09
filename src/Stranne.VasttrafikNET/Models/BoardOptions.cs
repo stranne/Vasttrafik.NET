@@ -24,7 +24,7 @@ namespace Stranne.VasttrafikNET.Models
         /// Stop id in order to get only departures of vehicles with a specified direction
         /// </summary>
         [Parameter]
-        public long? Direction { get; set; }
+        public string Direction { get; set; }
 
         /// <summary>
         /// Trips with Västtågen, true by default

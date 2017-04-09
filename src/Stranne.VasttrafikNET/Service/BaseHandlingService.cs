@@ -98,7 +98,7 @@ namespace Stranne.VasttrafikNET.Service
                     actualValue = (bool)actualValue ? 1 : 0;
                 else if (property.PropertyType == typeof(double?))
                     actualValue = ((double?)actualValue)?.ToString(new CultureInfo("en-US"));
-                else if (property.PropertyType == typeof(DateTimeOffset))
+                else if (property.PropertyType == typeof(DateTimeOffset) || property.PropertyType == typeof(DateTimeOffset?))
                 {
                     var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();                    
                     queryParameters.Add("date", dateTimeOffset.ToString("yyyy-MM-dd"));

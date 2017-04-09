@@ -11,17 +11,19 @@ namespace Stranne.VasttrafikNET.Tests
     [Trait("Area", "Service")]
     public class BuildQueryStringTest
     {
-        [Fact]
-        public void BoardOptionsPropertyExcludeDr()
+        [Theory]
+        [InlineData(nameof(BoardOptions.ExcludeDr), true, "excludeDr=1")]
+        [InlineData(nameof(BoardOptions.Direction), "0000000800000022", "direction=0000000800000022")]
+        public void BoardOptionsPropertyExcludeDr(string propertyName, object value, string expectedQuery)
         {
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
-                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0)),
-                ExcludeDr = true
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, new TimeSpan(1, 0, 0))
             };
+            typeof(BoardOptions).GetProperty(propertyName).SetValue(boardOptions, value, null);
 
-            var expected = $"?date=2020-01-01&time=12:00&excludeDr=1&id=0000000800000022&format=json";
+            var expected = $"?date=2020-01-01&time=12:00&{expectedQuery}&id=0000000800000022&format=json";
 
             var actual = BaseHandlingService.BuildParameterString(boardOptions);
             Assert.Equal(expected, actual);
@@ -193,6 +195,9 @@ namespace Stranne.VasttrafikNET.Tests
                 nameof(TripOptions.DestCoordName), "Centralstationen, Göteborg", "destCoordName=Centralstationen, Göteborg"
             },
             {
+                nameof(TripOptions.ViaId), "9021014001950000", "viaId=9021014001950000"
+            },
+            {
                 nameof(TripOptions.DestMedicalCon), true, "destMedicalCon=1"
             },
             {
@@ -316,6 +321,20 @@ namespace Stranne.VasttrafikNET.Tests
             typeof(TripOptions).GetProperty(propertyName).SetValue(options, value, null);
 
             var expected = $"?{expectedQuery}&format=json";
+
+            var actual = BaseHandlingService.BuildParameterString(options);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TripOptionsDateTime()
+        {
+            var options = new TripOptions
+            {
+                DateTime = new DateTimeOffset(2020, 1, 1, 12, 0, 0, 0, new TimeSpan(1, 0, 0))
+            };
+
+            var expected = "?date=2020-01-01&time=12:00&format=json";
 
             var actual = BaseHandlingService.BuildParameterString(options);
             Assert.Equal(expected, actual);
