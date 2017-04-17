@@ -10,12 +10,12 @@ build:
     project: Stranne.VasttrafikNET.sln
     verbosity: quiet
 before_test:
-- nuget install OpenCover -Version 4.6.703 -o .\.nuget\packages
+- nuget install OpenCover -Version 4.6.703-rc -o .\.nuget\packages
 test_script:
 - ps: >-
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
 
-    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.703\tools\OpenCover.Console.exe'
+    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.703-rc\tools\OpenCover.Console.exe'
 
     $target = '-target:C:\Program Files\dotnet\dotnet.exe'
     
