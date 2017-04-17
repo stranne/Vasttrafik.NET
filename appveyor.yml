@@ -18,7 +18,7 @@ test_script:
 - ps: >-
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
 
-    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.703-rc\tools\OpenCover.Console.exe'
+    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.703\tools\OpenCover.Console.exe'
 
     $target = '-target:C:\Program Files\dotnet\dotnet.exe'
     
