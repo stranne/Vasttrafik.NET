@@ -42,7 +42,7 @@ after_test:
     python -m pip install --upgrade pip
     
     pip install git+git://github.com/codecov/codecov-python.git
+
+    codecov -f $resultsFile -X gcov
 artifacts:
 - path: artifacts\**\*.*
-on_finish:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
