@@ -7,6 +7,7 @@
     <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>Olof Stranne</Authors>
     <TargetFrameworks>netstandard1.3</TargetFrameworks>
+    <DebugType>full</DebugType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Stranne.VasttrafikNET</AssemblyName>
