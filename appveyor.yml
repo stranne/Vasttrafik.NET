@@ -32,11 +32,7 @@ test_script:
 
     & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle' 
 after_test:
-- ps: >-
-    $artifactsFolder = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts'
-    
-    Copy-Item $resultsFile $artifactsFolder
-    
+- ps: >-    
     $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
     
     python -m pip install --upgrade pip
@@ -45,4 +41,4 @@ after_test:
 
     codecov -f $resultsFile -X gcov
 artifacts:
-- path: artifacts\**\*.*
+- path: $resultsFile
