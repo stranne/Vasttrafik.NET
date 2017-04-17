@@ -48,13 +48,13 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void GetHistoricalAvailability()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/historicalAvailability/209/20160801080000/20160801090000?format=Json";
             var mock = GetNetworkServiceMock(absoluteUrl, HistoricalAvailabilityJson.Json);
 
             var sut = new CommuterParkingService(VtKey, VtSecret)
             {
                 CommuterParkingHandlingService = { NetworkService = mock.Object }
             };
+            const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/historicalAvailability/209/20160801080000/20160801090000?format=json";
 
             var actual = sut.GetHistoricalAvailability(209, new DateTime(2016, 8, 1, 8, 0, 0), new DateTime(2016, 8, 1, 9, 0, 0));
 
