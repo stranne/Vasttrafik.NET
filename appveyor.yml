@@ -4,8 +4,6 @@ platform: Any CPU
 os: Visual Studio 2017
 environment:
     DOTNET_CLI_TELEMETRY_OPTOUT: 1
-init:
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 before_build:
 - cmd: dotnet restore
 build:
@@ -46,3 +44,5 @@ after_test:
     pip install git+git://github.com/codecov/codecov-python.git
 artifacts:
 - path: artifacts\**\*.*
+on_finish:
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
