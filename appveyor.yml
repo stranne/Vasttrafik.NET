@@ -18,7 +18,9 @@ test_script:
 
     $target = '-target:C:\Program Files\dotnet\dotnet.exe'
     
-    $targetArgs = '-targetargs: test ' + $ENV:APPVEYOR_BUILD_FOLDER + '\src\Stranne.VasttrafikNET.Tests -c ' + $ENV:CONFIGURATION 
+    cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
+
+    $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
 
     $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
 
@@ -35,7 +37,5 @@ test_script:
     python -m pip install --upgrade pip
 
     pip install git+git://github.com/codecov/codecov-python.git
-
-    codecov -f $resultsFile -X gcov
 artifacts:
 - path: artifacts\**\*.*
