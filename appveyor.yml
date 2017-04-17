@@ -30,7 +30,7 @@ test_script:
 
     $output = '-output:' + $resultsFile
 
-    & $openCoverConsole $target $targetArgs '-register:user' $filter $output '-oldStyle'
+    & $openCoverConsole $target $targetArgs '-register:user' $filter '-returntargetcode' $output '-oldStyle' 
 after_test:
 - ps: >-
     $artifactsFolder = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts'
