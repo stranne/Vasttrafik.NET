@@ -44,7 +44,7 @@ namespace Stranne.VasttrafikNET.Tests
             SetUpNetworkServiceMock(absoluteUrl, HistoricalAvailabilityJson.Json);
             var sut = GetCommuterParkingService();
 
-            var actual = sut.GetHistoricalAvailability(209, new DateTime(2016, 8, 1, 8, 0, 0), new DateTime(2016, 8, 1, 9, 0, 0));
+            var actual = sut.GetHistoricalAvailability(209, new DateTimeOffset(2016, 8, 1, 8, 0, 0, new TimeSpan(2, 0, 0)), new DateTimeOffset(2016, 8, 1, 9, 0, 0, new TimeSpan(2, 0, 0)));
 
             VerifyNetworkMock();
             Assert.Equal(5, actual.Count());

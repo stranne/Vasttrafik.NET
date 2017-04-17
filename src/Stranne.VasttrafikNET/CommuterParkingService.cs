@@ -57,7 +57,7 @@ namespace Stranne.VasttrafikNET
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
-        public async Task<IEnumerable<HistoricalAvailability>> GetHistoricalAvailabilityAsync(int id, DateTime from, DateTime to)
+        public async Task<IEnumerable<HistoricalAvailability>> GetHistoricalAvailabilityAsync(int id, DateTimeOffset from, DateTimeOffset to)
         {
             var options = new CommuterParkingOptions
             {
@@ -69,7 +69,7 @@ namespace Stranne.VasttrafikNET
         }
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
-        public IEnumerable<HistoricalAvailability> GetHistoricalAvailability(int id, DateTime from, DateTime to)
+        public IEnumerable<HistoricalAvailability> GetHistoricalAvailability(int id, DateTimeOffset from, DateTimeOffset to)
         {
             return GetHistoricalAvailabilityAsync(id, from, to).Result;
         }
