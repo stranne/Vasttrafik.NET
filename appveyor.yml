@@ -24,7 +24,7 @@ test_script:
     
     cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
 
-    $targetArgs = '-targetargs: test -c Debug'
+    $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
 
     $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
 
