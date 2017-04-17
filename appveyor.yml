@@ -24,7 +24,7 @@ test_script:
     
     cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
 
-    $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
+    $targetArgs = '-targetargs: test -c Debug'
 
     $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
 
@@ -41,4 +41,4 @@ after_test:
 
     codecov -f $resultsFile -X gcov
 artifacts:
-- path: $resultsFile
+- path: '$ENV:APPVEYOR_BUILD_FOLDER\Stranne.VasttrafikNET_coverage.xml'
