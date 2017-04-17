@@ -16,13 +16,21 @@ namespace Stranne.VasttrafikNET.Service
     internal class NetworkService : IDisposable
     {
         private static readonly Uri VtBaseUrl = new Uri("https://api.vasttrafik.se/");
+
         private const string VtTokenUrl = "token?grant_type=client_credentials&scope={0}&format=json";
 
-        private static ConcurrentDictionary<string, Token> _tokens;
+        private static readonly ConcurrentDictionary<string, Token> Tokens = new ConcurrentDictionary<string, Token>();
 
         private readonly string _key;
+
         private readonly string _secret;
+
         internal string DeviceId { private get; set; }
+
+        internal virtual HttpClient HttpClient { get; set; } = new HttpClient
+        {
+            BaseAddress = VtBaseUrl
+        };
 
         public NetworkService(string vtKey, string vtSecret, string vtDeviceId)
         {
@@ -36,11 +44,6 @@ namespace Stranne.VasttrafikNET.Service
                 vtDeviceId = Guid.NewGuid().ToString();
             DeviceId = vtDeviceId;
         }
-
-        private HttpClient HttpClient => new HttpClient
-        {
-            BaseAddress = VtBaseUrl
-        };
 
         public async Task<string> DownloadStringAsync(string absoluteUrl)
         {
@@ -72,15 +75,17 @@ namespace Stranne.VasttrafikNET.Service
                 };
                 httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.Access_Token}");
 
-                var response = await SendAsync(HttpClient, httpRequestMessage);
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    _tokens[DeviceId] = null;
-                    connectionAttempts++;
-                    continue;
-                }
+                var response = await HttpClient.SendAsync(httpRequestMessage);
 
                 if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        Tokens[DeviceId] = null;
+                        connectionAttempts++;
+                        continue;
+                    }
+
                     throw new NetworkException
                     {
                         StatusCode = response.StatusCode,
@@ -89,6 +94,7 @@ namespace Stranne.VasttrafikNET.Service
                             : await response.Content.ReadAsStringAsync(),
                         RequestUri = httpRequestMessage.RequestUri
                     };
+                }
 
                 return response;
             }
@@ -98,17 +104,13 @@ namespace Stranne.VasttrafikNET.Service
 
         private async Task<Token> GetToken()
         {
-            if (_tokens == null)
-                _tokens = new ConcurrentDictionary<string, Token>();
-
-            Token token;
-            _tokens.TryGetValue(DeviceId, out token);
+            Tokens.TryGetValue(DeviceId, out Token token);
 
             if (IsTokenValid(token))
                 return token;
 
             token = await CreateToken(_key, _secret, DeviceId);
-            _tokens.AddOrUpdate(DeviceId, token, (d, t) => token);
+            Tokens.AddOrUpdate(DeviceId, token, (d, t) => token);
             return token;
         }
 
@@ -128,9 +130,15 @@ namespace Stranne.VasttrafikNET.Service
             };
             httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Basic {base64}");
 
-            var response = await SendAsync(HttpClient, httpRequestMessage);
+            var response = await HttpClient.SendAsync(httpRequestMessage);
 
             if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new AuthenticationException();
+                }
+
                 throw new NetworkException
                 {
                     StatusCode = response.StatusCode,
@@ -139,16 +147,12 @@ namespace Stranne.VasttrafikNET.Service
                         : await response.Content.ReadAsStringAsync(),
                     RequestUri = httpRequestMessage.RequestUri
                 };
+            }
 
             var json = await response.Content.ReadAsStringAsync();
             var token = JsonConvert.DeserializeObject<Token>(json);
 
             return token;
-        }
-
-        public virtual async Task<HttpResponseMessage> SendAsync(HttpClient httpClient, HttpRequestMessage httpRequestMessage)
-        {
-            return await httpClient.SendAsync(httpRequestMessage);
         }
 
         private static void ThrowIfServerErrors(string json)

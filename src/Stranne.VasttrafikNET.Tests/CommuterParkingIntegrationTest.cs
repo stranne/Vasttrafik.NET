@@ -15,16 +15,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetParkings()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/parkings?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, ParkingsJson.Json);
-
-            var sut = new CommuterParkingService(VtKey, VtSecret)
-            {
-                CommuterParkingHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, ParkingsJson.Json);
+            var sut = GetCommuterParkingService();
 
             var actual = sut.GetParkings(new ParkingOptions());
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(2, actual.Count());
         }
 
@@ -32,33 +28,25 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetParking()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/parkings/209?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, ParkingJson.Json);
-
-            var sut = new CommuterParkingService(VtKey, VtSecret)
-            {
-                CommuterParkingHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, ParkingJson.Json);
+            var sut = GetCommuterParkingService();
 
             var actual = sut.GetParkings(209);
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(209, actual.Id);
         }
 
         [Fact]
         public void GetHistoricalAvailability()
         {
-            var mock = GetNetworkServiceMock(absoluteUrl, HistoricalAvailabilityJson.Json);
-
-            var sut = new CommuterParkingService(VtKey, VtSecret)
-            {
-                CommuterParkingHandlingService = { NetworkService = mock.Object }
-            };
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/historicalAvailability/209/20160801080000/20160801090000?format=json";
+            SetUpNetworkServiceMock(absoluteUrl, HistoricalAvailabilityJson.Json);
+            var sut = GetCommuterParkingService();
 
             var actual = sut.GetHistoricalAvailability(209, new DateTime(2016, 8, 1, 8, 0, 0), new DateTime(2016, 8, 1, 9, 0, 0));
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(5, actual.Count());
         }
 
@@ -66,15 +54,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetAvailableCapacity()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/availableCapacity/6030?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, AvailableCapacityJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, AvailableCapacityJson.Json);
+            var sut = GetCommuterParkingService();
 
-            var sut = new CommuterParkingService(VtKey, VtSecret)
-            {
-                CommuterParkingHandlingService = { NetworkService = mock.Object }
-            };
             var actual = sut.GetAvailableCapacity(6030);
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(50, actual);
         }
 
@@ -83,16 +68,12 @@ namespace Stranne.VasttrafikNET.Tests
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/parkingImages/6030/1?format=json";
             const string streamContent = "stream content";
-            var mock = GetNetworkServiceMock(absoluteUrl, new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(streamContent))));
-
-            var sut = new CommuterParkingService(VtKey, VtSecret)
-            {
-                CommuterParkingHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(streamContent))));
+            var sut = GetCommuterParkingService();
 
             var actual = sut.GetParkingImage(6030, 1);
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(streamContent, new StreamReader(actual).ReadToEnd());
         }
 

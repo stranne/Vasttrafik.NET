@@ -15,15 +15,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetDepartureBoard()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/departureBoard?date=2016-07-16&time=16:50&id=0000000800000022&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, DepartureBoardJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService =
-                {
-                    NetworkService = mock.Object
-                }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, DepartureBoardJson.Json);
+            var sut = GetJourneyPlannerService();
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
@@ -32,7 +25,7 @@ namespace Stranne.VasttrafikNET.Tests
 
             var actual = sut.GetDepartureBoard(boardOptions).ToList();
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(5, actual.Count);
             Assert.Equal(2, actual.First().Minutes);
         }
@@ -41,15 +34,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetArrivalBoard()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?date=2016-07-16&time=16:50&id=0000000800000022&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, ArrivalBoardJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService =
-                {
-                    NetworkService = mock.Object
-                }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, ArrivalBoardJson.Json);
+            var sut = GetJourneyPlannerService();
             var boardOptions = new BoardOptions
             {
                 Id = "0000000800000022",
@@ -58,7 +44,7 @@ namespace Stranne.VasttrafikNET.Tests
 
             var actual = sut.GetArrivalBoard(boardOptions).ToList();
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(5, actual.Count);
             Assert.Equal(2, actual.First().Minutes);
         }
@@ -67,19 +53,15 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetGeometry()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/geometry?ref=926976%2F339484%2F664224%2F23125%2F80%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            var mock = GetNetworkServiceMock(absoluteUrl, GeometryJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, GeometryJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetGeometry(new GeometryReference
             {
                 Reference = "http://api.vasttrafik.se/bin/rest.exe/v1/geometry?ref=926976%2F339484%2F664224%2F23125%2F80%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26"
             });
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(3, actual.Points.Count());
         }
 
@@ -87,19 +69,15 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetJourneyDetail()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            var mock = GetNetworkServiceMock(absoluteUrl, JourneyDetailJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, JourneyDetailJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetJourneyDetail(new JourneyDetailReference
             {
                 Reference = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26"
             });
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(32, actual.Stops.Count());
         }
 
@@ -107,12 +85,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetJourneyDetailFailed()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            var mock = GetNetworkServiceMock(absoluteUrl, JourneyDetailErrorJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, JourneyDetailErrorJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = Assert.ThrowsAny<AggregateException>(() => sut.GetJourneyDetail(new JourneyDetailReference
             {
@@ -130,16 +104,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLiveMap()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/livemap?maxx=12044663&maxy=57685421&minx=11913214&miny=57721867&onlyRealtime=no&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, LiveMapJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, LiveMapJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLiveMap(11.913214, 12.044663, 57.721867, 57.685421, false);
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(2, actual.Vehicles.Count());
         }
 
@@ -147,12 +117,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationNearbyAddress()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.nearbyaddress?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, LocationNearbyAddressJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, LocationNearbyAddressJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationNearbyAddress(new Coordinate
             {
@@ -160,7 +126,7 @@ namespace Stranne.VasttrafikNET.Tests
                 Longitude = 11.963654
             });
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(1, actual.CoordLocation.Count());
         }
 
@@ -168,12 +134,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationNerbyStops()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.nearbystops?maxDist=500&maxNo=3&originCoordLat=57.705686&originCoordLong=11.963654&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, LocationNearbyStopsJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, LocationNearbyStopsJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationNearbyStops(new Coordinate
             {
@@ -181,7 +143,7 @@ namespace Stranne.VasttrafikNET.Tests
                 Longitude = 11.963654
             }, 3, 500);
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(3, actual.StopLocation.Count());
         }
 
@@ -189,16 +151,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationAllStops()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.allstops?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, LocationAllStopsJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, LocationAllStopsJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationAllStops();
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.NotNull(actual.StopLocation);
         }
 
@@ -206,16 +164,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationName()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.name?input=Centralstationen&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, LocationNameJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, LocationNameJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationName("Centralstationen");
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(3, actual.CoordLocation.Count());
         }
 
@@ -223,17 +177,12 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetSystemInfo()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/systeminfo?format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, SystemInfoJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, SystemInfoJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetSystemInfo();
 
-            VerifyNetworkMock(mock, absoluteUrl);
-
+            VerifyNetworkMock();
             Assert.Equal(new DateTimeOffset(2016, 6, 1, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimetablePeriod.DateBegin);
             Assert.Equal(new DateTimeOffset(2016, 10, 29, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimetablePeriod.DateEnd);
             Assert.Equal(new DateTimeOffset(2016, 7, 31, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimeTableData.CreationDate);
@@ -243,12 +192,8 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetTrip()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/trip?destId=9021014001950000&originId=0000000800000002&format=json";
-            var mock = GetNetworkServiceMock(absoluteUrl, TripJson.Json);
-
-            var sut = new JourneyPlannerService(VtKey, VtSecret)
-            {
-                JourneyPlannerHandlingService = { NetworkService = mock.Object }
-            };
+            SetUpNetworkServiceMock(absoluteUrl, TripJson.Json);
+            var sut = GetJourneyPlannerService();
 
             var actual = sut.GetTrip(new TripOptions
             {
@@ -256,7 +201,7 @@ namespace Stranne.VasttrafikNET.Tests
                 DestId = "9021014001950000"
             });
 
-            VerifyNetworkMock(mock, absoluteUrl);
+            VerifyNetworkMock();
             Assert.Equal(3, actual.Count());
         }
 

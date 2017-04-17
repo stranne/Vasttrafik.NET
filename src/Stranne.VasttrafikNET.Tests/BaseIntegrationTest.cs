@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Threading;
 using Moq;
 using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -15,31 +16,56 @@ namespace Stranne.VasttrafikNET.Tests
 
         protected string TokenAbsoluteUrl = $"https://api.vasttrafik.se/token?grant_type=client_credentials&scope={VtDeviceId}&format=json";
         
-        internal void VerifyNetworkMock(Mock<NetworkService> mock, string absoluteUrl)
+        private string AbsoluteUrl { get; set; }
+        protected MockHttpMessageHandler HttpMessageHandler { get; set; }
+
+        internal void VerifyNetworkMock()
         {
-            mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(absoluteUrl, HttpMethod.Get)), Times.Once);
-            mock.Verify(x => x.SendAsync(It.IsAny<HttpClient>(), GetHttpRequestMessage(TokenAbsoluteUrl, HttpMethod.Post)), Times.Once);
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
         }
 
-        internal Mock<NetworkService> GetNetworkServiceMock(string absoluteUrl, string json)
+        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, string json)
         {
-            return GetNetworkServiceMock(absoluteUrl, new StringContent(json));
+            return SetUpNetworkServiceMock(absoluteUrl, new StringContent(json));
         }
 
-        internal Mock<NetworkService> GetNetworkServiceMock(string absoluteUrl, HttpContent mainContent)
+        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpContent mainContent)
         {
-            return GetNetworkServiceMock(absoluteUrl, new HttpResponseMessage
+            return SetUpNetworkServiceMock(absoluteUrl, new HttpResponseMessage
             {
                 Content = mainContent
             });
         }
 
-        internal Mock<NetworkService> GetNetworkServiceMock(string absoluteUrl, HttpResponseMessage mainResponseMessage)
+        internal JourneyPlannerService GetJourneyPlannerService()
         {
-            var mock = new Mock<NetworkService>(VtKey, VtSecret, VtDeviceId) { CallBase = true };
+            return new JourneyPlannerService(VtKey, VtSecret)
+            {
+                JourneyPlannerHandlingService = { NetworkService = CreateNetworkService() }
+            };
+        }
 
-            mock.Setup(x => x.SendAsync(It.IsAny<HttpClient>(), It.IsAny<HttpRequestMessage>())).Returns<HttpClient, HttpRequestMessage>(
-                (httpClient, httpRequestMessage) =>
+        internal CommuterParkingService GetCommuterParkingService()
+        {
+            return new CommuterParkingService(VtKey, VtSecret)
+            {
+                CommuterParkingHandlingService = { NetworkService = CreateNetworkService() }
+            };
+        }
+
+        internal NetworkService CreateNetworkService() => new NetworkService(VtKey, VtSecret, VtDeviceId)
+            {
+                HttpClient = new HttpClient(HttpMessageHandler)
+            };
+
+        private Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpResponseMessage mainResponseMessage)
+        {
+            AbsoluteUrl = absoluteUrl;
+
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
                 {
                     var uri = httpRequestMessage.RequestUri;
                     HttpResponseMessage responseMessage = null;
@@ -48,27 +74,30 @@ namespace Stranne.VasttrafikNET.Tests
                         {
                             Content = new StringContent(DefaultTokenJson.Json)
                         };
-
-                    if (CompareUri(uri, absoluteUrl) && httpRequestMessage.Method == HttpMethod.Get)
+                    else if (CompareUri(uri, absoluteUrl) && httpRequestMessage.Method == HttpMethod.Get)
                         responseMessage = mainResponseMessage;
+                    else
+                        throw new ArgumentException(
+                            $"Incorrect url; expected: {absoluteUrl}, actual: {uri.AbsoluteUri}");
 
-                    if (responseMessage == null)
-                        throw new ArgumentException($"Incorrect url; expected: {absoluteUrl}, actual: {uri.AbsoluteUri}");
+                    return responseMessage;
+                }
+            };
 
-                    return Task.FromResult(responseMessage);
-                });
+            var mockNetworkService = new Mock<NetworkService>(VtKey, VtSecret, VtDeviceId);
+            mockNetworkService.SetupProperty(networkService => networkService.HttpClient, new HttpClient(HttpMessageHandler));
 
-            return mock;
+            return mockNetworkService;
         }
 
-        protected static bool CompareUri(Uri uri, string absoluteUrl)
+        internal static bool CompareUri(Uri uri, string absoluteUrl)
         {
             return Uri.Compare(uri, new Uri(absoluteUrl),
                        UriComponents.AbsoluteUri, UriFormat.SafeUnescaped,
                        StringComparison.OrdinalIgnoreCase) == 0;
         }
 
-        protected static HttpRequestMessage GetHttpRequestMessage(string absoluteUrl, HttpMethod httpMethod)
+        protected static HttpRequestMessage ItIsHttpRequestMessage(string absoluteUrl, HttpMethod httpMethod)
         {
             return It.Is<HttpRequestMessage>(httpRequestMessage => CompareUri(httpRequestMessage.RequestUri, absoluteUrl) && httpRequestMessage.Method == httpMethod);
         }
