@@ -40,5 +40,3 @@ after_test:
     pip install git+git://github.com/codecov/codecov-python.git
 
     codecov -f $resultsFile -X gcov
-artifacts:
-- path: '$ENV:APPVEYOR_BUILD_FOLDER\Stranne.VasttrafikNET_coverage.xml'
