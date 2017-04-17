@@ -10,7 +10,10 @@ build:
     project: Stranne.VasttrafikNET.sln
     verbosity: quiet
 before_test:
-- nuget install OpenCover -Version 4.6.703-rc -o $ENV:USERPROFILE\.nuget\packages
+- ps: >-
+    $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
+
+    nuget install OpenCover -Version 4.6.703-rc -o $nugetPackagePath
 test_script:
 - ps: >-
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
