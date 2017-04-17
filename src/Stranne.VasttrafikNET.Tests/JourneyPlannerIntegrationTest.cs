@@ -234,9 +234,9 @@ namespace Stranne.VasttrafikNET.Tests
 
             VerifyNetworkMock(mock, absoluteUrl);
 
-            Assert.Equal(new DateTime(2016, 6, 1), actual.TimetableInfo.TimetablePeriod.DateBegin);
-            Assert.Equal(new DateTime(2016, 10, 29), actual.TimetableInfo.TimetablePeriod.DateEnd);
-            Assert.Equal(new DateTime(2016, 7, 31), actual.TimetableInfo.TimeTableData.CreationDate);
+            Assert.Equal(new DateTimeOffset(2016, 6, 1, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimetablePeriod.DateBegin);
+            Assert.Equal(new DateTimeOffset(2016, 10, 29, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimetablePeriod.DateEnd);
+            Assert.Equal(new DateTimeOffset(2016, 7, 31, 0, 0, 0, new TimeSpan(2, 0, 0)), actual.TimetableInfo.TimeTableData.CreationDate);
         }
 
         [Fact]
