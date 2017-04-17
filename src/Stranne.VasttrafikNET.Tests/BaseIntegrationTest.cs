@@ -96,10 +96,5 @@ namespace Stranne.VasttrafikNET.Tests
                        UriComponents.AbsoluteUri, UriFormat.SafeUnescaped,
                        StringComparison.OrdinalIgnoreCase) == 0;
         }
-
-        protected static HttpRequestMessage ItIsHttpRequestMessage(string absoluteUrl, HttpMethod httpMethod)
-        {
-            return It.Is<HttpRequestMessage>(httpRequestMessage => CompareUri(httpRequestMessage.RequestUri, absoluteUrl) && httpRequestMessage.Method == httpMethod);
-        }
     }
 }
