@@ -9,7 +9,7 @@ before_build:
 - cmd: dotnet restore
 build:
     project: Stranne.VasttrafikNET.sln
-    verbosity: normal
+    verbosity: quiet
 test_script:
 - ps: >-
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
@@ -27,15 +27,16 @@ test_script:
     $output = '-output:' + $resultsFile
 
     & $openCoverConsole $target $targetArgs '-register:user' $filter $output '-oldStyle'
-
+after_test:
+- ps: >-
     $artifactsFolder = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts'
-
+    
     Copy-Item $resultsFile $artifactsFolder
-
+    
     $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
-
+    
     python -m pip install --upgrade pip
-
+    
     pip install git+git://github.com/codecov/codecov-python.git
 artifacts:
 - path: artifacts\**\*.*
