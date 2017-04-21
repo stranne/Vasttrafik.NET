@@ -34,8 +34,9 @@ test_script:
 
     & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle' 
 after_test:
-- ps: >-    
-    & "$ENV:USERPROFILE\.nuget\packages\coveralls.io\1.3.4\tools\coveralls.net.exe" --opencover $resultsFile --debug
+- ps: >-
+    $coveralls = "$ENV:USERPROFILE\.nuget\packages\coveralls.io\1.3.4\tools\coveralls.net.exe"
+    & $coveralls '--opencover' $resultsFile
 
     $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
     
