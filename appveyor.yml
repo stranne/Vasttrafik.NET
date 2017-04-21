@@ -3,14 +3,14 @@ configuration: Release
 platform: Any CPU
 os: Visual Studio 2017
 environment:
-    DOTNET_CLI_TELEMETRY_OPTOUT: 1
-    COVERALLS_REPO_TOKEN:
-        secure: fD+tm/x70u8nX6r6dbe17snzuAoyEZ6IWe+zCH1PnMVu1x5ec99UhIQOxAmczsSS
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  COVERALLS_REPO_TOKEN:
+    secure: fD+tm/x70u8nX6r6dbe17snzuAoyEZ6IWe+zCH1PnMVu1x5ec99UhIQOxAmczsSS
 before_build:
 - cmd: dotnet restore
 build:
-    project: Stranne.VasttrafikNET.sln
-    verbosity: quiet
+  project: Stranne.VasttrafikNET.sln
+  verbosity: quiet
 before_test:
 - ps: >-
     $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
@@ -18,29 +18,29 @@ before_test:
     nuget install OpenCover -Version 4.6.703-rc -o $nugetPackagePath
 test_script:
 - ps: >-
-    $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
+  $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
 
-    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.703-rc\tools\OpenCover.Console.exe'
+  $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.703-rc\tools\OpenCover.Console.exe'
 
-    $target = '-target:C:\Program Files\dotnet\dotnet.exe'
+  $target = '-target:C:\Program Files\dotnet\dotnet.exe'
     
-    cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
+  cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
 
-    $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
+  $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
 
-    $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
+  $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
 
-    $output = '-output:' + $resultsFile
+  $output = '-output:' + $resultsFile
 
-    & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle' 
+  & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle' 
 after_test:
 - ps: >-    
-    & "$ENV:USERPROFILE\.nuget\packages\coveralls.io\1.3.4\tools\coveralls.net.exe" --opencover $resultsFile
+  & "$ENV:USERPROFILE\.nuget\packages\coveralls.io\1.3.4\tools\coveralls.net.exe" --opencover $resultsFile
 
-    $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
+  $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
     
-    python -m pip install --upgrade pip
+  python -m pip install --upgrade pip
     
-    pip install git+git://github.com/codecov/codecov-python.git
+  pip install git+git://github.com/codecov/codecov-python.git
 
-    codecov -f $resultsFile -X gcov
+  codecov -f $resultsFile -X gcov
