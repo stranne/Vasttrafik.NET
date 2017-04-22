@@ -13,7 +13,7 @@ before_test:
 - ps: >-
     $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
 
-    nuget install OpenCover -Version 4.6.703-rc -o $nugetPackagePath
+    nuget install OpenCover -Version 4.6.519 -o $nugetPackagePath
 test_script:
 - ps: >-
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
