@@ -9,6 +9,8 @@ before_build:
 build:
     project: Stranne.VasttrafikNET.sln
     verbosity: quiet
+after_build:
+- cmd: dotnet pack --include-symbols -c Release
 before_test:
 - ps: >-
     $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
@@ -42,3 +44,4 @@ after_test:
     codecov -f $resultsFile -X gcov
 artifacts:
 - path: Stranne.VasttrafikNET_coverage.xml
+- path: '**/*.nupkg'
