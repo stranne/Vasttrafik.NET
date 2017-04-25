@@ -10,7 +10,7 @@ build:
     project: Stranne.VasttrafikNET.sln
     verbosity: quiet
 after_build:
-- cmd: dotnet pack --include-symbols -c Release
+- cmd: dotnet pack src\Stranne.VasttrafikNET\Stranne.VasttrafikNET.csproj --include-symbols -c Release
 before_test:
 - ps: >-
     $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
