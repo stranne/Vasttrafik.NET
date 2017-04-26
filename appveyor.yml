@@ -46,4 +46,4 @@ after_test:
     codecov -f $resultsFile -X gcov
 artifacts:
 - path: artifacts\Stranne.VasttrafikNET_coverage.xml
-- path: '**/*.nupkg'
+- path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
