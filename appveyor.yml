@@ -18,7 +18,7 @@ before_test:
     nuget install OpenCover -Version 4.6.690 -o $nugetPackagePath
 test_script:
 - ps: >-
-    New-Item -Force -ItemType directory -Path ($ENV:APPVEYOR_BUILD_FOLDER + 'artifacts')
+    New-Item -Force -ItemType directory -Path ($ENV:APPVEYOR_BUILD_FOLDER + '\artifacts')
 
     $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts\Stranne.VasttrafikNET_coverage.xml'
 
