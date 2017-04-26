@@ -149,7 +149,14 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].Type", JourneyType.Tram },
             { "TripList.Trips[2].Legs[0].GeometryReference.Reference", "ABC" },
             { "TripList.Trips[2].Legs[0].BackgroundColor", "#00394d" },
-            { "TripList.Trips[2].Legs[0].Notes", 0 },
+            { "TripList.Trips[2].Legs[0].Notes", 1 },
+
+            { "TripList.Trips[2].Legs[0].Notes[0].Key", "disruption-message" },
+            { "TripList.Trips[2].Legs[0].Notes[0].Severity", NoteSeverity.Low },
+            { "TripList.Trips[2].Legs[0].Notes[0].Priority", "1" },
+            { "TripList.Trips[2].Legs[0].Notes[0].Message", "Linje 4, 7, 9 och 11, kör efter Centralstationen via Olskrokstorget, Redbergsplatsen och Ejdergatan till Gamlestadstorget och omvänt på grund av ett spårarbete. Detta beräknas pågå den 25 juli klockan 04:00 till 7 augusti klockan 04:00. Räkna med längre restid på sträckan. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren." },
+
+
             { "TripList.Trips[2].Legs[0].Id", "9015014500204114" },
             { "TripList.Trips[2].Legs[0].Stroke", "Solid" },
             { "TripList.Trips[2].Legs[0].Reachable", true },

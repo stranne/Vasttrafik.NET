@@ -152,6 +152,16 @@
           ""fgColor"": ""#fff014"",
           ""bgColor"": ""#00394d"",
           ""stroke"": ""Solid"",
+          ""Notes"":
+          {
+            ""Note"":
+            {
+              ""key"": ""disruption-message"",
+              ""severity"": ""low"",
+              ""priority"": ""1"",
+              ""$"": ""Linje 4, 7, 9 och 11, kör efter Centralstationen via Olskrokstorget, Redbergsplatsen och Ejdergatan till Gamlestadstorget och omvänt på grund av ett spårarbete. Detta beräknas pågå den 25 juli klockan 04:00 till 7 augusti klockan 04:00. Räkna med längre restid på sträckan. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren.""
+            }
+          },
           ""kcal"": ""50"",
           ""reachable"": ""False"",
           ""percentBikeRoad"": ""70"",
