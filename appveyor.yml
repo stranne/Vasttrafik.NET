@@ -15,16 +15,16 @@ before_test:
 - ps: >-
     $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
 
-    nuget install OpenCover -Version 4.6.519 -o $nugetPackagePath
+    nuget install OpenCover -Version 4.6.690 -o $nugetPackagePath
 test_script:
 - ps: >-
-    $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\Stranne.VasttrafikNET_coverage.xml'
+    $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts\Stranne.VasttrafikNET_coverage.xml'
 
-    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'
+    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.690\tools\OpenCover.Console.exe'
 
     $target = '-target:C:\Program Files\dotnet\dotnet.exe'
     
-    cd "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
+    Set-Location "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
 
     $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
 
@@ -43,5 +43,5 @@ after_test:
 
     codecov -f $resultsFile -X gcov
 artifacts:
-- path: Stranne.VasttrafikNET_coverage.xml
+- path: artifacts\Stranne.VasttrafikNET_coverage.xml
 - path: '**/*.nupkg'
