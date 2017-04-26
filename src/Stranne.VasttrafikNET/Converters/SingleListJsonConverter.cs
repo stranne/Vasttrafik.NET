@@ -16,7 +16,7 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var itemType = objectType.GetTypeInfo().GetGenericArguments()[0];
+            var itemType = objectType.GetTypeInfo().GenericArguments()[0];
             var listType = typeof(List<>);
             var constructedType = listType.MakeGenericType(itemType);
 

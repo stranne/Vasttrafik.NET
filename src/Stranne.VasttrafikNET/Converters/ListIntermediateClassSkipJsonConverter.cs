@@ -20,7 +20,7 @@ namespace Stranne.VasttrafikNET.Converters
         {
             var data = JObject.Load(reader);
 
-            var itemType = objectType.GetTypeInfo().GetGenericArguments()[0];
+            var itemType = objectType.GetTypeInfo().GenericArguments()[0];
             var listType = typeof(List<>);
             var constructedType = listType.MakeGenericType(itemType);
             var list = (IList)Activator.CreateInstance(constructedType);

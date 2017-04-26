@@ -5,7 +5,7 @@ namespace Stranne.VasttrafikNET.Extensions
 {
     internal static class TypeInfoExtension
     {
-        public static Type[] GetGenericArguments(this TypeInfo typeInfo)
+        public static Type[] GenericArguments(this TypeInfo typeInfo)
         {
             return typeInfo.IsGenericTypeDefinition
                 ? typeInfo.GenericTypeParameters
