@@ -90,14 +90,14 @@ namespace Stranne.VasttrafikNET.Service
 
                 if (!parameterAttribute.QueryString)
                 {
-                    pathParameters.Add(parameterAttribute.Order, actualValue?.ToString());
+                    pathParameters.Add(parameterAttribute.Order, actualValue.ToString());
                     continue;
                 }
 
                 if (property.PropertyType == typeof(bool))
                     actualValue = (bool)actualValue ? 1 : 0;
                 else if (property.PropertyType == typeof(double?))
-                    actualValue = ((double?)actualValue)?.ToString(new CultureInfo("en-US"));
+                    actualValue = ((double?)actualValue).Value.ToString(new CultureInfo("en-US"));
                 else if (property.PropertyType == typeof(DateTimeOffset) || property.PropertyType == typeof(DateTimeOffset?))
                 {
                     var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();                    
@@ -121,7 +121,7 @@ namespace Stranne.VasttrafikNET.Service
                     continue;
                 }
                 
-                queryParameters.Add(parameterName, actualValue?.ToString());
+                queryParameters.Add(parameterName, actualValue.ToString());
             }
 
             if (missingParameters.Any())
