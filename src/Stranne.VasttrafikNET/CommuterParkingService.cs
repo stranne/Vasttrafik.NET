@@ -37,7 +37,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
         public IEnumerable<ParkingArea> GetParkings(ParkingOptions parkingOptions)
         {
-            return GetParkingsAsync(parkingOptions).Result;
+            return GetParkingsAsync(parkingOptions).GetAwaiter().GetResult();
         }
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>
@@ -53,7 +53,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>
         public ParkingArea GetParkings(int id)
         {
-            return GetParkingsAsync(id).Result;
+            return GetParkingsAsync(id).GetAwaiter().GetResult();
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
@@ -71,7 +71,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
         public IEnumerable<HistoricalAvailability> GetHistoricalAvailability(int id, DateTimeOffset from, DateTimeOffset to)
         {
-            return GetHistoricalAvailabilityAsync(id, from, to).Result;
+            return GetHistoricalAvailabilityAsync(id, from, to).GetAwaiter().GetResult();
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
@@ -87,7 +87,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
         public int GetAvailableCapacity(int id)
         {
-            return GetAvailableCapacityAsync(id).Result;
+            return GetAvailableCapacityAsync(id).GetAwaiter().GetResult();
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkingImage"]'/>
@@ -104,7 +104,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkingImage"]'/>
         public Stream GetParkingImage(int id, int cameraId)
         {
-            return GetParkingImageAsync(id, cameraId).Result;
+            return GetParkingImageAsync(id, cameraId).GetAwaiter().GetResult();
         }
 
         /// <inheritdoc />

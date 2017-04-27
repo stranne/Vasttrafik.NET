@@ -43,7 +43,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetArrivalBoard"]'/>
         public IEnumerable<Arrival> GetArrivalBoard(BoardOptions boardOptions)
         {
-            return GetArrivalBoardAsync(boardOptions).Result;
+            return GetArrivalBoardAsync(boardOptions).GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetDepartureBoard"]'/>
@@ -63,7 +63,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetDepartureBoard"]'/>
         public IEnumerable<Departure> GetDepartureBoard(BoardOptions boardOptions)
         {
-            return GetDepartureBoardAsync(boardOptions).Result;
+            return GetDepartureBoardAsync(boardOptions).GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetGeometry"]'/>
@@ -76,7 +76,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetGeometry"]'/>
         public Geometry GetGeometry(GeometryReference geometryRef)
         {
-            return GetGeometryAsync(geometryRef).Result;
+            return GetGeometryAsync(geometryRef).GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetJourneyDetail"]'/>
@@ -89,7 +89,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetJourneyDetail"]'/>
         public JourneyDetail GetJourneyDetail(JourneyDetailReference journeyDetailRef)
         {
-            return GetJourneyDetailAsync(journeyDetailRef).Result;
+            return GetJourneyDetailAsync(journeyDetailRef).GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLiveMap"]'/>
@@ -114,7 +114,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLiveMap"]'/>
         public LiveMap GetLiveMap(double longitudeMin, double longitudeMax, double latitudeMin, double latitudeMax, bool onlyRealtime)
         {
-            return GetLiveMapAsync(longitudeMin, longitudeMax, latitudeMin, latitudeMax, onlyRealtime).Result;
+            return GetLiveMapAsync(longitudeMin, longitudeMax, latitudeMin, latitudeMax, onlyRealtime).GetAwaiter().GetResult();
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationNearbyAddress"]'/>
@@ -127,7 +127,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationNearbyAddress"]'/>
         public LocationList GetLocationNearbyAddress(Coordinate coordinate)
         {
-            return GetLocationNearbyAddressAsync(coordinate).Result;
+            return GetLocationNearbyAddressAsync(coordinate).GetAwaiter().GetResult();
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationNearbyStops"]'/>
@@ -146,7 +146,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationNearbyStops"]'/>
         public LocationList GetLocationNearbyStops(Coordinate coordinate, int? maxNo = null, int? maxDist = null)
         {
-            return GetLocationNearbyStopsAsync(coordinate, maxNo, maxDist).Result;
+            return GetLocationNearbyStopsAsync(coordinate, maxNo, maxDist).GetAwaiter().GetResult();
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationAllStops"]'/>
@@ -159,7 +159,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationAllStops"]'/>
         public LocationList GetLocationAllStops()
         {
-            return GetLocationAllStopsAsync().Result;
+            return GetLocationAllStopsAsync().GetAwaiter().GetResult();
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationName"]'/>
@@ -176,7 +176,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetLocationName"]'/>
         public LocationList GetLocationName(string input)
         {
-            return GetLocationNameAsync(input).Result;
+            return GetLocationNameAsync(input).GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetSystemInfo"]'/>
@@ -189,7 +189,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetSystemInfo"]'/>
         public SystemInfo GetSystemInfo()
         {
-            return GetSystemInfoAsync().Result;
+            return GetSystemInfoAsync().GetAwaiter().GetResult();
         }
         
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetTrip"]'/>
@@ -202,7 +202,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetTrip"]'/>
         public IEnumerable<Trip> GetTrip(TripOptions tripOptions)
         {
-            return GetTripAsync(tripOptions).Result;
+            return GetTripAsync(tripOptions).GetAwaiter().GetResult();
         }
 
         /// <inheritdoc />
