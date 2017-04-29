@@ -14,7 +14,7 @@
       {
         ""name"": ""Spårvagn 2"",
         ""sname"": ""2"",
-        ""type"": ""TRAM"",
+        ""type"": ""BOAT"",
         ""stopid"": ""9022014001950003"",
         ""stop"": ""Centralstationen, Göteborg"",
         ""time"": ""16:50"",
@@ -33,7 +33,7 @@
       {
         ""name"": ""SVART EXPRESS"",
         ""sname"": ""SVAR"",
-        ""type"": ""BUS"",
+        ""type"": ""TAXI"",
         ""stopid"": ""9022014001950011"",
         ""stop"": ""Centralstationen, Göteborg"",
         ""time"": ""16:50"",
@@ -53,7 +53,7 @@
       {
         ""name"": ""SVART EXPRESS"",
         ""sname"": ""SVAR"",
-        ""type"": ""BUS"",
+        ""type"": ""WALK"",
         ""stopid"": ""9022014004945004"",
         ""stop"": ""Nordstan, Göteborg"",
         ""time"": ""16:50"",
@@ -73,7 +73,7 @@
       {
         ""name"": ""VÄSTTÅGEN"",
         ""sname"": ""TÅG"",
-        ""type"": ""VAS"",
+        ""type"": ""BIKE"",
         ""stopid"": ""9022014008000010"",
         ""stop"": ""Göteborg C, Göteborg"",
         ""time"": ""16:50"",
@@ -91,7 +91,7 @@
       {
         ""name"": ""Spårvagn 2"",
         ""sname"": ""2"",
-        ""type"": ""TRAM"",
+        ""type"": ""CAR"",
         ""stopid"": ""9022014001950001"",
         ""stop"": ""Centralstationen, Göteborg"",
         ""time"": ""16:51"",

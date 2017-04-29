@@ -14,7 +14,7 @@
       {
         ""name"": ""Spårvagn 2"",
         ""sname"": ""2"",
-        ""type"": ""TRAM"",
+        ""type"": ""REG"",
         ""stopid"": ""9022014001950003"",
         ""stop"": ""Centralstationen, Göteborg"",
         ""time"": ""16:50"",
@@ -33,7 +33,7 @@
       {
         ""name"": ""SVART EXPRESS"",
         ""sname"": ""SVAR"",
-        ""type"": ""BUS"",
+        ""type"": ""LLT"",
         ""stopid"": ""9022014001950011"",
         ""stop"": ""Centralstationen, Göteborg"",
         ""time"": ""16:50"",

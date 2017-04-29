@@ -13,31 +13,30 @@ namespace Stranne.VasttrafikNET.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            switch (reader.Value.ToString().ToUpper())
-            {
-                case "VAS":
-                    return JourneyType.Vasttagen;
-                case "LLT":
-                    return JourneyType.LongDistanceTrain;
-                case "REG":
-                    return JourneyType.RegionalTrain;
-                case "BUS":
-                    return JourneyType.Bus;
-                case "BOAT":
-                    return JourneyType.Boat;
-                case "TRAM":
-                    return JourneyType.Tram;
-                case "TAXI":
-                    return JourneyType.Taxi;
-                case "WALK":
-                    return JourneyType.Walk;
-                case "BIKE":
-                    return JourneyType.Bike;
-                case "CAR":
-                    return JourneyType.Car;
-                default:
-                    throw new ArgumentException();
-            }
+            var type = reader.Value.ToString().ToUpper();
+
+            if (type == "VAS")
+                return JourneyType.Vasttagen;
+            if (type == "LLT")
+                return JourneyType.LongDistanceTrain;
+            if (type == "REG")
+                return JourneyType.RegionalTrain;
+            if (type == "BUS")
+                return JourneyType.Bus;
+            if (type == "BOAT")
+                return JourneyType.Boat;
+            if (type == "TRAM")
+                return JourneyType.Tram;
+            if (type == "TAXI")
+                return JourneyType.Taxi;
+            if (type == "WALK")
+                return JourneyType.Walk;
+            if (type == "BIKE")
+                return JourneyType.Bike;
+            if (type == "CAR")
+                return JourneyType.Car;
+
+            throw new ArgumentException();
         }
 
         public override bool CanConvert(Type objectType)
