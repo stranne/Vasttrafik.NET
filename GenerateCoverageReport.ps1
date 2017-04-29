@@ -5,6 +5,10 @@ dotnet restore
 Set-Location 'src\Stranne.VasttrafikNET.Tests'
 
 $resultsFile = $rootPath + '\artifacts\Stranne.VasttrafikNET_coverage.xml'
+If (Test-Path $resultsFile){
+	Remove-Item $resultsFile
+}
+
 $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.690\tools\OpenCover.Console.exe'
 $target = '-target:C:\Program Files\dotnet\dotnet.exe'
 $targetArgs = '-targetargs: test -c Release'
