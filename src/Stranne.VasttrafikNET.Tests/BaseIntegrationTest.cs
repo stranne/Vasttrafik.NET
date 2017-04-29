@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
-using System.Threading;
 using Moq;
 using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Json;
@@ -14,30 +12,13 @@ namespace Stranne.VasttrafikNET.Tests
         protected const string VtSecret = "Secret";
         private const string VtDeviceId = "Test";
 
-        protected string TokenAbsoluteUrl = $"https://api.vasttrafik.se/token?grant_type=client_credentials&scope={VtDeviceId}&format=json";
-        
+        protected const string TokenAbsoluteUrlTemplate = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope={0}&format=json";
+        protected string TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, VtDeviceId);
+
+
         private string AbsoluteUrl { get; set; }
         protected MockHttpMessageHandler HttpMessageHandler { get; set; }
-
-        internal void VerifyNetworkMock()
-        {
-            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
-            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
-        }
-
-        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, string json)
-        {
-            return SetUpNetworkServiceMock(absoluteUrl, new StringContent(json));
-        }
-
-        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpContent mainContent)
-        {
-            return SetUpNetworkServiceMock(absoluteUrl, new HttpResponseMessage
-            {
-                Content = mainContent
-            });
-        }
-
+        
         internal JourneyPlannerService GetJourneyPlannerService()
         {
             return new JourneyPlannerService(VtKey, VtSecret)
@@ -54,12 +35,31 @@ namespace Stranne.VasttrafikNET.Tests
             };
         }
 
-        internal NetworkService CreateNetworkService() => new NetworkService(VtKey, VtSecret, VtDeviceId)
-            {
-                HttpClient = new HttpClient(HttpMessageHandler)
-            };
+        private NetworkService CreateNetworkService() => new NetworkService(VtKey, VtSecret, VtDeviceId)
+        {
+            HttpClient = new HttpClient(HttpMessageHandler)
+        };
 
-        private Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpResponseMessage mainResponseMessage)
+        internal void VerifyNetworkMock()
+        {
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
+        }
+
+        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, string json, string vtDeviceId = VtDeviceId)
+        {
+            return SetUpNetworkServiceMock(absoluteUrl, new StringContent(json), vtDeviceId);
+        }
+
+        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpContent mainContent, string vtDeviceId = VtDeviceId)
+        {
+            return SetUpNetworkServiceMock(absoluteUrl, new HttpResponseMessage
+            {
+                Content = mainContent
+            }, vtDeviceId);
+        }
+
+        private Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, HttpResponseMessage mainResponseMessage, string vtDeviceId = VtDeviceId)
         {
             AbsoluteUrl = absoluteUrl;
 
@@ -68,7 +68,7 @@ namespace Stranne.VasttrafikNET.Tests
                 SendAsyncAction = (httpRequestMessage, cancellationToken) =>
                 {
                     var uri = httpRequestMessage.RequestUri;
-                    HttpResponseMessage responseMessage = null;
+                    HttpResponseMessage responseMessage;
                     if (CompareUri(uri, TokenAbsoluteUrl) && httpRequestMessage.Method == HttpMethod.Post)
                         responseMessage = new HttpResponseMessage
                         {
@@ -84,7 +84,7 @@ namespace Stranne.VasttrafikNET.Tests
                 }
             };
 
-            var mockNetworkService = new Mock<NetworkService>(VtKey, VtSecret, VtDeviceId);
+            var mockNetworkService = new Mock<NetworkService>(VtKey, VtSecret, vtDeviceId);
             mockNetworkService.SetupProperty(networkService => networkService.HttpClient, new HttpClient(HttpMessageHandler));
 
             return mockNetworkService;

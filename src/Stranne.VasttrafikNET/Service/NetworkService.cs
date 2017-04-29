@@ -73,7 +73,7 @@ namespace Stranne.VasttrafikNET.Service
                     RequestUri = new Uri(VtBaseUrl, absoluteUrl),
                     Method = HttpMethod.Get
                 };
-                httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.Access_Token}");
+                httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.AccessToken}");
 
                 var response = await HttpClient.SendAsync(httpRequestMessage);
 
@@ -158,11 +158,12 @@ namespace Stranne.VasttrafikNET.Service
         private static void ThrowIfServerErrors(string json)
         {
             var jToken = JToken.Parse(json);
-            if (jToken?.Type != JTokenType.Object)
+            if (jToken.Type != JTokenType.Object)
                 return;
 
             jToken = jToken.First.First;
-            if (jToken?.Type != JTokenType.Object ||
+            
+            if (jToken.Type != JTokenType.Object ||
                 jToken["error"] == null)
                 return;
 

@@ -92,7 +92,7 @@ namespace Stranne.VasttrafikNET.Tests
             {
                 Reference = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26"
             }));
-
+            
             Assert.Equal("TI001 traininfoError", actual.Name);
             Assert.Equal("No trip journey information available.", actual.Description);
             Assert.Equal("TI001 traininfoError: No trip journey information available.", actual.Message);

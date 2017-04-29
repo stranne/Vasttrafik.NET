@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Stranne.VasttrafikNET.Models
 {
@@ -6,10 +7,12 @@ namespace Stranne.VasttrafikNET.Models
     {
         private DateTimeOffset _createDate = DateTimeOffset.Now;
 
-        public int Expires_In { get; set; }
+        [JsonProperty("Expires_In")]
+        public int ExpiresIn { get; set; }
 
-        public string Access_Token { get; set; }
+        [JsonProperty("Access_Token")]
+        public string AccessToken { get; set; }
         
-        public bool IsValid() => _createDate.AddSeconds(Expires_In) < DateTimeOffset.Now;
+        public bool IsValid() => _createDate.AddSeconds(ExpiresIn) < DateTimeOffset.Now;
     }
 }

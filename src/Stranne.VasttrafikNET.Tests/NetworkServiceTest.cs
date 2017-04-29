@@ -15,7 +15,102 @@ namespace Stranne.VasttrafikNET.Tests
         private const string Json = ArrivalBoardJson.Json;
 
         [Fact]
+        public async Task MainRequestBadGateway()
+        {
+            const string content = "Bad gateway";
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
+                {
+                    var uri = httpRequestMessage.RequestUri;
+                    if (!CompareUri(uri, TokenAbsoluteUrl))
+                    {
+                        return new HttpResponseMessage
+                        {
+                            StatusCode = HttpStatusCode.BadGateway,
+                            Content = new StringContent(content)
+                        };
+                    }
+
+                    return new HttpResponseMessage
+                    {
+                        Content = new StringContent(DefaultTokenJson.Json)
+                    };
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var exception = await Assert.ThrowsAsync<NetworkException>(() => sut.DownloadStringAsync(AbsoluteUrl));
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
+            Assert.Equal(HttpStatusCode.BadGateway, exception.StatusCode);
+            Assert.Equal(content, exception.Content);
+        }
+
+        [Fact]
+        public async Task MainRequestBadGatewayEmptyResponse()
+        {
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
+                {
+                    var uri = httpRequestMessage.RequestUri;
+                    if (!CompareUri(uri, TokenAbsoluteUrl))
+                    {
+                        return new HttpResponseMessage
+                        {
+                            StatusCode = HttpStatusCode.BadGateway
+                        }; 
+                    }
+
+                    return new HttpResponseMessage
+                    {
+                        Content = new StringContent(DefaultTokenJson.Json)
+                    };
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var exception = await Assert.ThrowsAsync<NetworkException>(() => sut.DownloadStringAsync(AbsoluteUrl));
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
+            Assert.Equal(HttpStatusCode.BadGateway, exception.StatusCode);
+        }
+
+        [Fact]
         public async Task TokenNotFound()
+        {
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns(false);
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) => new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Content = new StringContent(DefaultTokenJson.Json)
+                }
+            }));
+            var sut = mock.Object;
+
+            var exception = await Assert.ThrowsAsync<NetworkException>(() => sut.DownloadStringAsync(AbsoluteUrl));
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 0);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
+            Assert.Equal(HttpStatusCode.NotFound, exception.StatusCode);
+            Assert.Equal(TokenAbsoluteUrl, exception.RequestUri.AbsoluteUri);
+            Assert.Equal(DefaultTokenJson.Json, exception.Content);
+        }
+
+        [Fact]
+        public async Task TokenNotFoundEmptyResponse()
         {
             var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns(false);
@@ -35,37 +130,6 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.Equal(HttpStatusCode.NotFound, exception.StatusCode);
             Assert.Equal(TokenAbsoluteUrl, exception.RequestUri.AbsoluteUri);
             Assert.Equal(null, exception.Content);
-        }
-
-        [Fact]
-        public async Task MainRequestBadGateway()
-        {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
-            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
-            HttpMessageHandler = new MockHttpMessageHandler
-            {
-                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
-                {
-                    var responseMessage = new HttpResponseMessage
-                    {
-                        Content = new StringContent(DefaultTokenJson.Json)
-                    };
-
-                    var uri = httpRequestMessage.RequestUri;
-                    if (!CompareUri(uri, TokenAbsoluteUrl))
-                        responseMessage.StatusCode = HttpStatusCode.BadGateway;
-
-                    return responseMessage;
-                }
-            };
-            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
-            var sut = mock.Object;
-
-            var exception = await Assert.ThrowsAsync<NetworkException>(() => sut.DownloadStringAsync(AbsoluteUrl));
-
-            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
-            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
-            Assert.Equal(HttpStatusCode.BadGateway, exception.StatusCode);
         }
 
         [Fact]
@@ -99,18 +163,17 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task UniqueTokenOnMultipleDeviceId()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?id=0000000800000022&date=2016-07-16&time=16:50&format=json";
             var firstTokenAbsoluteUrl = TokenAbsoluteUrl;
             const string secondTokenAbsoluteUrl = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=SomethingElse&format=json";
-            var mock = SetUpNetworkServiceMock(absoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             var sut = mock.Object;
 
-            await sut.DownloadStringAsync(absoluteUrl);
+            await sut.DownloadStringAsync(AbsoluteUrl);
             sut = mock.Object;
             sut.DeviceId = "SomethingElse";
             TokenAbsoluteUrl = secondTokenAbsoluteUrl;
-            await sut.DownloadStringAsync(absoluteUrl);
+            await sut.DownloadStringAsync(AbsoluteUrl);
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
             HttpMessageHandler.VerifyRequest(firstTokenAbsoluteUrl, HttpMethod.Post, 0, 1);
@@ -120,8 +183,34 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task Unauthorized()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?id=0000000800000022&date=2016-07-16&time=16:50&format=json";
-            var mock = SetUpNetworkServiceMock(absoluteUrl, Json);
+            const string tokenName = nameof(UnauthorizedWithToken);
+            TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, tokenName);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json, tokenName);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => false);
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) => new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.Unauthorized,
+                    Content = new StringContent("Unauthorized")
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(AbsoluteUrl));
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 0);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
+            Assert.Equal("Authentication failed with Västtrafik's servers. Verify Key and Secret are correct and that the application has access to the API in question.", execption.Message);
+        }
+
+        [Fact]
+        public async Task UnauthorizedEmpty()
+        {
+            const string tokenName = nameof(UnauthorizedEmpty);
+            TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, tokenName);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json, tokenName);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => false);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -130,7 +219,7 @@ namespace Stranne.VasttrafikNET.Tests
             mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
             var sut = mock.Object;
 
-            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(absoluteUrl));
+            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(AbsoluteUrl));
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 0);
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
@@ -140,8 +229,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task UnauthorizedWithToken()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?id=0000000800000022&date=2016-07-16&time=16:50&format=json";
-            var mock = SetUpNetworkServiceMock(absoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -162,11 +250,23 @@ namespace Stranne.VasttrafikNET.Tests
             mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
             var sut = mock.Object;
 
-            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(absoluteUrl));
+            var execption = await Assert.ThrowsAsync<AuthenticationException>(async () => await sut.DownloadStringAsync(AbsoluteUrl));
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
             Assert.Equal("Authentication failed with Västtrafik's servers. Verify Key and Secret are correct and that the application has access to the API in question.", execption.Message);
+        }
+
+        [Fact]
+        public async Task RootObjectListResponse()
+        {
+            const string json = "{ List: [] }";
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, json);
+            var sut = mock.Object;
+
+            var actual = await sut.DownloadStringAsync(AbsoluteUrl);
+
+            Assert.Equal(json, actual);
         }
     }
 }
