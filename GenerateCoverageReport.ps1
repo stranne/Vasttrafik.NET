@@ -12,7 +12,7 @@ If (Test-Path $resultsFile){
 $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover\4.6.690\tools\OpenCover.Console.exe'
 $target = '-target:C:\Program Files\dotnet\dotnet.exe'
 $targetArgs = '-targetargs: test -c Release'
-$filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
+$filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]* -[Stranne.VasttrafikNET.Examples.*]*'
 $output = '-output:' + $resultsFile
 
 & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle'

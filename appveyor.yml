@@ -30,7 +30,7 @@ test_script:
 
     $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
 
-    $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]*'
+    $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]* -[Stranne.VasttrafikNET.Examples.*]*'
 
     $output = '-output:' + $resultsFile
 
