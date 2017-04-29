@@ -17,7 +17,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "ArrivalBoard.Arrivals", 5 },
             { "ArrivalBoard.Arrivals[0].Name", "Spårvagn 2" },
             { "ArrivalBoard.Arrivals[0].ShortName", "2" },
-            { "ArrivalBoard.Arrivals[0].Type", JourneyType.Tram },
+            { "ArrivalBoard.Arrivals[0].Type", JourneyType.RegionalTrain },
             { "ArrivalBoard.Arrivals[0].StopId", "9022014001950003" },
             { "ArrivalBoard.Arrivals[0].Stop", "Centralstationen, Göteborg" },
             { "ArrivalBoard.Arrivals[0].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },
@@ -38,7 +38,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "ArrivalBoard.Arrivals[1].Name", "SVART EXPRESS" },
             { "ArrivalBoard.Arrivals[1].ShortName", "SVAR" },
-            { "ArrivalBoard.Arrivals[1].Type", JourneyType.Bus },
+            { "ArrivalBoard.Arrivals[1].Type", JourneyType.LongDistanceTrain },
             { "ArrivalBoard.Arrivals[1].StopId", "9022014001950011" },
             { "ArrivalBoard.Arrivals[1].Stop", "Centralstationen, Göteborg" },
             { "ArrivalBoard.Arrivals[1].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },

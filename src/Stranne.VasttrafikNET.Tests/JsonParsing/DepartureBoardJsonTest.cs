@@ -17,7 +17,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "DepartureBoard.Departures", 5 },
             { "DepartureBoard.Departures[0].Name", "Spårvagn 2" },
             { "DepartureBoard.Departures[0].ShortName", "2" },
-            { "DepartureBoard.Departures[0].Type", JourneyType.Tram },
+            { "DepartureBoard.Departures[0].Type", JourneyType.Boat },
             { "DepartureBoard.Departures[0].StopId", "9022014001950003" },
             { "DepartureBoard.Departures[0].Stop", "Centralstationen, Göteborg" },
             { "DepartureBoard.Departures[0].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },
@@ -38,7 +38,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "DepartureBoard.Departures[1].Name", "SVART EXPRESS" },
             { "DepartureBoard.Departures[1].ShortName", "SVAR" },
-            { "DepartureBoard.Departures[1].Type", JourneyType.Bus },
+            { "DepartureBoard.Departures[1].Type", JourneyType.Taxi },
             { "DepartureBoard.Departures[1].StopId", "9022014001950011" },
             { "DepartureBoard.Departures[1].Stop", "Centralstationen, Göteborg" },
             { "DepartureBoard.Departures[1].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },
@@ -59,7 +59,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             
             { "DepartureBoard.Departures[2].Name", "SVART EXPRESS" },
             { "DepartureBoard.Departures[2].ShortName", "SVAR" },
-            { "DepartureBoard.Departures[2].Type", JourneyType.Bus },
+            { "DepartureBoard.Departures[2].Type", JourneyType.Walk },
             { "DepartureBoard.Departures[2].StopId", "9022014004945004" },
             { "DepartureBoard.Departures[2].Stop", "Nordstan, Göteborg" },
             { "DepartureBoard.Departures[2].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },
@@ -80,7 +80,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "DepartureBoard.Departures[3].Name", "VÄSTTÅGEN" },
             { "DepartureBoard.Departures[3].ShortName", "TÅG" },
-            { "DepartureBoard.Departures[3].Type", JourneyType.Vasttagen },
+            { "DepartureBoard.Departures[3].Type", JourneyType.Bike },
             { "DepartureBoard.Departures[3].StopId", "9022014008000010" },
             { "DepartureBoard.Departures[3].Stop", "Göteborg C, Göteborg" },
             { "DepartureBoard.Departures[3].DateTime", new DateTimeOffset(2016, 7, 16, 16, 50, 0, new TimeSpan(2, 0, 0)) },
@@ -101,7 +101,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
             { "DepartureBoard.Departures[4].Name", "Spårvagn 2" },
             { "DepartureBoard.Departures[4].ShortName", "2" },
-            { "DepartureBoard.Departures[4].Type", JourneyType.Tram },
+            { "DepartureBoard.Departures[4].Type", JourneyType.Car },
             { "DepartureBoard.Departures[4].StopId", "9022014001950001" },
             { "DepartureBoard.Departures[4].Stop", "Centralstationen, Göteborg" },
             { "DepartureBoard.Departures[4].DateTime", new DateTimeOffset(2016, 7, 16, 16, 51, 0, new TimeSpan(2, 0, 0)) },
