@@ -25,8 +25,9 @@ namespace Stranne.VasttrafikNET.Examples.DownloadParkingImage
                 : ".\\";
 
             imagePath = imagePath.TrimEnd('\\');
-            Directory.CreateDirectory(imagePath);
-            var file = $@"{imagePath}\Västtrafik_id-{id}_cameraId-{cameraId}_{DateTime.Now:yyyy-MM-dd_hh-mm}.gif";
+            if (!string.IsNullOrWhiteSpace(imagePath) && imagePath != ".")
+                Directory.CreateDirectory(imagePath);
+            var file = $@"{imagePath}\Vasttrafik_id-{id}_cameraId-{cameraId}_{DateTime.Now:yyyy-MM-dd_hh-mm}.gif";
 
             DownloadCameraImage(file, id, cameraId, vtKey, vtSecret);
             Console.WriteLine($"Camera image saved at {file}");
