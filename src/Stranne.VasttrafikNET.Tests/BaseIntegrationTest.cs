@@ -43,7 +43,7 @@ namespace Stranne.VasttrafikNET.Tests
         internal void VerifyNetworkMock()
         {
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
-            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
         }
 
         internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, string json, string vtDeviceId = VtDeviceId)
