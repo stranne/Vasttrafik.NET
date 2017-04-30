@@ -43,7 +43,7 @@ after_test:
     
     pip install git+git://github.com/codecov/codecov-python.git
 
-    codecov -f $resultsFile
+    codecov -f $resultsFile -X gcov
 artifacts:
 - path: artifacts\Stranne.VasttrafikNET_coverage.xml
 - path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
