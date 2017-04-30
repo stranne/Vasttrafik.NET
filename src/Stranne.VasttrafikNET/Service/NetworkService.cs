@@ -17,7 +17,7 @@ namespace Stranne.VasttrafikNET.Service
     {
         private static readonly Uri VtBaseUrl = new Uri("https://api.vasttrafik.se/");
 
-        private const string VtTokenUrl = "token?grant_type=client_credentials&scope={0}&format=json";
+        private const string VtTokenUrl = "token?grant_type=client_credentials&scope=device_{0}&format=json";
 
         private static readonly ConcurrentDictionary<string, Token> Tokens = new ConcurrentDictionary<string, Token>();
 
@@ -45,23 +45,23 @@ namespace Stranne.VasttrafikNET.Service
             DeviceId = vtDeviceId;
         }
 
-        public async Task<string> DownloadStringAsync(string absoluteUrl)
+        public async Task<string> DownloadStringAsync(string absolutePath)
         {
-            var response = await GetHttpResponseMessage(absoluteUrl);
+            var response = await GetHttpResponseMessage(absolutePath);
             var json = await response.Content.ReadAsStringAsync();
             ThrowIfServerErrors(json);
 
             return json;
         }
 
-        public async Task<Stream> DownloadStreamAsync(string absoluteUrl)
+        public async Task<Stream> DownloadStreamAsync(string absolutePath)
         {
-            var response = await GetHttpResponseMessage(absoluteUrl);
+            var response = await GetHttpResponseMessage(absolutePath);
             var stream = await response.Content.ReadAsStreamAsync();
             return stream;
         }
 
-        private async Task<HttpResponseMessage> GetHttpResponseMessage(string absoluteUrl)
+        private async Task<HttpResponseMessage> GetHttpResponseMessage(string absolutePath)
         {
             var connectionAttempts = 0;
             while (connectionAttempts < 2)
@@ -70,7 +70,7 @@ namespace Stranne.VasttrafikNET.Service
 
                 var httpRequestMessage = new HttpRequestMessage
                 {
-                    RequestUri = new Uri(VtBaseUrl, absoluteUrl),
+                    RequestUri = new Uri(VtBaseUrl, absolutePath),
                     Method = HttpMethod.Get
                 };
                 httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.AccessToken}");

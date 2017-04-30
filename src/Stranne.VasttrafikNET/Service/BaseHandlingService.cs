@@ -40,16 +40,16 @@ namespace Stranne.VasttrafikNET.Service
 
         public async Task<T> GetAsync<T>(string featureUrl, object parameters)
         {
-            var pathUrl = $"{ApiPathUrl}{featureUrl}{BuildParameterString(parameters)}";
-            return await GetAsync<T>(pathUrl);
+            var absolutePathUrl = $"{ApiPathUrl}{featureUrl}{BuildParameterString(parameters)}";
+            return await GetAsync<T>(absolutePathUrl);
         }
 
-        public async Task<T> GetAsync<T>(string pathUrl)
+        public async Task<T> GetAsync<T>(string absolutePathUrl)
         {
             if (typeof(T) == typeof(Stream))
-                return (dynamic)await NetworkService.DownloadStreamAsync(pathUrl);
+                return (dynamic)await NetworkService.DownloadStreamAsync(absolutePathUrl);
 
-            var json = await NetworkService.DownloadStringAsync(pathUrl);
+            var json = await NetworkService.DownloadStringAsync(absolutePathUrl);
             var data = JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
             return data;
         }
