@@ -1,6 +1,7 @@
 # Vasttrafik.NET
 
 [![Build status](https://ci.appveyor.com/api/projects/status/k10x9ttx3dof7aqu?svg=true)](https://ci.appveyor.com/project/stranne/vasttrafik-net)
+[![codecov](https://codecov.io/gh/stranne/Vasttrafik.NET/branch/master/graph/badge.svg)](https://codecov.io/gh/stranne/Vasttrafik.NET)
 [![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=2592000)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE)
 
