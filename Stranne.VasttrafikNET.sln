@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		GenerateCoverageReport.ps1 = GenerateCoverageReport.ps1
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stranne.VasttrafikNET", "src\Stranne.VasttrafikNET\Stranne.VasttrafikNET.csproj", "{26EFEA46-8FC8-41FB-9DB6-9E289F5D2B3D}"
@@ -18,6 +19,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4BEA2614-7234-4471-AA70-C624EAB259AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stranne.VasttrafikNET.Examples.DownloadParkingImage", "src\Examples\Stranne.VasttrafikNET.Examples.DownloadParkingImage\Stranne.VasttrafikNET.Examples.DownloadParkingImage.csproj", "{1DD9F2F9-74C9-41EB-8A60-7B47540A3EDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stranne.VasttrafikNET.Examples.Api", "src\Examples\Stranne.VasttrafikNET.Examples.Api\Stranne.VasttrafikNET.Examples.Api.csproj", "{F6BACB79-2B98-4261-801E-C9B28E8B98D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +40,10 @@ Global
 		{1DD9F2F9-74C9-41EB-8A60-7B47540A3EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DD9F2F9-74C9-41EB-8A60-7B47540A3EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DD9F2F9-74C9-41EB-8A60-7B47540A3EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BACB79-2B98-4261-801E-C9B28E8B98D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BACB79-2B98-4261-801E-C9B28E8B98D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BACB79-2B98-4261-801E-C9B28E8B98D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BACB79-2B98-4261-801E-C9B28E8B98D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +53,6 @@ Global
 		{E3E1EBF5-D512-4174-8D19-03EA3F50D617} = {965B41C0-9A53-4103-AB98-BADFCDB2CB4A}
 		{4BEA2614-7234-4471-AA70-C624EAB259AF} = {965B41C0-9A53-4103-AB98-BADFCDB2CB4A}
 		{1DD9F2F9-74C9-41EB-8A60-7B47540A3EDF} = {4BEA2614-7234-4471-AA70-C624EAB259AF}
+		{F6BACB79-2B98-4261-801E-C9B28E8B98D6} = {4BEA2614-7234-4471-AA70-C624EAB259AF}
 	EndGlobalSection
 EndGlobal

@@ -38,34 +38,32 @@ Built with [.NET Standard Libraries 1.3](https://docs.microsoft.com/en-us/dotnet
 * .NET Core 1.0
 * .NET Framework 4.6+
 * Mono/Xamarin Platforms
+    * Currently a breaking issue with Android on Xamarin
 * Universal Windows Platform 10.0
 
-## NuGet
+## Get started
 
-Install from [NuGet](https://www.nuget.org/packages/Stranne.VasttrafikNET/) with one of the following two ways.
+### Install
 
-With command:
+Install library from [NuGet](https://www.nuget.org/packages/Stranne.VasttrafikNET/).
+
+Package Manager Console command:
 
 ```cmd
 Install-Package Stranne.VasttrafikNET
 ```
 
-By adding a reference directly in the dependencies list in the project.json-file (.NET Core projects only):
+### Acquiring credentials
 
-```json
-  "dependencies":
-  {
-    "Stranne.VasttrafikNET": "1.0.1"
-  },
-```
+In order to [get started](https://developer.vasttrafik.se/portal/#/guides/get-started) you need to acquire a key and secret from Västtrafik in order to use their services.
 
-## Usage
+### Usage
 
-In order to [get started](https://developer.vasttrafik.se/portal/#/guides/get-started) you first need to acquire a key and secret from Västtrafik in order to use there services.
+DeviceId needs to be unique for each device. Only one token per DeviceId is allowed which can cause problems if used on multiple devices, like for example mobile devices or multiple servers if the device id is the same. Using multiple unique DeviceId on same device can cause multiple and uneccessary authentications request to Västtrafik's servers. You decide the value yourself. By default a new guid will be used if nothing or null are specified. Default will create a new token each time the service is instantiated and can lead to extra token request if the service is always created for the request, for example if the service is configured as scope in a DI.
 
-DeviceId needs to be unique for each device. Only one token per DeviceId is allowed which can cause problems if used on multiple devices, like for example mobile devices or multiple servers. Using multiple unique DeviceId on same device can cause multiple and uneccessary authentications request to Västtrafik's servers. You decide the value yourself. By default a new guid will be used if nothing or null are specified.
+Use a using statement or a DI engine to make sure dispose is called. This will dispose the HttpClient inside the library.
 
-### ASP.NET Core with Dependency Injection
+#### ASP.NET Core with Dependency Injection
 
 Register the service/services that are needed.
 
@@ -88,8 +86,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddScoped<Foo>();
     ...
 
-    services.AddScoped<IJourneyPlannerService>(serviceProvider => new JourneyPlannerService(VtKey, VtSecret, VtDeviceId));
-    services.AddScoped<ICommuterParkingService>(serviceProvider => new CommuterParkingService(VtKey, VtSecret, VtDeviceId));
+    services.AddSingleton<IJourneyPlannerService>(serviceProvider => new JourneyPlannerService(VtKey, VtSecret, VtDeviceId));
+    services.AddSingleton<ICommuterParkingService>(serviceProvider => new CommuterParkingService(VtKey, VtSecret, VtDeviceId));
 }
 
 ...
@@ -121,7 +119,7 @@ public class Foo {
 }
 ```
 
-### Using-statement
+#### Using-statement
 
 ```cs
 using Stranne.VasttrafikNET;
@@ -149,208 +147,10 @@ public async Task Bar() {
 
 ## Examples
 
-### ASP.NET Core: List departures on page
+Check out one of the following examples on how this library can be implemented and what it can do.
 
-This example list departures in a table for a stop on a webpage. Consists of default MVC template project with the three files below, configuration for ``IJourneyPlannerService`` in ``Startup.cs`` and nuget dependency ìn ``project.json``.
-
-Controllers/HomeController.cs
-
-```cs
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Stranne.VasttrafikNET;
-using Stranne.VasttrafikNET.Models;
-using System.Linq;
-using DepartureBoardExample.Models;
-
-namespace DepartureBoardExample.Controllers
-{
-    public class HomeController : Controller
-    {
-        private readonly IJourneyPlannerService _journeyPlannerService;
-
-        public HomeController(IJourneyPlannerService journeyPlannerService)
-        {
-            _journeyPlannerService = journeyPlannerService;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var departures = await _journeyPlannerService.GetDepartureBoardAsync(new BoardOptions
-            {
-                Id = "9021014001950000",
-                TimeSpan = new TimeSpan(1, 0, 0),
-                MaxDeparturesPerLine = 2
-            });
-
-            var departureEntries = departures
-                .GroupBy(
-                    departure =>
-                        new
-                        {
-                            departure.ShortName,
-                            departure.Direction,
-                            Track = departure.RealtimeTrack ?? departure.Track
-                        })
-                .Select(departureGroup =>
-                {
-                    var departureList = departureGroup
-                        .OrderBy(dg => dg.RealtimeDateTime ?? dg.DateTime)
-                        .Take(2)
-                        .ToArray();
-
-                    var nextDeparture = departureList[0].Minutes;
-                    var secondDeparture = departureList.Length >= 2
-                        ? departureList[1].Minutes
-                        : null as int?;
-
-                    return new DepartureEntry
-                    {
-                        ShortName = departureGroup.Key.ShortName,
-                        Direction = departureGroup.Key.Direction,
-                        Track = departureGroup.Key.Track,
-                        NextDeparture = nextDeparture,
-                        SecondDeparture = secondDeparture
-                    };
-                })
-                .ToList();
-
-            var maxShortNameLength = departureEntries.Max(departureEntry => departureEntry.ShortName.Length);
-            departureEntries = departureEntries
-                .OrderBy(departureEntry => departureEntry.ShortName.PadLeft(maxShortNameLength, '0'))
-                .ThenBy(departureEntry => departureEntry.Direction)
-                .ThenBy(departureEntry => departureEntry.Track)
-                .ToList();
-
-            return View(departureEntries);
-        }
-    }
-}
-```
-
-Models/DepartureEntry.cs
-
-```cs
-namespace DepartureBoardExample.Models
-{
-    public class DepartureEntry
-    {
-        public string ShortName { get; set; }
-        public string Direction { get; set; }
-        public string Track { get; set; }
-        public int NextDeparture { get; set; }
-        public int? SecondDeparture { get; set; }
-    }
-}
-```
-
-Views/Home/Home.cshtml
-
-```cshtml
-@using DepartureBoardExample.Models;
-
-@model IEnumerable<DepartureEntry>
-
-@{
-    ViewData["Title"] = "Departures";
-}
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Linje</th>
-            <th>Destination</th>
-            <th>Läge</th>
-            <th>Avgår om</th>
-            <th>Därefter om</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var departureEntry in Model)
-    {
-        <tr>
-            <td>@departureEntry.ShortName</td>
-            <td>@departureEntry.Direction</td>
-            <td>@departureEntry.Track</td>
-            <td>@departureEntry.NextDeparture</td>
-            <td>@departureEntry.SecondDeparture</td>
-        </tr>
-    }
-    </tbody>
-</table>
-```
-
-### Console program: Download Parking Image
-
-This example download the latest camera image for a specified parking area into a specified path. Consists of a console project with the two files below.
-
-To run you can for example use id 6090 and cameraId 1.
-
-Program.cs
-
-```cs
-using System;
-using System.IO;
-using Stranne.VasttrafikNET;
-
-namespace DownloadParkingCameraImage
-{
-    public class Program
-    {
-        private const string vtKey = "...";
-        private const string vtSecret = "...";
-        private const string vtDeviceId = "...";
-        private const string imageFolder = "...";
-
-        public static void Main(string[] args)
-        {
-            var id = int.Parse(args[0]);
-            var cameraId = int.Parse(args[1]);
-
-            var imagePath = $@"{imageFolder}Västtrafik_{DateTime.Now:yyyy-MM-dd_hh-mm}.gif";
-            Console.WriteLine($"ImagePath: {imagePath}");
-
-            using (var commuterParkingService = new CommuterParkingService(vtKey, vtSecret, vtDeviceId))
-            {
-                var stream = commuterParkingService.GetParkingImage(id, cameraId);
-                using (var fileStream = File.Create(imagePath))
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    stream.CopyTo(fileStream);
-                }
-            }
-
-            Console.WriteLine("Done");
-        }
-    }
-}
-```
-
-project.json
-
-```json
-{
-  "version": "1.0.0-*",
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
-
-  "dependencies": {
-    "Microsoft.NETCore.App": {
-      "type": "platform",
-      "version": "1.0.0"
-    },
-    "Stranne.VasttrafikNET": "1.0.1"
-  },
-
-  "frameworks": {
-    "netcoreapp1.0": {
-      "imports": "dnxcore50"
-    }
-  }
-}
-```
+* [ASP.NET Core RESTful API](src\Examples\Stranne.VasttrafikNET.Examples.Api\README.md)
+* [.NET Console Download Parking Image](src\Examples\Stranne.VasttrafikNET.Examples.DownloadParkingImage\README.md)
 
 ## Exceptions
 
