@@ -12,7 +12,7 @@ namespace Stranne.VasttrafikNET.Tests
         protected const string VtSecret = "Secret";
         private const string VtDeviceId = "Test";
 
-        protected const string TokenAbsoluteUrlTemplate = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope={0}&format=json";
+        protected const string TokenAbsoluteUrlTemplate = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=device_{0}&format=json";
         protected string TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, VtDeviceId);
 
 
@@ -92,7 +92,8 @@ namespace Stranne.VasttrafikNET.Tests
 
         internal static bool CompareUri(Uri uri, string absoluteUrl)
         {
-            return Uri.Compare(uri, new Uri(absoluteUrl),
+            return Uri.Compare(uri,
+                       new Uri(absoluteUrl),
                        UriComponents.AbsoluteUri, UriFormat.SafeUnescaped,
                        StringComparison.OrdinalIgnoreCase) == 0;
         }

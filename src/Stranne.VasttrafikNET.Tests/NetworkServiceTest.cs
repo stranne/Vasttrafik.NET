@@ -164,7 +164,7 @@ namespace Stranne.VasttrafikNET.Tests
         public async Task UniqueTokenOnMultipleDeviceId()
         {
             var firstTokenAbsoluteUrl = TokenAbsoluteUrl;
-            const string secondTokenAbsoluteUrl = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=SomethingElse&format=json";
+            const string secondTokenAbsoluteUrl = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=device_SomethingElse&format=json";
             var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             var sut = mock.Object;
