@@ -13,6 +13,6 @@ namespace Stranne.VasttrafikNET.Models
         [JsonProperty("Access_Token")]
         public string AccessToken { get; set; }
         
-        public bool IsValid() => _createDate.AddSeconds(ExpiresIn) < DateTimeOffset.Now;
+        public bool IsValid() => _createDate.AddSeconds(ExpiresIn) > DateTimeOffset.Now;
     }
 }
