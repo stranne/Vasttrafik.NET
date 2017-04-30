@@ -149,8 +149,8 @@ public async Task Bar() {
 
 Check out one of the following examples on how this library can be implemented and what it can do.
 
-* [ASP.NET Core RESTful API](src\Examples\Stranne.VasttrafikNET.Examples.Api\README.md)
-* [.NET Console Download Parking Image](src\Examples\Stranne.VasttrafikNET.Examples.DownloadParkingImage\README.md)
+* [ASP.NET Core RESTful API](src/Examples/Stranne.VasttrafikNET.Examples.Api/README.md)
+* [.NET Console Download Parking Image](src/Examples/Stranne.VasttrafikNET.Examples.DownloadParkingImage/README.md)
 
 ## Exceptions
 
