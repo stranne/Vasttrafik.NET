@@ -118,11 +118,7 @@ namespace Stranne.VasttrafikNET.Tests
             SetUpNetworkServiceMock(absoluteUrl, LocationNearbyAddressJson.Json);
             var sut = GetJourneyPlannerService();
 
-            var actual = sut.GetLocationNearbyAddress(new Coordinate
-            {
-                Latitude = 57.705686,
-                Longitude = 11.963654
-            });
+            var actual = sut.GetLocationNearbyAddress(new Coordinate(57.705686, 11.963654));
 
             VerifyNetworkMock();
             Assert.Equal(1, actual.CoordLocation.Count());
