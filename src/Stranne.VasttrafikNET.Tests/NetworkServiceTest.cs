@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Moq;
 using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
+using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Json;
 using Xunit;
 
@@ -267,6 +268,34 @@ namespace Stranne.VasttrafikNET.Tests
             var actual = await sut.DownloadStringAsync(AbsoluteUrl);
 
             Assert.Equal(json, actual);
+        }
+
+        [Fact]
+        public void TokenIsValid()
+        {
+            var token = new Token
+            {
+                ExpiresIn = 3600
+            };
+            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+
+            var actual = sut.IsTokenValid(token);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void TokenExpired()
+        {
+            var token = new Token
+            {
+                ExpiresIn = 0
+            };
+            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+
+            var actual = sut.IsTokenValid(token);
+
+            Assert.False(actual);
         }
     }
 }
