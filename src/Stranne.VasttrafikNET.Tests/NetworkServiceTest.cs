@@ -258,6 +258,50 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.Equal("Authentication failed with Västtrafik's servers. Verify Key and Secret are correct and that the application has access to the API in question.", execption.Message);
         }
 
+
+
+        [Fact]
+        public async Task TokenJustExpiredOnServer()
+        {
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            var firstTry = true;
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
+                {
+                    var responseMessage = new HttpResponseMessage
+                    {
+                        Content = new StringContent(DefaultTokenJson.Json)
+                    };
+
+                    var uri = httpRequestMessage.RequestUri;
+                    if (!CompareUri(uri, TokenAbsoluteUrl))
+                    {
+                        if (firstTry)
+                            responseMessage.StatusCode = HttpStatusCode.Unauthorized;
+                        else
+                            responseMessage = new HttpResponseMessage
+                            {
+                                Content = new StringContent(ArrivalBoardJson.Json)
+                            };
+
+                        firstTry = false;
+                    }
+
+                    return responseMessage;
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var actual = await sut.DownloadStringAsync(AbsoluteUrl);
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
+            Assert.Equal(actual, ArrivalBoardJson.Json);
+        }
+
         [Fact]
         public async Task RootObjectListResponse()
         {
