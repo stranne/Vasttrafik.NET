@@ -257,9 +257,7 @@ namespace Stranne.VasttrafikNET.Tests
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
             Assert.Equal("Authentication failed with Västtrafik's servers. Verify Key and Secret are correct and that the application has access to the API in question.", execption.Message);
         }
-
-
-
+        
         [Fact]
         public async Task TokenJustExpiredOnServer()
         {

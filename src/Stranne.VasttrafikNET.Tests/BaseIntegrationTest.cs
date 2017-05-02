@@ -14,8 +14,7 @@ namespace Stranne.VasttrafikNET.Tests
 
         protected const string TokenAbsoluteUrlTemplate = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=device_{0}&format=json";
         protected string TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, VtDeviceId);
-
-
+        
         private string AbsoluteUrl { get; set; }
         protected MockHttpMessageHandler HttpMessageHandler { get; set; }
         
