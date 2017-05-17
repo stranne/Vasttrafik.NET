@@ -39,7 +39,6 @@ Built with [.NET Standard Libraries 1.3](https://docs.microsoft.com/en-us/dotnet
 * .NET Core 1.0
 * .NET Framework 4.6+
 * Mono/Xamarin Platforms
-    * Currently a breaking issue with Android on Xamarin
 * Universal Windows Platform 10.0
 
 ## Get started
