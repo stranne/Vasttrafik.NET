@@ -103,7 +103,7 @@ namespace Stranne.VasttrafikNET
                 Maxy = latitudeMax * 1000000,
                 OnlyRealtime = onlyRealtime
             };
-            var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("/livemap", options)).LiveMap;
+            var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("https://reseplanerare.vasttrafik.se/bin/help.exe/eny?tpl=livemap&L=vs_livemap&", options)).LiveMap;
             liveMap.MaxX /= 1000000;
             liveMap.MaxY /= 1000000;
             liveMap.MinX /= 1000000;

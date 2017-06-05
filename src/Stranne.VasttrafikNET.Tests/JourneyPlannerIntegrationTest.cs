@@ -101,14 +101,14 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void GetLiveMap()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/livemap?maxx=12044663&maxy=57685421&minx=11913214&miny=57721867&onlyRealtime=no&format=json";
+            const string absoluteUrl = "https://reseplanerare.vasttrafik.se/bin/help.exe/eny?tpl=livemap&L=vs_livemap&maxx=12037610&maxy=57745560&minx=11863889&miny=57653098&onlyRealtime=no&format=json";
             SetUpNetworkServiceMock(absoluteUrl, LiveMapJson.Json);
             var sut = GetJourneyPlannerService();
 
-            var actual = sut.GetLiveMap(11.913214, 12.044663, 57.721867, 57.685421, false);
+            var actual = sut.GetLiveMap(11.863889, 12.037610, 57.653098, 57.745560, false);
 
             VerifyNetworkMock();
-            Assert.Equal(2, actual.Vehicles.Count());
+            Assert.Equal(9, actual.Vehicles.Count());
         }
 
         [Fact]
