@@ -5,17 +5,20 @@ using Stranne.VasttrafikNET.Service;
 using Xunit;
 using System.Reflection;
 using System.Linq;
+using Stranne.VasttrafikNET.Tests.Helpers;
+using Stranne.VasttrafikNET.Tests.Json;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public abstract class BaseJsonTest
     {
-        protected abstract string Json { get; }
+        protected abstract JsonFile JsonFile { get; }
         private static JsonSerializerSettings JsonSerializerSettings => new JourneyPlannerHandlingService("Key", "Secret", "DeviceId").JsonSerializerSettings;
 
         protected void TestValue<T>(string property, object expected)
         {
-            var sut = JsonConvert.DeserializeObject<T>(Json, JsonSerializerSettings);
+            var json = JsonHelper.GetJson(JsonFile);
+            var sut = JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
 
             var actual = GetValue(sut, property);
 
@@ -36,8 +39,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             var currentProperty = sut;
             foreach (var step in steps)
             {
-                int arrayIndex;
-                if (int.TryParse(step, out arrayIndex))
+                if (int.TryParse(step, out int arrayIndex))
                 {
                     currentProperty = currentProperty.GetType().GetProperty("Item").GetValue(currentProperty, new object[] { arrayIndex });
                     continue;

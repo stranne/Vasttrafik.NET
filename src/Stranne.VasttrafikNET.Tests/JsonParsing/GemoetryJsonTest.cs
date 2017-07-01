@@ -8,7 +8,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class GemoetryJsonTest : BaseJsonTest
     {
-        protected override string Json => GeometryJson.Json;
+        protected override JsonFile JsonFile => JsonFile.Geometry;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

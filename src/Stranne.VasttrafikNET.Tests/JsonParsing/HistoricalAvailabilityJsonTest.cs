@@ -8,7 +8,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class HistoricalAvailabilityJsonTest :  BaseJsonTest
     {
-        protected override string Json => HistoricalAvailabilityJson.Json;
+        protected override JsonFile JsonFile => JsonFile.HistoricalAvailability;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
