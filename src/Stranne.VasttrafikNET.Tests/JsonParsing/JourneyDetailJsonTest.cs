@@ -9,7 +9,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class JourneyDetailJsonTest : BaseJsonTest
     {
-        protected override string Json => JourneyDetailJson.Json;
+        protected override JsonFile JsonFile => JsonFile.JourneyDetail;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

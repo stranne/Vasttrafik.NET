@@ -7,7 +7,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class LocationNearbyStopsJsonTest : BaseJsonTest
     {
-        protected override string Json => LocationNearbyStopsJson.Json;
+        protected override JsonFile JsonFile => JsonFile.LocationNearbyStops;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

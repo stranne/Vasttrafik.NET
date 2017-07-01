@@ -5,6 +5,7 @@ using Moq;
 using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
 using Stranne.VasttrafikNET.Service;
+using Stranne.VasttrafikNET.Tests.Helpers;
 using Stranne.VasttrafikNET.Tests.Json;
 using Xunit;
 
@@ -13,13 +14,13 @@ namespace Stranne.VasttrafikNET.Tests
     public class NetworkServiceTest : BaseIntegrationTest
     {
         private const string AbsoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?id=0000000800000022&date=2016-07-16&time=16:50&format=json";
-        private const string Json = ArrivalBoardJson.Json;
+        private readonly JsonFile _jsonFile = JsonFile.ArrivalBoard;
 
         [Fact]
         public async Task MainRequestBadGateway()
         {
             const string content = "Bad gateway";
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -37,7 +38,7 @@ namespace Stranne.VasttrafikNET.Tests
 
                     return new HttpResponseMessage
                     {
-                        Content = new StringContent(DefaultTokenJson.Json)
+                        Content = new StringContent(GetDefaultToken())
                     };
                 }
             };
@@ -55,7 +56,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task MainRequestBadGatewayEmptyResponse()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -72,7 +73,7 @@ namespace Stranne.VasttrafikNET.Tests
 
                     return new HttpResponseMessage
                     {
-                        Content = new StringContent(DefaultTokenJson.Json)
+                        Content = new StringContent(GetDefaultToken())
                     };
                 }
             };
@@ -89,14 +90,14 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task TokenNotFound()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns(false);
             mock.SetupProperty(x => x.HttpClient, new HttpClient(new MockHttpMessageHandler
             {
                 SendAsyncAction = (httpRequestMessage, cancellationToken) => new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.NotFound,
-                    Content = new StringContent(DefaultTokenJson.Json)
+                    Content = new StringContent(GetDefaultToken())
                 }
             }));
             var sut = mock.Object;
@@ -107,13 +108,13 @@ namespace Stranne.VasttrafikNET.Tests
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
             Assert.Equal(HttpStatusCode.NotFound, exception.StatusCode);
             Assert.Equal(TokenAbsoluteUrl, exception.RequestUri.AbsoluteUri);
-            Assert.Equal(DefaultTokenJson.Json, exception.Content);
+            Assert.Equal(GetDefaultToken(), exception.Content);
         }
 
         [Fact]
         public async Task TokenNotFoundEmptyResponse()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns(false);
             mock.SetupProperty(x => x.HttpClient, new HttpClient(new MockHttpMessageHandler
             {
@@ -136,7 +137,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task ReplaceTokenIfNotValid()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns(false);
             var sut = mock.Object;
 
@@ -150,7 +151,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task SingleTokenAquireOnMultipleRequests()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             var sut = mock.Object;
 
@@ -166,7 +167,7 @@ namespace Stranne.VasttrafikNET.Tests
         {
             var firstTokenAbsoluteUrl = TokenAbsoluteUrl;
             const string secondTokenAbsoluteUrl = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=device_SomethingElse&format=json";
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             var sut = mock.Object;
 
@@ -186,7 +187,7 @@ namespace Stranne.VasttrafikNET.Tests
         {
             const string tokenName = nameof(UnauthorizedWithToken);
             TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, tokenName);
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json, tokenName);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile, tokenName);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => false);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -211,7 +212,7 @@ namespace Stranne.VasttrafikNET.Tests
         {
             const string tokenName = nameof(UnauthorizedEmpty);
             TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, tokenName);
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json, tokenName);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile, tokenName);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => false);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -230,7 +231,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task UnauthorizedWithToken()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             HttpMessageHandler = new MockHttpMessageHandler
             {
@@ -238,7 +239,7 @@ namespace Stranne.VasttrafikNET.Tests
                 {
                     var responseMessage = new HttpResponseMessage
                     {
-                        Content = new StringContent(DefaultTokenJson.Json)
+                        Content = new StringContent(GetDefaultToken())
                     };
 
                     var uri = httpRequestMessage.RequestUri;
@@ -261,7 +262,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public async Task TokenJustExpiredOnServer()
         {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, Json);
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
             mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
             var firstTry = true;
             HttpMessageHandler = new MockHttpMessageHandler
@@ -270,7 +271,7 @@ namespace Stranne.VasttrafikNET.Tests
                 {
                     var responseMessage = new HttpResponseMessage
                     {
-                        Content = new StringContent(DefaultTokenJson.Json)
+                        Content = new StringContent(GetDefaultToken())
                     };
 
                     var uri = httpRequestMessage.RequestUri;
@@ -281,7 +282,7 @@ namespace Stranne.VasttrafikNET.Tests
                         else
                             responseMessage = new HttpResponseMessage
                             {
-                                Content = new StringContent(ArrivalBoardJson.Json)
+                                Content = new StringContent(JsonHelper.GetJson(_jsonFile))
                             };
 
                         firstTry = false;
@@ -297,7 +298,7 @@ namespace Stranne.VasttrafikNET.Tests
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
-            Assert.Equal(actual, ArrivalBoardJson.Json);
+            Assert.Equal(actual, JsonHelper.GetJson(_jsonFile));
         }
 
         [Fact]
@@ -319,7 +320,7 @@ namespace Stranne.VasttrafikNET.Tests
             {
                 ExpiresIn = 3600
             };
-            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+            var sut = new NetworkService(Key, Secret, DeviceId);
 
             var actual = sut.IsTokenValid(token);
 
@@ -333,11 +334,23 @@ namespace Stranne.VasttrafikNET.Tests
             {
                 ExpiresIn = 0
             };
-            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+            var sut = new NetworkService(Key, Secret, DeviceId);
 
             var actual = sut.IsTokenValid(token);
 
             Assert.False(actual);
         }
+
+        [Fact]
+        public void NoToken()
+        {
+            var sut = new NetworkService(Key, Secret, DeviceId);
+
+            var actual = sut.IsTokenValid(null);
+
+            Assert.False(actual);
+        }
+
+        private string GetDefaultToken() => JsonHelper.GetJson(JsonFile.DefaultToken);
     }
 }

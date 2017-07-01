@@ -1,5 +1,4 @@
-﻿using System;
-using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
+﻿using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Json;
 using Xunit;
@@ -8,7 +7,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class LocationNearbyAddressJsonTest : BaseJsonTest
     {
-        protected override string Json => LocationNearbyAddressJson.Json;
+        protected override JsonFile JsonFile => JsonFile.LocationNearbyAddress;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

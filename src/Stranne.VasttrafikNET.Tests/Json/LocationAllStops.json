@@ -1,0 +1,33 @@
+﻿{
+  "LocationList":
+  {
+    "noNamespaceSchemaLocation": "http://api.vasttrafik.se/v1/hafasRestLocation.xsd",
+    "servertime": "16:04",
+    "serverdate": "2016-07-31",
+    "StopLocation":
+    [
+      {
+        "name": "Långegärde, Strömstad",
+        "id": "9021014026420000",
+        "lat": "58.891462",
+        "lon": "11.007759",
+        "weight": "53"
+      },
+      {
+        "name": "Långegärde, Strömstad",
+        "id": "9022014026420001",
+        "lat": "58.891462",
+        "lon": "11.007759",
+        "weight": "53",
+        "track": "A"
+      },
+      {
+        "name": "Västra bryggan, Strömstad",
+        "id": "9021014026421000",
+        "lat": "58.893080",
+        "lon": "11.009988",
+        "weight": "574"
+      }
+    ]
+  }
+}

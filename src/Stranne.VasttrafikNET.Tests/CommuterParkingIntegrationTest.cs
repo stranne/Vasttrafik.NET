@@ -15,7 +15,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetParkings()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/parkings?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, ParkingsJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.Parkings);
             var sut = GetCommuterParkingService();
 
             var actual = sut.GetParkings(new ParkingOptions());
@@ -28,7 +28,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetParking()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/parkings/209?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, ParkingJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.Parking);
             var sut = GetCommuterParkingService();
 
             var actual = sut.GetParkings(209);
@@ -41,7 +41,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetHistoricalAvailability()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/historicalAvailability/209/20160801080000/20160801090000?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, HistoricalAvailabilityJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.HistoricalAvailability);
             var sut = GetCommuterParkingService();
 
             var actual = sut.GetHistoricalAvailability(209, new DateTimeOffset(2016, 8, 1, 8, 0, 0, new TimeSpan(2, 0, 0)), new DateTimeOffset(2016, 8, 1, 9, 0, 0, new TimeSpan(2, 0, 0)));
@@ -54,7 +54,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetAvailableCapacity()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/availableCapacity/6030?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, AvailableCapacityJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.AvailableCapacity);
             var sut = GetCommuterParkingService();
 
             var actual = sut.GetAvailableCapacity(6030);
@@ -80,7 +80,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void Dispose()
         {
-            var sut = new CommuterParkingService(VtKey, VtSecret);
+            var sut = new CommuterParkingService(Key, Secret);
             sut.Dispose();
         }
     }

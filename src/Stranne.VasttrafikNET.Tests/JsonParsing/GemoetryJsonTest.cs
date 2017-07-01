@@ -8,11 +8,11 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class GemoetryJsonTest : BaseJsonTest
     {
-        protected override string Json => GeometryJson.Json;
+        protected override JsonFile JsonFile => JsonFile.Geometry;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
-            { "Geometry.ServerDateTime", new DateTimeOffset(2016, 8 ,4, 20, 21, 0, new TimeSpan(2, 0, 0)) },
+            { "Geometry.ServerDateTime", new DateTimeOffset(2016, 8, 4, 20, 21, 0, new TimeSpan(2, 0, 0)) },
             { "Geometry.Points", 3 },
             { "Geometry.Points[0].Latitude", 57.728726 },
             { "Geometry.Points[0].Longitude", 11.752137 },

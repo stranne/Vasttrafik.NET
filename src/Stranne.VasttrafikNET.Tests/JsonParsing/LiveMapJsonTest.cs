@@ -8,7 +8,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class LiveMapJsonTest : BaseJsonTest
     {
-        protected override string Json => LiveMapJson.Json;
+        protected override JsonFile JsonFile => JsonFile.LiveMap;
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
