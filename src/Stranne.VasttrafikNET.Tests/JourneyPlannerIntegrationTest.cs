@@ -15,7 +15,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetDepartureBoard()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/departureBoard?date=2016-07-16&time=16:50&id=0000000800000022&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, DepartureBoardJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.DepartureBoard);
             var sut = GetJourneyPlannerService();
             var boardOptions = new BoardOptions
             {
@@ -34,7 +34,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetArrivalBoard()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/arrivalBoard?date=2016-07-16&time=16:50&id=0000000800000022&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, ArrivalBoardJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.ArrivalBoard);
             var sut = GetJourneyPlannerService();
             var boardOptions = new BoardOptions
             {
@@ -53,7 +53,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetGeometry()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/geometry?ref=926976%2F339484%2F664224%2F23125%2F80%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            SetUpNetworkServiceMock(absoluteUrl, GeometryJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.Geometry);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetGeometry(new GeometryReference
@@ -69,7 +69,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetJourneyDetail()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            SetUpNetworkServiceMock(absoluteUrl, JourneyDetailJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.JourneyDetail);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetJourneyDetail(new JourneyDetailReference
@@ -85,7 +85,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetJourneyDetailFailed()
         {
             const string absoluteUrl = "http://api.vasttrafik.se/bin/rest.exe/v1/journeyDetail?ref=748710%2F275948%2F848764%2F174814%2F80%3Fdate%3D2016-07-16%26station_evaId%3D1950003%26station_type%3Ddep%26authKey%3Def187f08-6bb5-454f-a1d3-d9293dc12991%26format%3Djson%26";
-            SetUpNetworkServiceMock(absoluteUrl, JourneyDetailErrorJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.JourneyDetailError);
             var sut = GetJourneyPlannerService();
 
             var actual = Assert.ThrowsAny<ServerException>(() => sut.GetJourneyDetail(new JourneyDetailReference
@@ -101,21 +101,21 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void GetLiveMap()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/livemap?maxx=12044663&maxy=57685421&minx=11913214&miny=57721867&onlyRealtime=no&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, LiveMapJson.Json);
+            const string absoluteUrl = "https://reseplanerare.vasttrafik.se/bin/help.exe/eny?tpl=livemap&L=vs_livemap&maxx=12037610&maxy=57745560&minx=11863889&miny=57653098&onlyRealtime=no&format=json";
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.LiveMap);
             var sut = GetJourneyPlannerService();
 
-            var actual = sut.GetLiveMap(11.913214, 12.044663, 57.721867, 57.685421, false);
+            var actual = sut.GetLiveMap(11.863889, 12.037610, 57.653098, 57.745560, false);
 
             VerifyNetworkMock();
-            Assert.Equal(2, actual.Vehicles.Count());
+            Assert.Equal(9, actual.Vehicles.Count());
         }
 
         [Fact]
         public void GetLocationNearbyAddress()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.nearbyaddress?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, LocationNearbyAddressJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.LocationNearbyAddress);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationNearbyAddress(new Coordinate(57.705686, 11.963654));
@@ -128,7 +128,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationNerbyStops()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.nearbystops?maxDist=500&maxNo=3&originCoordLat=57.705686&originCoordLong=11.963654&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, LocationNearbyStopsJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.LocationNearbyStops);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationNearbyStops(new Coordinate
@@ -145,7 +145,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationAllStops()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.allstops?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, LocationAllStopsJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.LocationAllStops);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationAllStops();
@@ -158,7 +158,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetLocationName()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/location.name?input=Centralstationen&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, LocationNameJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.LocationName);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetLocationName("Centralstationen");
@@ -171,7 +171,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetSystemInfo()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/systeminfo?format=json";
-            SetUpNetworkServiceMock(absoluteUrl, SystemInfoJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.SystemInfo);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetSystemInfo();
@@ -186,7 +186,7 @@ namespace Stranne.VasttrafikNET.Tests
         public void GetTrip()
         {
             const string absoluteUrl = "https://api.vasttrafik.se/bin/rest.exe/v2/trip?destId=9021014001950000&originId=0000000800000002&format=json";
-            SetUpNetworkServiceMock(absoluteUrl, TripJson.Json);
+            SetUpNetworkServiceMock(absoluteUrl, JsonFile.Trip);
             var sut = GetJourneyPlannerService();
 
             var actual = sut.GetTrip(new TripOptions
@@ -202,7 +202,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void Dispose()
         {
-            var sut = new JourneyPlannerService(VtKey, VtSecret);
+            var sut = new JourneyPlannerService(Key, Secret);
             sut.Dispose();
         }
     }

@@ -191,8 +191,7 @@ namespace Stranne.VasttrafikNET.Models
         /// </summary>
         [Parameter(defaultValue: false)]
         public bool OriginBike { get; set; } = false;
-
-
+        
         /// <summary>
         /// Maximum biking distance from/to the coordinate in meters	
         /// </summary>

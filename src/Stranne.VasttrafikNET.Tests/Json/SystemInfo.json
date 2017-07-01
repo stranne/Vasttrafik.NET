@@ -1,0 +1,27 @@
+﻿{
+  "SystemInfo":
+  {
+    "noNamespaceSchemaLocation": "http://api.vasttrafik.se/v1/hafasRestSysteminfo.xsd",
+    "TimetableInfo":
+    {
+      "TimeTablePeriod":
+      {
+        "DateBegin":
+        {
+          "$": "2016-06-01"
+        },
+        "DateEnd":
+        {
+          "$": "2016-10-29"
+        }
+      },
+      "TimeTableData":
+      {
+        "CreationDate":
+        {
+          "$": "2016-07-31"
+        }
+      }
+    }
+  }
+}

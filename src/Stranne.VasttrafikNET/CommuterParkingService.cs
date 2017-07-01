@@ -19,25 +19,24 @@ namespace Stranne.VasttrafikNET
         /// <summary>
         /// Initializes a new instance of the Commuter Parking Service
         /// </summary>
-        /// <param name="vtKey">Key to Västtrafik API</param>
-        /// <param name="vtSecret">Secret to Västtrafik API</param>
-        /// <param name="vtDeviceId">Device id, unique id/name per device</param>
-        public CommuterParkingService(string vtKey, string vtSecret, string vtDeviceId = null)
+        /// <param name="key">Key to Västtrafik API</param>
+        /// <param name="secret">Secret to Västtrafik API</param>
+        /// <param name="deviceId">Device id, unique id/name per device</param>
+        public CommuterParkingService(string key, string secret, string deviceId = null)
         {
-            CommuterParkingHandlingService = new CommuterParkingHandlingService(vtKey, vtSecret, vtDeviceId);
-
+            CommuterParkingHandlingService = new CommuterParkingHandlingService(key, secret, deviceId);
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        public async Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions parkingOptions)
+        public async Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions options)
         {
-            return await CommuterParkingHandlingService.GetAsync<IEnumerable<ParkingArea>>("/parkings", parkingOptions);
+            return await CommuterParkingHandlingService.GetAsync<IEnumerable<ParkingArea>>("/parkings", options);
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        public IEnumerable<ParkingArea> GetParkings(ParkingOptions parkingOptions)
+        public IEnumerable<ParkingArea> GetParkings(ParkingOptions options)
         {
-            return GetParkingsAsync(parkingOptions).GetAwaiter().GetResult();
+            return GetParkingsAsync(options).GetAwaiter().GetResult();
         }
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>

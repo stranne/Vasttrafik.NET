@@ -8,6 +8,6 @@
         /// <summary>
         /// Timetable info
         /// </summary>
-        public TimetableInfo TimetableInfo { get; set; }
+        public TimeTableInfo TimetableInfo { get; set; }
     }
 }

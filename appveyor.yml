@@ -25,10 +25,8 @@ test_script:
     $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.690\tools\OpenCover.Console.exe'
 
     $target = '-target:C:\Program Files\dotnet\dotnet.exe'
-    
-    Set-Location "$ENV:APPVEYOR_BUILD_FOLDER\src\Stranne.VasttrafikNET.Tests"
 
-    $targetArgs = '-targetargs: test -c ' + $ENV:CONFIGURATION
+    $targetArgs = '-targetargs: test .\src\Stranne.VasttrafikNET.Tests\Stranne.VasttrafikNET.Tests.csproj -c ' + $ENV:CONFIGURATION
 
     $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]* -[Stranne.VasttrafikNET.Examples.*]*'
 

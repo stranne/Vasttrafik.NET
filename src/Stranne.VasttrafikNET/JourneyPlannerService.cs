@@ -18,12 +18,12 @@ namespace Stranne.VasttrafikNET
         /// <summary>
         /// Initializes a new instance of the Journey Planner Service
         /// </summary>
-        /// <param name="vtKey">Key to Västtrafik API</param>
-        /// <param name="vtSecret">Secret to Västtrafik API</param>
-        /// <param name="vtDeviceId">Device id, unique id/name per device</param>
-        public JourneyPlannerService(string vtKey, string vtSecret, string vtDeviceId = null)
+        /// <param name="key">Key to Västtrafik API</param>
+        /// <param name="secret">Secret to Västtrafik API</param>
+        /// <param name="deviceId">Device id, unique id/name per device</param>
+        public JourneyPlannerService(string key, string secret, string deviceId = null)
         {
-            JourneyPlannerHandlingService = new JourneyPlannerHandlingService(vtKey, vtSecret, vtDeviceId);
+            JourneyPlannerHandlingService = new JourneyPlannerHandlingService(key, secret, deviceId);
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetArrivalBoard"]'/>
@@ -103,11 +103,11 @@ namespace Stranne.VasttrafikNET
                 Maxy = latitudeMax * 1000000,
                 OnlyRealtime = onlyRealtime
             };
-            var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("/livemap", options)).LiveMap;
-            liveMap.MaxX /= 1000000;
-            liveMap.MaxY /= 1000000;
-            liveMap.MinX /= 1000000;
-            liveMap.MinY /= 1000000;
+            var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("https://reseplanerare.vasttrafik.se/bin/help.exe/eny?tpl=livemap&L=vs_livemap&", options)).LiveMap;
+            liveMap.LongitudeMax /= 1000000;
+            liveMap.LatitudeMax /= 1000000;
+            liveMap.LongitudeMin /= 1000000;
+            liveMap.LatitudeMin /= 1000000;
             return liveMap;
         }
         
