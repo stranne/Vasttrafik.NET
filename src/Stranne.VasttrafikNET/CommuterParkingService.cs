@@ -28,15 +28,15 @@ namespace Stranne.VasttrafikNET
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        public async Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions parkingOptions)
+        public async Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions options)
         {
-            return await CommuterParkingHandlingService.GetAsync<IEnumerable<ParkingArea>>("/parkings", parkingOptions);
+            return await CommuterParkingHandlingService.GetAsync<IEnumerable<ParkingArea>>("/parkings", options);
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        public IEnumerable<ParkingArea> GetParkings(ParkingOptions parkingOptions)
+        public IEnumerable<ParkingArea> GetParkings(ParkingOptions options)
         {
-            return GetParkingsAsync(parkingOptions).GetAwaiter().GetResult();
+            return GetParkingsAsync(options).GetAwaiter().GetResult();
         }
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>

@@ -1,5 +1,4 @@
 ﻿using System;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,18 +36,14 @@ namespace Stranne.VasttrafikNET.Examples.Api
                 throw new ArgumentException("VtKey and VtSecret must be set in appsettings or environment.");
             }
 
-            var mapperConfiguration = new MapperConfiguration(mc => mc.AddProfile(new MapConfig()));
-            mapperConfiguration.AssertConfigurationIsValid();
-            var mapper = new Mapper(mapperConfiguration);
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Example API", Version = "v1" });
+                c.DescribeAllEnumsAsStrings();
             });
 
             services.AddSingleton<IJourneyPlannerService>(provider => new JourneyPlannerService(key, secret));
-
-            services.AddScoped<IMapper>(provider => mapper);
+            services.AddSingleton<ICommuterParkingService>(provider => new CommuterParkingService(key, secret));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

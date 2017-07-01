@@ -64,13 +64,16 @@ namespace Stranne.VasttrafikNET.Service
         private async Task<HttpResponseMessage> GetHttpResponseMessage(string absolutePath)
         {
             var connectionAttempts = 0;
+            var absoluteUri = absolutePath.StartsWith("https://")
+                ? new Uri(absolutePath)
+                : new Uri(VtBaseUrl, absolutePath);
             while (connectionAttempts < 2)
             {
                 var token = await GetToken();
 
                 var httpRequestMessage = new HttpRequestMessage
                 {
-                    RequestUri = new Uri(VtBaseUrl, absolutePath),
+                    RequestUri = absoluteUri,
                     Method = HttpMethod.Get
                 };
                 httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.AccessToken}");
