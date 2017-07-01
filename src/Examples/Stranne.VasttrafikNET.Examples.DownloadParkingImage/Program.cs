@@ -18,8 +18,8 @@ namespace Stranne.VasttrafikNET.Examples.DownloadParkingImage
 
             var id = int.Parse(args[0]);
             var cameraId = int.Parse(args[1]);
-            var vtKey = args[2];
-            var vtSecret = args[3];
+            var key = args[2];
+            var secret = args[3];
             var imagePath = args.Length >= 5
                 ? args[4]
                 : ".\\";
@@ -29,13 +29,13 @@ namespace Stranne.VasttrafikNET.Examples.DownloadParkingImage
                 Directory.CreateDirectory(imagePath);
             var file = $@"{imagePath}\Vasttrafik_id-{id}_cameraId-{cameraId}_{DateTime.Now:yyyy-MM-dd_hh-mm}.gif";
 
-            DownloadCameraImage(file, id, cameraId, vtKey, vtSecret);
+            DownloadCameraImage(file, id, cameraId, key, secret);
             Console.WriteLine($"Camera image saved at {file}");
         }
 
-        private static void DownloadCameraImage(string file, int id, int cameraId, string vtKey, string vtSecret)
+        private static void DownloadCameraImage(string file, int id, int cameraId, string key, string secret)
         {
-            using (var commuterParkingService = new CommuterParkingService(vtKey, vtSecret, DeviceId))
+            using (var commuterParkingService = new CommuterParkingService(key, secret, DeviceId))
             {
                 var stream = commuterParkingService.GetParkingImage(id, cameraId);
                 using (var fileStream = File.Create(file))

@@ -4,8 +4,9 @@
     {
         protected override string ApiPathUrl => "bin/rest.exe/v2";
 
-        public JourneyPlannerHandlingService(string vtKey, string vtSecret, string vtDeviceId) :
-            base(vtKey, vtSecret, vtDeviceId)
-        { }
+        public JourneyPlannerHandlingService(string key, string secret, string deviceId) :
+            base(key, secret, deviceId)
+        {
+        }
     }
 }

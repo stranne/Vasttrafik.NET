@@ -19,7 +19,8 @@
         /// Create a new coordinate.
         /// </summary>
         public Coordinate()
-        { }
+        {
+        }
 
         /// <summary>
         /// Create a coordinate with latitude and longitude pre defined.

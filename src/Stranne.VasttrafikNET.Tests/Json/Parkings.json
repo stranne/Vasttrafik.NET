@@ -1,0 +1,58 @@
+﻿[
+  {
+    "Id": 203,
+    "Name": "Albotorget",
+    "StopAreas":
+    [
+      {
+        "Gid": 9021014016710000,
+        "Name": "Albotorget",
+        "Municipality": "Ale"
+      }
+    ],
+    "ParkingLots":
+    [
+      {
+        "Id": 6030,
+        "Name": "Albotorget-P1",
+        "Lat": 57.9838704,
+        "Lon": 12.2107835,
+        "TotalCapacity": 50,
+        "IsRestrictedByBarrier": false,
+        "ParkingType":
+        {
+          "Number": 1,
+          "Name": "CARPARK"
+        }
+      }
+    ]
+  },
+  {
+    "Id": 143,
+    "Name": "Alingsås station",
+    "StopAreas":
+    [
+      {
+        "Gid": 9021014017510000,
+        "Name": "Alingsås station",
+        "Municipality": "Alingsås"
+      }
+    ],
+    "ParkingLots":
+    [
+      {
+        "Id": 5430,
+        "Name": "Alingsås station-P1",
+        "Lat": 57.9273777,
+        "Lon": 12.528758,
+        "TotalCapacity": 365,
+        "IsRestrictedByBarrier": false,
+        "ParkingType":
+        {
+          "Number": 1,
+          "Name": "CARPARK"
+        }
+      }
+    ]
+  }
+]
