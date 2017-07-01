@@ -341,6 +341,16 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.False(actual);
         }
 
+        [Fact]
+        public void NoToken()
+        {
+            var sut = new NetworkService(Key, Secret, DeviceId);
+
+            var actual = sut.IsTokenValid(null);
+
+            Assert.False(actual);
+        }
+
         private string GetDefaultToken() => JsonHelper.GetJson(JsonFile.DefaultToken);
     }
 }
