@@ -40,7 +40,9 @@ namespace Stranne.VasttrafikNET.Service
 
         public async Task<T> GetAsync<T>(string featureUrl, object parameters)
         {
-            var absolutePathUrl = $"{ApiPathUrl}{featureUrl}{BuildParameterString(parameters)}";
+            var isFeatureUrlAbsolute = featureUrl.StartsWith("https://");
+            var skipQueryStringQuestionMark = featureUrl.Contains("?");
+            var absolutePathUrl = $"{(isFeatureUrlAbsolute ? "" : ApiPathUrl)}{featureUrl}{BuildParameterString(parameters, skipQueryStringQuestionMark)}";
             return await GetAsync<T>(absolutePathUrl);
         }
 
@@ -54,7 +56,7 @@ namespace Stranne.VasttrafikNET.Service
             return data;
         }
 
-        public static string BuildParameterString(object parameters)
+        public static string BuildParameterString(object parameters, bool skipQueryStringQuestionMark = false)
         {
             var queryParameters = new Dictionary<string, string>();
             var pathParameters = new Dictionary<int, string>();
@@ -130,7 +132,7 @@ namespace Stranne.VasttrafikNET.Service
             queryParameters.Add("format", "json");
 
             var pathUrl = string.Join("", pathParameters.OrderBy(pair => pair.Key).Select(pair => $"/{pair.Value}"));
-            var queryUrl = $"?{string.Join("&", queryParameters.Select(queryParameter => $"{queryParameter.Key}={queryParameter.Value}"))}";
+            var queryUrl = $"{(skipQueryStringQuestionMark ? "" : "?")}{string.Join("&", queryParameters.Select(queryParameter => $"{queryParameter.Key}={queryParameter.Value}"))}";
             return $"{pathUrl}{queryUrl}";
         }
 

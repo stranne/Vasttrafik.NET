@@ -32,17 +32,17 @@ namespace Stranne.VasttrafikNET.Service
             BaseAddress = VtBaseUrl
         };
 
-        public NetworkService(string vtKey, string vtSecret, string vtDeviceId)
+        public NetworkService(string key, string secret, string deviceId)
         {
-            vtKey.ThrowIfNullOrWhiteSpace(nameof(vtKey));
-            _key = vtKey;
+            key.ThrowIfNullOrWhiteSpace(nameof(key));
+            _key = key;
 
-            vtSecret.ThrowIfNullOrWhiteSpace(nameof(vtSecret));
-            _secret = vtSecret;
+            secret.ThrowIfNullOrWhiteSpace(nameof(secret));
+            _secret = secret;
 
-            if (vtDeviceId == null)
-                vtDeviceId = Guid.NewGuid().ToString();
-            DeviceId = vtDeviceId;
+            if (deviceId == null)
+                deviceId = Guid.NewGuid().ToString();
+            DeviceId = deviceId;
         }
 
         public async Task<string> DownloadStringAsync(string absolutePath)
@@ -64,13 +64,16 @@ namespace Stranne.VasttrafikNET.Service
         private async Task<HttpResponseMessage> GetHttpResponseMessage(string absolutePath)
         {
             var connectionAttempts = 0;
+            var absoluteUri = absolutePath.StartsWith("https://")
+                ? new Uri(absolutePath)
+                : new Uri(VtBaseUrl, absolutePath);
             while (connectionAttempts < 2)
             {
                 var token = await GetToken();
 
                 var httpRequestMessage = new HttpRequestMessage
                 {
-                    RequestUri = new Uri(VtBaseUrl, absolutePath),
+                    RequestUri = absoluteUri,
                     Method = HttpMethod.Get
                 };
                 httpRequestMessage.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {token.AccessToken}");
@@ -157,20 +160,20 @@ namespace Stranne.VasttrafikNET.Service
 
         private static void ThrowIfServerErrors(string json)
         {
-            var jToken = JToken.Parse(json);
-            if (jToken.Type != JTokenType.Object)
+            var token = JToken.Parse(json);
+            if (token.Type != JTokenType.Object)
                 return;
 
-            jToken = jToken.First.First;
+            token = token.First.First;
             
-            if (jToken.Type != JTokenType.Object ||
-                jToken["error"] == null)
+            if (token.Type != JTokenType.Object ||
+                token["error"] == null)
                 return;
 
             throw new ServerException
             {
-                Name = jToken["error"].Value<string>(),
-                Description = jToken["errorText"].Value<string>()
+                Name = token["error"].Value<string>(),
+                Description = token["errorText"].Value<string>()
             };
         }
 

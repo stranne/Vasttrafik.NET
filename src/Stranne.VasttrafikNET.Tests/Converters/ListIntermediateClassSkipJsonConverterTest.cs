@@ -11,7 +11,6 @@ namespace Stranne.VasttrafikNET.Tests.Converters
     [Trait("Area", "Converter")]
     public class ListIntermediateClassSkipJsonConverterTest
     {
-
         [Fact]
         public void CanWriteJson()
         {

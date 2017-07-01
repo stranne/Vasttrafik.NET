@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
+using Stranne.VasttrafikNET.Converters;
 
 namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
 {
@@ -26,9 +27,10 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         public string BackgroundColor { get; set; }
 
         /// <summary>
-        /// Direction of the vehicle. This is a value between 0 and 31 which is describing a direction vector.
+        /// Direction of the vehicle described in angle 0-360.
         /// </summary>
-        public int Direction { get; set; }
+        [JsonConverter(typeof(VtDirectionJsonConverter))]
+        public double Direction { get; set; }
 
         /// <summary>
         /// Journey name
@@ -43,16 +45,21 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         /// <summary>
         /// Current delay of the vehicle in minutes
         /// </summary>
+        [JsonConverter(typeof(StringToIntJsonConverter))]
         public int Delay { get; set; }
 
         /// <summary>
-        /// Y coordinate (latitude) of the position in WGS84
+        /// Latitude coordinate (y) of the position in WGS84
         /// </summary>
-        public double Y { get; set; }
+        [JsonProperty("y")]
+        [JsonConverter(typeof(StringToCoordinateDoubleJsonConverter))]
+        public double Latitude { get; set; }
 
         /// <summary>
-        /// X coordinate (longitude) of the position in WGS84
+        /// Longitude coordinate (x) of the position in WGS84
         /// </summary>
-        public double X { get; set; }
+        [JsonProperty("x")]
+        [JsonConverter(typeof(StringToCoordinateDoubleJsonConverter))]
+        public double Longitude { get; set; }
     }
 }

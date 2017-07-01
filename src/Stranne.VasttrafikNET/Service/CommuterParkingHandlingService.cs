@@ -4,8 +4,9 @@
     {
         protected override string ApiPathUrl => "spp/v2";
 
-        public CommuterParkingHandlingService(string vtKey, string vtSecret, string vtDeviceId) :
-            base(vtKey, vtSecret, vtDeviceId)
-        { }
+        public CommuterParkingHandlingService(string key, string secret, string deviceId) :
+            base(key, secret, deviceId)
+        {
+        }
     }
 }

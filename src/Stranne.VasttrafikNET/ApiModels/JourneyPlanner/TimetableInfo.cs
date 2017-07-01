@@ -3,7 +3,7 @@
     /// <summary>
     /// Timetable info
     /// </summary>
-    public class TimetableInfo
+    public class TimeTableInfo
     {
         /// <summary>
         /// Contains date for start and end date of current time table
