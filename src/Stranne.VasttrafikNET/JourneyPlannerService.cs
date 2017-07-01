@@ -104,10 +104,10 @@ namespace Stranne.VasttrafikNET
                 OnlyRealtime = onlyRealtime
             };
             var liveMap = (await JourneyPlannerHandlingService.GetAsync<LiveMapRoot>("https://reseplanerare.vasttrafik.se/bin/help.exe/eny?tpl=livemap&L=vs_livemap&", options)).LiveMap;
-            liveMap.MaxX /= 1000000;
-            liveMap.MaxY /= 1000000;
-            liveMap.MinX /= 1000000;
-            liveMap.MinY /= 1000000;
+            liveMap.LongitudeMax /= 1000000;
+            liveMap.LatitudeMax /= 1000000;
+            liveMap.LongitudeMin /= 1000000;
+            liveMap.LatitudeMin /= 1000000;
             return liveMap;
         }
         

@@ -49,15 +49,17 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         public int Delay { get; set; }
 
         /// <summary>
-        /// Y coordinate (latitude) of the position in WGS84
+        /// Latitude coordinate (y) of the position in WGS84
         /// </summary>
+        [JsonProperty("y")]
         [JsonConverter(typeof(StringToCoordinateDoubleJsonConverter))]
-        public double Y { get; set; }
+        public double Latitude { get; set; }
 
         /// <summary>
-        /// X coordinate (longitude) of the position in WGS84
+        /// Longitude coordinate (x) of the position in WGS84
         /// </summary>
+        [JsonProperty("x")]
         [JsonConverter(typeof(StringToCoordinateDoubleJsonConverter))]
-        public double X { get; set; }
+        public double Longitude { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
 {
@@ -9,24 +10,28 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
     public class LiveMap
     {
         /// <summary>
-        /// Right border (longitude) of the bounding box in WGS84
+        /// Right border (longitude), max x, of the bounding box in WGS84
         /// </summary>
-        public double MaxX { get; set; }
+        [JsonProperty("maxX")]
+        public double LongitudeMax { get; set; }
 
         /// <summary>
-        /// Upper border (latitude) of the bounding box in WGS84
+        /// Upper border (latitude), max y, of the bounding box in WGS84
         /// </summary>
-        public double MaxY { get; set; }
+        [JsonProperty("maxY")]
+        public double LatitudeMax { get; set; }
 
         /// <summary>
-        /// Left border (longitude) of the bounding box in WGS84
+        /// Left border (longitude), min x, of the bounding box in WGS84
         /// </summary>
-        public double MinX { get; set; }
+        [JsonProperty("minX")]
+        public double LongitudeMin { get; set; }
 
         /// <summary>
-        /// Lower border (latitude) of the bounding box in WGS84
+        /// Lower border (latitude), min y, of the bounding box in WGS84
         /// </summary>
-        public double MinY { get; set; }
+        [JsonProperty("minY")]
+        public double LatitudeMin { get; set; }
 
         /// <summary>
         /// List of vehicles
