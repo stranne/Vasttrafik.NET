@@ -13,9 +13,9 @@ namespace Stranne.VasttrafikNET
     public interface ICommuterParkingService
     {
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions parkingOptions);
+        Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions options);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
-        IEnumerable<ParkingArea> GetParkings(ParkingOptions parkingOptions);
+        IEnumerable<ParkingArea> GetParkings(ParkingOptions options);
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>
         Task<ParkingArea> GetParkingsAsync(int id);
