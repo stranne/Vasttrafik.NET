@@ -319,7 +319,7 @@ namespace Stranne.VasttrafikNET.Tests
             {
                 ExpiresIn = 3600
             };
-            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+            var sut = new NetworkService(Key, Secret, DeviceId);
 
             var actual = sut.IsTokenValid(token);
 
@@ -333,7 +333,7 @@ namespace Stranne.VasttrafikNET.Tests
             {
                 ExpiresIn = 0
             };
-            var sut = new NetworkService(VtKey, VtSecret, VtDeviceId);
+            var sut = new NetworkService(Key, Secret, DeviceId);
 
             var actual = sut.IsTokenValid(token);
 

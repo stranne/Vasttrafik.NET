@@ -29,10 +29,10 @@ namespace Stranne.VasttrafikNET.Examples.Api
             // Add framework services.
             services.AddMvc();
 
-            var vtKey = Configuration.GetValue<string>("VtKey");
-            var vtSecret = Configuration.GetValue<string>("VtSecret");
+            var key = Configuration.GetValue<string>("VtKey");
+            var secret = Configuration.GetValue<string>("VtSecret");
 
-            if (string.IsNullOrWhiteSpace(vtKey) || string.IsNullOrWhiteSpace(vtSecret))
+            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(secret))
             {
                 throw new ArgumentException("VtKey and VtSecret must be set in appsettings or environment.");
             }
@@ -46,7 +46,7 @@ namespace Stranne.VasttrafikNET.Examples.Api
                 c.SwaggerDoc("v1", new Info { Title = "Example API", Version = "v1" });
             });
 
-            services.AddSingleton<IJourneyPlannerService>(provider => new JourneyPlannerService(vtKey, vtSecret));
+            services.AddSingleton<IJourneyPlannerService>(provider => new JourneyPlannerService(key, secret));
 
             services.AddScoped<IMapper>(provider => mapper);
         }

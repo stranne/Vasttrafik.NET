@@ -80,7 +80,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void Dispose()
         {
-            var sut = new CommuterParkingService(VtKey, VtSecret);
+            var sut = new CommuterParkingService(Key, Secret);
             sut.Dispose();
         }
     }

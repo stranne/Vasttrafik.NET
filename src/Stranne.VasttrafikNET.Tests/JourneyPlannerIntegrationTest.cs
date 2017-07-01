@@ -202,7 +202,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void Dispose()
         {
-            var sut = new JourneyPlannerService(VtKey, VtSecret);
+            var sut = new JourneyPlannerService(Key, Secret);
             sut.Dispose();
         }
     }

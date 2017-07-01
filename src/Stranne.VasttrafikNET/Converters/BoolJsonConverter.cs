@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Stranne.VasttrafikNET.Converters
 {
-    internal class BoolJsonConverter: JsonConverter
+    internal class BoolJsonConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

@@ -45,12 +45,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[0].Legs[0].Origin.RealtimeTrack", null },
             { "TripList.Trips[0].Legs[0].Origin.LocationType", LocationType.StopOrStation },
             { "TripList.Trips[0].Legs[0].Origin.Notes", 0 },
-            { "TripList.Trips[0].Legs[0].Origin.Id","9022014012110001"  },
+            { "TripList.Trips[0].Legs[0].Origin.Id","9022014012110001" },
             { "TripList.Trips[0].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
             { "TripList.Trips[0].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 32, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 32, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Origin.DirectDateTime", null },
-            
+
             { "TripList.Trips[0].Legs[0].Destination.RouteIndex", "13" },
             { "TripList.Trips[0].Legs[0].Destination.Cancelled", true },
             { "TripList.Trips[0].Legs[0].Destination.Track", "C" },
@@ -68,12 +68,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[0].Legs[0].Destination.Notes[1].Priority", "2" },
             { "TripList.Trips[0].Legs[0].Destination.Notes[1].Message", "Linje 4, 8 och 9, ingen spårvagnstrafik sträckan Gamlestadstorget - Angered och omvänt på grund av ett spårarbete. Buss 4E och 8E ersätter på sträckan. Detta beräknas pågå från 25 juli klockan 04:00 till 7 augusti klockan 04:00. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren." },
 
-            { "TripList.Trips[0].Legs[0].Destination.Id","9022014001950003"  },
+            { "TripList.Trips[0].Legs[0].Destination.Id","9022014001950003" },
             { "TripList.Trips[0].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
             { "TripList.Trips[0].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 20, 50, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 50, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[0].Legs[0].Destination.DirectDateTime", null },
-            
+
             { "TripList.Trips[1].TravelWarrenty", true },
             { "TripList.Trips[1].Alternative", false },
             { "TripList.Trips[1].Type", null },
@@ -104,7 +104,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[1].Legs[0].Origin.RealtimeTrack", null },
             { "TripList.Trips[1].Legs[0].Origin.LocationType", LocationType.StopOrStation },
             { "TripList.Trips[1].Legs[0].Origin.Notes", 0 },
-            { "TripList.Trips[1].Legs[0].Origin.Id","9022014012110001"  },
+            { "TripList.Trips[1].Legs[0].Origin.Id","9022014012110001" },
             { "TripList.Trips[1].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
             { "TripList.Trips[1].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 37, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 38, 0, new TimeSpan(2, 0, 0)) },
@@ -127,12 +127,12 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[1].Legs[0].Destination.Notes[1].Priority", "2" },
             { "TripList.Trips[1].Legs[0].Destination.Notes[1].Message", "Linje 4, 8 och 9, ingen spårvagnstrafik sträckan Gamlestadstorget - Angered och omvänt på grund av ett spårarbete. Buss 4E och 8E ersätter på sträckan. Detta beräknas pågå från 25 juli klockan 04:00 till 7 augusti klockan 04:00. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren." },
 
-            { "TripList.Trips[1].Legs[0].Destination.Id","9022014001950001"  },
+            { "TripList.Trips[1].Legs[0].Destination.Id","9022014001950001" },
             { "TripList.Trips[1].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
             { "TripList.Trips[1].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 20, 58, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 57, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[1].Legs[0].Destination.DirectDateTime", null },
-            
+
             { "TripList.Trips[2].TravelWarrenty", false },
             { "TripList.Trips[2].Alternative", true },
             { "TripList.Trips[2].Type", TripType.Walk },
@@ -155,7 +155,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].Notes[0].Severity", NoteSeverity.Low },
             { "TripList.Trips[2].Legs[0].Notes[0].Priority", "1" },
             { "TripList.Trips[2].Legs[0].Notes[0].Message", "Linje 4, 7, 9 och 11, kör efter Centralstationen via Olskrokstorget, Redbergsplatsen och Ejdergatan till Gamlestadstorget och omvänt på grund av ett spårarbete. Detta beräknas pågå den 25 juli klockan 04:00 till 7 augusti klockan 04:00. Räkna med längre restid på sträckan. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren." },
-            
+
             { "TripList.Trips[2].Legs[0].Id", "9015014500204114" },
             { "TripList.Trips[2].Legs[0].Stroke", "Solid" },
             { "TripList.Trips[2].Legs[0].Reachable", true },
@@ -169,7 +169,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].Origin.RealtimeTrack", "A" },
             { "TripList.Trips[2].Legs[0].Origin.LocationType", LocationType.StopOrStation },
             { "TripList.Trips[2].Legs[0].Origin.Notes", 0 },
-            { "TripList.Trips[2].Legs[0].Origin.Id","9022014012110001"  },
+            { "TripList.Trips[2].Legs[0].Origin.Id","9022014012110001" },
             { "TripList.Trips[2].Legs[0].Origin.Name", "Mölndal centrum, Mölndal" },
             { "TripList.Trips[2].Legs[0].Origin.DateTime", new DateTimeOffset(2016, 7, 31, 20, 47, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[2].Legs[0].Origin.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 20, 47, 0, new TimeSpan(2, 0, 0)) },
@@ -187,7 +187,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "TripList.Trips[2].Legs[0].Destination.Notes[0].Priority", "1" },
             { "TripList.Trips[2].Legs[0].Destination.Notes[0].Message", "Linje 4, 7, 9 och 11, kör efter Centralstationen via Olskrokstorget, Redbergsplatsen och Ejdergatan till Gamlestadstorget och omvänt på grund av ett spårarbete. Detta beräknas pågå den 25 juli klockan 04:00 till 7 augusti klockan 04:00. Räkna med längre restid på sträckan. För mer information se Trafikläge på vasttrafik.se eller i appen Reseplaneraren." },
 
-            { "TripList.Trips[2].Legs[0].Destination.Id","9022014001950003"  },
+            { "TripList.Trips[2].Legs[0].Destination.Id","9022014001950003" },
             { "TripList.Trips[2].Legs[0].Destination.Name", "Centralstationen, Göteborg" },
             { "TripList.Trips[2].Legs[0].Destination.DateTime", new DateTimeOffset(2016, 7, 31, 21, 5, 0, new TimeSpan(2, 0, 0)) },
             { "TripList.Trips[2].Legs[0].Destination.RealtimeDateTime", new DateTimeOffset(2016, 7, 31, 21, 5, 0, new TimeSpan(2, 0, 0)) },

@@ -18,12 +18,12 @@ namespace Stranne.VasttrafikNET
         /// <summary>
         /// Initializes a new instance of the Journey Planner Service
         /// </summary>
-        /// <param name="vtKey">Key to Västtrafik API</param>
-        /// <param name="vtSecret">Secret to Västtrafik API</param>
-        /// <param name="vtDeviceId">Device id, unique id/name per device</param>
-        public JourneyPlannerService(string vtKey, string vtSecret, string vtDeviceId = null)
+        /// <param name="key">Key to Västtrafik API</param>
+        /// <param name="secret">Secret to Västtrafik API</param>
+        /// <param name="deviceId">Device id, unique id/name per device</param>
+        public JourneyPlannerService(string key, string secret, string deviceId = null)
         {
-            JourneyPlannerHandlingService = new JourneyPlannerHandlingService(vtKey, vtSecret, vtDeviceId);
+            JourneyPlannerHandlingService = new JourneyPlannerHandlingService(key, secret, deviceId);
         }
 
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetArrivalBoard"]'/>

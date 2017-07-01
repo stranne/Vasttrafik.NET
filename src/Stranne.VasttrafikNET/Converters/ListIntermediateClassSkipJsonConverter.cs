@@ -33,10 +33,10 @@ namespace Stranne.VasttrafikNET.Converters
                 return list;
             }
 
-            var jArray = (JArray)data.First.First;
-            foreach (var jItem in jArray)
+            var array = (JArray)data.First.First;
+            foreach (var token in array)
             {
-                var item = serializer.Deserialize(new JTokenReader(jItem), itemType);
+                var item = serializer.Deserialize(new JTokenReader(token), itemType);
                 list.Add(item);
             }
 

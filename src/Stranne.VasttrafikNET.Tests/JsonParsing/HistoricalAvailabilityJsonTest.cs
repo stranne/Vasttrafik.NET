@@ -14,7 +14,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         {
             { "", 5 },
             { "[0].DateTime", new DateTimeOffset(2016, 8, 1, 8, 0, 0, new TimeSpan(2, 0, 0)) },
-            { "[0].FreeSpaces",79 },
+            { "[0].FreeSpaces", 79 },
             { "[1].DateTime", new DateTimeOffset(2016, 8, 1, 8, 15, 0, new TimeSpan(2, 0, 0)) },
             { "[1].FreeSpaces", 78 },
             { "[2].DateTime", new DateTimeOffset(2016, 8, 1, 8, 30, 0, new TimeSpan(2, 0, 0)) },
