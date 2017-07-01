@@ -12,11 +12,12 @@ namespace Stranne.VasttrafikNET.Tests
         protected const string Key = "Key";
         protected const string Secret = "Secret";
         protected const string DeviceId = "Test";
-
         protected const string TokenAbsoluteUrlTemplate = "https://api.vasttrafik.se/token?grant_type=client_credentials&scope=device_{0}&format=json";
-        protected string TokenAbsoluteUrl = string.Format(TokenAbsoluteUrlTemplate, DeviceId);
-        
+
+        protected string TokenAbsoluteUrl { get; set; } = string.Format(TokenAbsoluteUrlTemplate, DeviceId);
+
         private string AbsoluteUrl { get; set; }
+
         protected MockHttpMessageHandler HttpMessageHandler { get; set; }
         
         internal JourneyPlannerService GetJourneyPlannerService()
