@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests
 {
-    [Trait("area", "library")]
+    [Trait("Area", "library")]
     public class LibraryTest
     {
         private readonly IEnumerable<Type> _publicClasses = new List<Type>
@@ -77,7 +77,6 @@ namespace Stranne.VasttrafikNET.Tests
             typeof(MissingRequiredParameterException),
             typeof(NetworkException),
             typeof(ServerException)
-
         };
 
         [Fact]
