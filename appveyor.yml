@@ -5,4 +5,4 @@ test: off
 artifacts:
     - path: artifacts\Stranne.VasttrafikNET_coverage.xml
     - path: artifacts\test-report.zip
-    - path: artifacts\*.nupkg'
+    - path: artifacts\*.nupkg
