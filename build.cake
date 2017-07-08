@@ -10,6 +10,7 @@ GitVersion gitVersion;
 Task("Clean")
     .Does(() =>
 {
+    EnsureDirectoryExists("./artifacts");
     CleanDirectories("./artifacts");
 });
 
