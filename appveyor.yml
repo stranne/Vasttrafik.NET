@@ -1,11 +1,8 @@
 os: Visual Studio 2017
-nuget:
-    project_feed: true
 build_script:
     - ps: .\build.ps1 -target "AppVeyor"
-after_build:
-    - ps: appveyor PushArtifact artifacts\*.nupkg
 test: off
 artifacts:
     - path: artifacts\Stranne.VasttrafikNET_coverage.xml
+    - path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
     - path: artifacts\test-report.zip

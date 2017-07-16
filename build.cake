@@ -6,6 +6,9 @@
 #tool "nuget:?package=Codecov"
 
 GitVersion gitVersion;
+const string CoverageReportXmlFile = "./artifacts/Stranne.VasttrafikNET_coverage.xml";
+const string CoverageReportFolder = "./artifacts/report";
+const string CoverageReportZipFile = "./artifacts/test-report.zip";
 
 Task("Clean")
     .Does(() =>
@@ -50,7 +53,7 @@ Task("Run-Unit-Tests")
                 Verbose = false
             });
         },
-        new FilePath("./artifacts/Stranne.VasttrafikNET_coverage.xml"),
+        new FilePath(CoverageReportXmlFile),
         new OpenCoverSettings()
             .WithFilter("+[Stranne.VasttrafikNET]*")
             .WithFilter("-[Stranne.VasttrafikNET.Tests]*")
@@ -62,7 +65,7 @@ Task("Create-Test-Report")
     .IsDependentOn("Run-Unit-Tests")
     .Does(() =>
 {
-    ReportGenerator("./artifacts/Stranne.VasttrafikNET_coverage.xml", "./artifacts/report", new ReportGeneratorSettings {
+    ReportGenerator(CoverageReportXmlFile, CoverageReportFolder, new ReportGeneratorSettings {
         Verbosity = Cake.Common.Tools.ReportGenerator.ReportGeneratorVerbosity.Info
     });
 });
@@ -96,7 +99,7 @@ Task("Package-Test-Report")
     .IsDependentOn("Create-Test-Report")
     .Does(() =>
 {
-    Zip("./artifacts/report", "./artifacts/test-report.zip");
+    Zip("./artifacts/report", CoverageReportZipFile);
 });
 
 Task("Send-To-Codecov")
@@ -105,7 +108,7 @@ Task("Send-To-Codecov")
 {
     Codecov(new CodecovSettings {
         Files = new string[] {
-            "./artifacts/Stranne.VasttrafikNET_coverage.xml"
+            CoverageReportXmlFile
         }
     });
 });
