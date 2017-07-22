@@ -6,7 +6,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=2592000)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE)
 
-![Vasttrafik.NET logo](resources\logo-small.png)
+![Vasttrafik.NET logo](resources/logo-small.png)
 
 Library to acquire real-time information from Västtrafik’s APIs built on .NET Core.
 
