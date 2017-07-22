@@ -6,6 +6,7 @@
 #tool "nuget:?package=Codecov"
 
 GitVersion gitVersion;
+const string ArtifactsFolder = "./artifacts";
 const string CoverageReportXmlFile = "./artifacts/Stranne.VasttrafikNET_coverage.xml";
 const string CoverageReportFolder = "./artifacts/report";
 const string CoverageReportZipFile = "./artifacts/test-report.zip";
@@ -13,8 +14,8 @@ const string CoverageReportZipFile = "./artifacts/test-report.zip";
 Task("Clean")
     .Does(() =>
 {
-    EnsureDirectoryExists("./artifacts");
-    CleanDirectories("./artifacts");
+    EnsureDirectoryExists(ArtifactsFolder);
+    CleanDirectories(ArtifactsFolder);
 });
 
 Task("Version")
@@ -91,7 +92,7 @@ Task("Create-Nuget-Package")
             .Append("/p:PackageVersion=" + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash),
         NoBuild = true,
         Configuration = "Release",
-        OutputDirectory = new DirectoryPath("./artifacts")
+        OutputDirectory = new DirectoryPath(ArtifactsFolder)
     });
 });
 
@@ -99,7 +100,7 @@ Task("Package-Test-Report")
     .IsDependentOn("Create-Test-Report")
     .Does(() =>
 {
-    Zip("./artifacts/report", CoverageReportZipFile);
+    Zip(CoverageReportFolder, CoverageReportZipFile);
 });
 
 Task("Send-To-Codecov")
