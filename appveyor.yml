@@ -1,47 +1,8 @@
-version: 1.0.1.{build}
-configuration: Release
-platform: Any CPU
 os: Visual Studio 2017
-environment:
-    DOTNET_CLI_TELEMETRY_OPTOUT: 1
-before_build:
-- cmd: dotnet restore
-build:
-    project: Stranne.VasttrafikNET.sln
-    verbosity: quiet
-after_build:
-- cmd: dotnet pack src\Stranne.VasttrafikNET\Stranne.VasttrafikNET.csproj --include-symbols -c Release
-before_test:
-- ps: >-
-    $nugetPackagePath = $ENV:USERPROFILE + '\.nuget\packages'
-
-    nuget install OpenCover -Version 4.6.690 -o $nugetPackagePath
-test_script:
-- ps: >-
-    New-Item -Force -ItemType directory -Path ($ENV:APPVEYOR_BUILD_FOLDER + '\artifacts')
-
-    $resultsFile = $ENV:APPVEYOR_BUILD_FOLDER + '\artifacts\Stranne.VasttrafikNET_coverage.xml'
-
-    $openCoverConsole = $ENV:USERPROFILE + '\.nuget\packages\OpenCover.4.6.690\tools\OpenCover.Console.exe'
-
-    $target = '-target:C:\Program Files\dotnet\dotnet.exe'
-
-    $targetArgs = '-targetargs: test .\src\Stranne.VasttrafikNET.Tests\Stranne.VasttrafikNET.Tests.csproj -c ' + $ENV:CONFIGURATION
-
-    $filter = '-filter:+[Stranne.VasttrafikNET]* -[Stranne.VasttrafikNET.Tests]* -[Stranne.VasttrafikNET.Examples.*]*'
-
-    $output = '-output:' + $resultsFile
-
-    & $openCoverConsole $target $targetArgs '-register:user' $filter '-hideskipped:Filter' '-returntargetcode' '-mergeoutput' $output '-oldStyle' 
-after_test:
-- ps: >-
-    $ENV:PATH = 'C:\\Python34;C:\\Python34\\Scripts;' + $ENV:PATH
-    
-    python -m pip install --upgrade pip
-    
-    pip install git+git://github.com/codecov/codecov-python.git
-
-    codecov -f $resultsFile -X gcov
+build_script:
+    - ps: .\build.ps1 -target "AppVeyor"
+test: off
 artifacts:
-- path: artifacts\Stranne.VasttrafikNET_coverage.xml
-- path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
+    - path: artifacts\Stranne.VasttrafikNET_coverage.xml
+    - path: 'artifacts\**\*.nupkg'
+    - path: artifacts\test-report.zip
