@@ -50,10 +50,16 @@ Built with [.NET Standard Libraries 1.3](https://docs.microsoft.com/en-us/dotnet
 
 Install library from [NuGet](https://www.nuget.org/packages/Stranne.VasttrafikNET/).
 
-Package Manager Console command:
+Package Manager
 
 ```cmd
-Install-Package Stranne.VasttrafikNET
+PM> Install-Package Stranne.VasttrafikNET
+```
+
+.NET CLI
+
+```cmd
+> dotnet add package Stranne.VasttrafikNET
 ```
 
 ### Acquiring credentials
