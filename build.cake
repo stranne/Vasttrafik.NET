@@ -29,7 +29,7 @@ Task("Version")
 Task("Restore")
     .Does(() =>
 {
-    DotNetCoreRestore(new DotNetCoreRestoreSettings());
+    DotNetCoreRestore();
 });
 
 Task("Build-Debug")
@@ -48,8 +48,7 @@ Task("Run-Unit-Tests")
 {
     OpenCover(tool => {
             tool.DotNetCoreTest("./src/Stranne.VasttrafikNET.Tests/Stranne.VasttrafikNET.Tests.csproj", new DotNetCoreTestSettings {
-                NoBuild = true,
-                Verbose = false
+                NoBuild = true
             });
         },
         new FilePath(CoverageReportXmlFile),
