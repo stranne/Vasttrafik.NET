@@ -4,5 +4,5 @@ build_script:
 test: off
 artifacts:
     - path: artifacts\Stranne.VasttrafikNET_coverage.xml
-    - path: 'src\Stranne.VasttrafikNET\**\*.nupkg'
+    - path: 'artifacts\**\*.nupkg'
     - path: artifacts\test-report.zip
