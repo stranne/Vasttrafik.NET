@@ -29,9 +29,7 @@ Task("Version")
 Task("Restore")
     .Does(() =>
 {
-    DotNetCoreRestore(new DotNetCoreRestoreSettings {
-        Verbose = false
-    });
+    DotNetCoreRestore(new DotNetCoreRestoreSettings());
 });
 
 Task("Build-Debug")
