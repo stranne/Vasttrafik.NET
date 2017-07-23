@@ -24,6 +24,7 @@ Task("Version")
    gitVersion = GitVersion(new GitVersionSettings {
        UpdateAssemblyInfo = true
    });
+   Information("Git version " + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash);
 });
 
 Task("Restore")
