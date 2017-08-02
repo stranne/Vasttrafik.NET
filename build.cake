@@ -5,7 +5,7 @@
 #tool "nuget:?package=GitVersion.CommandLine"
 #tool "nuget:?package=Codecov"
 
-GitVersion gitVersion;
+GitVersion gitVersion = new GitVersion();
 const string ArtifactsFolder = "./artifacts";
 const string CoverageReportXmlFile = "./artifacts/Stranne.VasttrafikNET_coverage.xml";
 const string CoverageReportFolder = "./artifacts/report";
