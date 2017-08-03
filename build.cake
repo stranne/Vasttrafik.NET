@@ -38,9 +38,11 @@ Task("Build-Debug")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    DotNetBuild("./Stranne.VasttrafikNET.sln", settings => settings
-        .SetConfiguration("Debug")
-        .SetVerbosity(Cake.Core.Diagnostics.Verbosity.Minimal));
+    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
+        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
+        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
+        Configuration = "Debug"
+    });
 });
 
 Task("Run-Unit-Tests")
@@ -74,9 +76,11 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    DotNetBuild("./Stranne.VasttrafikNET.sln", settings => settings
-        .SetConfiguration("Release")
-        .SetVerbosity(Cake.Core.Diagnostics.Verbosity.Minimal));
+    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
+        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
+        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
+        Configuration = "Release"
+    });
 });
 
 Task("Create-Nuget-Package")
