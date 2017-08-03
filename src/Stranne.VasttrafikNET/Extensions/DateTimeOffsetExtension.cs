@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Stranne.VasttrafikNET.Extensions
 {
     internal static class DateTimeOffsetExtension
     {
-        private const string TimeZoneName = "W. Europe Standard Time";
-
         public static TimeSpan GetVasttrafikTimeOffset(this DateTimeOffset dateTimeOffset)
         {
-            return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneName).GetUtcOffset(dateTimeOffset);
+            return TimeZoneInfo.FindSystemTimeZoneById(GetTimeZoneName()).GetUtcOffset(dateTimeOffset);
         }
 
         public static DateTimeOffset AddVasttrafikTimeSpan(this DateTimeOffset dateTimeOffset)
@@ -19,7 +18,14 @@ namespace Stranne.VasttrafikNET.Extensions
 
         public static DateTimeOffset ConvertToVasttrafikTimeZone(this DateTimeOffset dateTimeOffset)
         {
-            return TimeZoneInfo.ConvertTime(dateTimeOffset, TimeZoneInfo.FindSystemTimeZoneById(TimeZoneName));
+            return TimeZoneInfo.ConvertTime(dateTimeOffset, TimeZoneInfo.FindSystemTimeZoneById(GetTimeZoneName()));
+        }
+
+        private static string GetTimeZoneName() {
+            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            return isWindows
+                ? "W. Europe Standard Time"
+                : "Europe/Stockholm";
         }
     }
 }
