@@ -8,7 +8,7 @@ namespace Stranne.VasttrafikNET.Tests.Helpers
         public static string GetJson(JsonFile jsonFile)
         {
             var fileName = $"{jsonFile}.json";
-            var json = File.ReadAllText($@"Json\{fileName}");
+            var json = File.ReadAllText($@"Json/{fileName}");
             return json;
         }
     }

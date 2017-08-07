@@ -1,6 +1,8 @@
 ﻿{
-  "livemap": {
-    "vehicles": [
+  "livemap": 
+  {
+    "vehicles": 
+    [
       {
         "x": "11937055",
         "y": "57669738",
@@ -65,7 +67,7 @@
         "bcolor": "#ffffff",
         "direction": "24",
         "prodclass": "BUS",
-        "delay": "-1"
+        "delay": "1"
       },
       {
         "x": "12027953",
