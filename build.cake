@@ -1,4 +1,5 @@
 #addin "nuget:?package=Cake.Codecov"
+#addin "nuget:?package=Cake.Incubator"
 
 #tool "nuget:?package=OpenCover"
 #tool "nuget:?package=ReportGenerator"
@@ -45,7 +46,20 @@ Task("Build-Debug")
     });
 });
 
-Task("Run-Unit-Tests")
+Task("Run-Tests")
+    .IsDependentOn("Build-Debug")
+    .Does(() =>
+{
+    DotNetCoreTest(
+        new DotNetCoreTestSettings {
+            NoBuild = true
+        },
+        "./src/Stranne.VasttrafikNET.Tests/Stranne.VasttrafikNET.Tests.csproj",
+        new Cake.Common.Tools.XUnit.XUnit2Settings()
+    );
+});
+
+Task("Create-Open-Cover-Report")
     .IsDependentOn("Build-Debug")
     .Does(() =>
 {
@@ -63,7 +77,7 @@ Task("Run-Unit-Tests")
 });
 
 Task("Create-Test-Report")
-    .IsDependentOn("Run-Unit-Tests")
+    .IsDependentOn("Create-Open-Cover-Report")
     .Does(() =>
 {
     ReportGenerator(CoverageReportXmlFile, CoverageReportFolder, new ReportGeneratorSettings {
@@ -106,7 +120,7 @@ Task("Package-Test-Report")
 });
 
 Task("Send-To-Codecov")
-    .IsDependentOn("Run-Unit-Tests")
+    .IsDependentOn("Create-Open-Cover-Report")
     .Does(() =>
 {
     Codecov(new CodecovSettings {
@@ -117,6 +131,11 @@ Task("Send-To-Codecov")
 });
 
 Task("Default")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Run-Tests")
+    .IsDependentOn("Create-Nuget-Package");
+
+Task("Windows")
     .IsDependentOn("Clean")
     .IsDependentOn("Create-Test-Report")
     .IsDependentOn("Create-Nuget-Package");
