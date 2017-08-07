@@ -74,7 +74,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "LiveMap.Vehicles[5].Direction", 270d },
             { "LiveMap.Vehicles[5].Name", "Bus 753" },
             { "LiveMap.Vehicles[5].Gid", "9015014575300662" },
-            { "LiveMap.Vehicles[5].Delay", -1 },
+            { "LiveMap.Vehicles[5].Delay", 1 },
             { "LiveMap.Vehicles[5].Latitude", 57.681496d },
             { "LiveMap.Vehicles[5].Longitude", 11.965101d },
 
