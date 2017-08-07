@@ -35,7 +35,6 @@ Task("Restore")
 });
 
 Task("Build-Debug")
-    .IsDependentOn("Version")
     .IsDependentOn("Restore")
     .Does(() =>
 {
@@ -86,7 +85,6 @@ Task("Create-Test-Report")
 });
 
 Task("Build")
-    .IsDependentOn("Version")
     .IsDependentOn("Restore")
     .Does(() =>
 {
@@ -132,16 +130,19 @@ Task("Send-To-Codecov")
 
 Task("Default")
     .IsDependentOn("Clean")
+    .IsDependentOn("Version")
     .IsDependentOn("Run-Tests")
     .IsDependentOn("Create-Nuget-Package");
 
 Task("Windows")
     .IsDependentOn("Clean")
+    .IsDependentOn("Version")
     .IsDependentOn("Create-Test-Report")
     .IsDependentOn("Create-Nuget-Package");
 
 Task("AppVeyor")
     .IsDependentOn("Clean")
+    .IsDependentOn("Version")
     .IsDependentOn("Package-Test-Report")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
