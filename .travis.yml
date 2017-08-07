@@ -4,7 +4,9 @@ matrix:
   include:
     - os: linux
       mono: latest
+      dotnet: latest
       script: ./build.sh -t "Travis"
     - os: osx
       mono: latest
+      dotnet: latest
       script: ./build.sh -t "Travis"
