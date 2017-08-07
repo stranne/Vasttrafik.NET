@@ -146,5 +146,10 @@ Task("AppVeyor")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
 
+Task("Travis")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Run-Tests")
+    .IsDependentOn("Create-Nuget-Package");
+
 var target = Argument("target", "Default");
 RunTarget(target);
