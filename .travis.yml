@@ -1,1 +1,10 @@
-script: ./build.sh -t "Travis"
+language: csharp
+
+matrix:
+  include:
+    - os: linux
+      mono: latest
+      script: ./build.sh -t "Travis"
+    - os: osx
+      mono: latest
+      script: ./build.sh -t "Travis"
