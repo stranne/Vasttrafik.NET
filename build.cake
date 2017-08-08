@@ -147,8 +147,14 @@ Task("AppVeyor")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
 
-Task("Travis")
+Task("Travis-Linux")
     .IsDependentOn("Clean")
+    .IsDependentOn("Run-Tests")
+    .IsDependentOn("Create-Nuget-Package");
+
+Task("Travis-OSX")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Version")
     .IsDependentOn("Run-Tests")
     .IsDependentOn("Create-Nuget-Package");
 
