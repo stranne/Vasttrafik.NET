@@ -22,10 +22,14 @@ Task("Clean")
 Task("Version")
     .Does(() =>
 {
-   gitVersion = GitVersion(new GitVersionSettings {
-       UpdateAssemblyInfo = true
-   });
-   Information("Git version " + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash);
+    try {
+        gitVersion = GitVersion(new GitVersionSettings {
+            UpdateAssemblyInfo = true
+        });
+        Information("Git version " + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash);
+    } catch {
+        Warning("Failed to get git version, using 1.0.0 by default");
+    }
 });
 
 Task("Restore")
@@ -35,6 +39,7 @@ Task("Restore")
 });
 
 Task("Build-Debug")
+    .IsDependentOn("Version")
     .IsDependentOn("Restore")
     .Does(() =>
 {
@@ -85,6 +90,7 @@ Task("Create-Test-Report")
 });
 
 Task("Build")
+    .IsDependentOn("Version")
     .IsDependentOn("Restore")
     .Does(() =>
 {
@@ -130,19 +136,16 @@ Task("Send-To-Codecov")
 
 Task("Default")
     .IsDependentOn("Clean")
-    .IsDependentOn("Version")
     .IsDependentOn("Run-Tests")
     .IsDependentOn("Create-Nuget-Package");
 
 Task("Windows")
     .IsDependentOn("Clean")
-    .IsDependentOn("Version")
     .IsDependentOn("Create-Test-Report")
     .IsDependentOn("Create-Nuget-Package");
 
 Task("AppVeyor")
     .IsDependentOn("Clean")
-    .IsDependentOn("Version")
     .IsDependentOn("Package-Test-Report")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
@@ -154,7 +157,6 @@ Task("Travis-Linux")
 
 Task("Travis-OSX")
     .IsDependentOn("Clean")
-    .IsDependentOn("Version")
     .IsDependentOn("Run-Tests")
     .IsDependentOn("Create-Nuget-Package");
 
