@@ -251,5 +251,8 @@ paket-files/
 .idea/
 *.sln.iml
 
+# OSX
+**/.DS_Store
+
 # Cake
 tools/
