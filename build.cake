@@ -4,7 +4,7 @@
 #tool "nuget:?package=OpenCover"
 #tool "nuget:?package=ReportGenerator"
 #tool "nuget:?package=GitVersion.CommandLine"
-#tool "nuget:?package=Codecov"
+#tool "nuget:?package=Codecov&version=1.0.1"
 
 GitVersion gitVersion = new GitVersion();
 const string ArtifactsFolder = "./artifacts";
@@ -15,17 +15,26 @@ const string CoverageReportZipFile = "./artifacts/test-report.zip";
 Task("Clean")
     .Does(() =>
 {
-    EnsureDirectoryExists(ArtifactsFolder);
-    CleanDirectories(ArtifactsFolder);
+    CleanDirectories(new [] {
+        ArtifactsFolder,
+        "./src/Stranne.VasttrafikNET/bin",
+        "./src/Stranne.VasttrafikNET.Tests/bin",
+        "./src/Examples/Stranne.VasttrafikNET.Examples.Api/bin",
+        "./src/Examples/Stranne.VasttrafikNET.Examples.DownloadParkingImage/bin"
+    });
 });
 
 Task("Version")
     .Does(() =>
 {
-   gitVersion = GitVersion(new GitVersionSettings {
-       UpdateAssemblyInfo = true
-   });
-   Information("Git version " + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash);
+    try {
+        gitVersion = GitVersion(new GitVersionSettings {
+            UpdateAssemblyInfo = true
+        });
+        Information("Git version " + gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash);
+    } catch {
+        Warning("Failed to get git version, using 1.0.0 by default");
+    }
 });
 
 Task("Restore")
@@ -39,10 +48,9 @@ Task("Build-Debug")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
-        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
-        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
-        Configuration = "Debug"
+    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+        Configuration = "Debug",
+        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
     });
 });
 
@@ -90,10 +98,9 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
-        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
-        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
-        Configuration = "Release"
+    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+        Configuration = "Release",
+        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
     });
 });
 
@@ -121,13 +128,11 @@ Task("Package-Test-Report")
 
 Task("Send-To-Codecov")
     .IsDependentOn("Create-Open-Cover-Report")
+    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
     .Does(() =>
 {
     Codecov(new CodecovSettings {
-        Files = new string[] {
-            CoverageReportXmlFile
-        }
-    });
+        Files = new [] { CoverageReportXmlFile }    });
 });
 
 Task("Default")
@@ -145,6 +150,11 @@ Task("AppVeyor")
     .IsDependentOn("Package-Test-Report")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
+
+Task("Travis")
+    .IsDependentOn("Clean")
+    .IsDependentOn("Run-Tests")
+    .IsDependentOn("Create-Nuget-Package");
 
 var target = Argument("target", "Default");
 RunTarget(target);
