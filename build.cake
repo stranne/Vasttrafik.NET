@@ -127,10 +127,14 @@ Task("Send-To-Codecov")
     .IsDependentOn("Create-Open-Cover-Report")
     .Does(() =>
 {
+    var buildVersion = string.Format("{0}.build.{1}",
+        gitVersion.MajorMinorPatch + gitVersion.PreReleaseTagWithDash,
+        BuildSystem.AppVeyor.Environment.Build.Version
+    );
+
     Codecov(new CodecovSettings {
-        Files = new string[] {
-            CoverageReportXmlFile
-        }
+        Files = new [] { CoverageReportXmlFile },
+        EnvironmentVariables = new Dictionary<string,string> { { "APPVEYOR_BUILD_VERSION", buildVersion } }
     });
 });
 
