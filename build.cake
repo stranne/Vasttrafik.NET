@@ -15,8 +15,13 @@ const string CoverageReportZipFile = "./artifacts/test-report.zip";
 Task("Clean")
     .Does(() =>
 {
-    EnsureDirectoryExists(ArtifactsFolder);
-    CleanDirectories(ArtifactsFolder);
+    CleanDirectories(new [] {
+        ArtifactsFolder,
+        "./src/Stranne.VasttrafikNET/bin",
+        "./src/Stranne.VasttrafikNET.Tests/bin",
+        "./src/Examples/Stranne.VasttrafikNET.Examples.Api/bin",
+        "./src/Examples/Stranne.VasttrafikNET.Examples.DownloadParkingImage/bin"
+    });
 });
 
 Task("Version")
