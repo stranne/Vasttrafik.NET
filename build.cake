@@ -128,6 +128,7 @@ Task("Package-Test-Report")
 
 Task("Send-To-Codecov")
     .IsDependentOn("Create-Open-Cover-Report")
+    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
     .Does(() =>
 {
     var buildVersion = string.Format("{0}.build.{1}",
