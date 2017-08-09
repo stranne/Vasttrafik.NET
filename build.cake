@@ -48,10 +48,9 @@ Task("Build-Debug")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
-        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
-        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
-        Configuration = "Debug"
+    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+        Configuration = "Debug",
+        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
     });
 });
 
@@ -99,10 +98,9 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    MSBuild("./Stranne.VasttrafikNET.sln", new MSBuildSettings {
-        Verbosity = Cake.Core.Diagnostics.Verbosity.Minimal,
-        ToolVersion = Cake.Common.Tools.MSBuild.MSBuildToolVersion.VS2017,
-        Configuration = "Release"
+    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+        Configuration = "Release",
+        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
     });
 });
 
