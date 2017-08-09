@@ -21,9 +21,13 @@ namespace Stranne.VasttrafikNET.Extensions
             return TimeZoneInfo.ConvertTime(dateTimeOffset, TimeZoneInfo.FindSystemTimeZoneById(GetTimeZoneName()));
         }
 
-        private static string GetTimeZoneName() {
-            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-            return isWindows
+        internal static string GetTimeZoneName(bool? isWindows = null) {
+            if (isWindows == null)
+            {
+                isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            }
+            
+            return isWindows == true
                 ? "W. Europe Standard Time"
                 : "Europe/Stockholm";
         }
