@@ -5,8 +5,8 @@ matrix:
     - os: linux
       mono: latest
       dotnet: 1.0.4
-      script: ./build.sh -t "Travis-Linux"
+      script: ./build.sh -t "Travis"
     - os: osx
       mono: latest
       dotnet: 1.0.4
-      script: ./build.sh -t "Travis-OSX"
+      script: ./build.sh -t "Travis"
