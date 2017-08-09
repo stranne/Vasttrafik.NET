@@ -4,7 +4,7 @@
 #tool "nuget:?package=OpenCover"
 #tool "nuget:?package=ReportGenerator"
 #tool "nuget:?package=GitVersion.CommandLine"
-#tool "nuget:?package=Codecov"
+#tool "nuget:?package=Codecov&version=1.0.1"
 
 GitVersion gitVersion = new GitVersion();
 const string ArtifactsFolder = "./artifacts";
