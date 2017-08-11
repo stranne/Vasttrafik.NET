@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/stranne/Vasttrafik.NET.svg?branch=master)](https://travis-ci.org/stranne/Vasttrafik.NET)
 [![codecov](https://codecov.io/gh/stranne/Vasttrafik.NET/branch/master/graph/badge.svg)](https://codecov.io/gh/stranne/Vasttrafik.NET)
 [![CodeFactor](https://www.codefactor.io/repository/github/stranne/vasttrafik.net/badge/master)](https://www.codefactor.io/repository/github/stranne/vasttrafik.net/overview/master)
-[![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=2592000)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
+[![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=259200)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE)
 
 ![Vasttrafik.NET logo](resources/logo-small.png)
