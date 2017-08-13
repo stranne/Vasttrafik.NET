@@ -45,7 +45,6 @@ namespace Stranne.VasttrafikNET.Tests.Extensions
             Assert.Equal(expected, actual);
         }
 
-
         public static TheoryData GetTimeZoneNameTheoryData => new TheoryData<bool, string>
         {
             { true, "W. Europe Standard Time" },
