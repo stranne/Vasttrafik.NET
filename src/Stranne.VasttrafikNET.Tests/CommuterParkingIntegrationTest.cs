@@ -66,7 +66,7 @@ namespace Stranne.VasttrafikNET.Tests
         [Fact]
         public void GetAvailableCapacityNull()
         {
-            const string absoluteUrl = "https://api.vasttrafik.se/spp/v3/availableCapacity/203?format=json";
+            const string absoluteUrl = "https://api.vasttrafik.se/spp/v2/availableCapacity/203?format=json";
             SetUpNetworkServiceMock(absoluteUrl);
             var sut = GetCommuterParkingService();
 
