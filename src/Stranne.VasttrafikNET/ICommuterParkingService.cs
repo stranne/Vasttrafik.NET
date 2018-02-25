@@ -28,9 +28,9 @@ namespace Stranne.VasttrafikNET
         IEnumerable<HistoricalAvailability> GetHistoricalAvailability(int id, DateTimeOffset from, DateTimeOffset to);
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        Task<int> GetAvailableCapacityAsync(int id);
+        Task<int?> GetAvailableCapacityAsync(int id);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        int GetAvailableCapacity(int id);
+        int? GetAvailableCapacity(int id);
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkingImage"]'/>
         Task<Stream> GetParkingImageAsync(int id, int cameraId);
