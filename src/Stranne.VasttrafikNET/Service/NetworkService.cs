@@ -48,6 +48,10 @@ namespace Stranne.VasttrafikNET.Service
         public async Task<string> DownloadStringAsync(string absolutePath)
         {
             var response = await GetHttpResponseMessage(absolutePath);
+
+            if (response == null)
+                return null;
+
             var json = await response.Content.ReadAsStringAsync();
             ThrowIfServerErrors(json);
 
@@ -82,21 +86,24 @@ namespace Stranne.VasttrafikNET.Service
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    switch (response.StatusCode)
                     {
-                        Tokens[DeviceId] = null;
-                        connectionAttempts++;
-                        continue;
+                        case HttpStatusCode.Unauthorized:
+                            Tokens[DeviceId] = null;
+                            connectionAttempts++;
+                            continue;
+                        case HttpStatusCode.NotFound:
+                            return null;
+                        default:
+                            throw new NetworkException
+                            {
+                                StatusCode = response.StatusCode,
+                                Content = response.Content == null
+                                    ? null
+                                    : await response.Content.ReadAsStringAsync(),
+                                RequestUri = httpRequestMessage.RequestUri
+                            };
                     }
-
-                    throw new NetworkException
-                    {
-                        StatusCode = response.StatusCode,
-                        Content = response.Content == null
-                            ? null
-                            : await response.Content.ReadAsStringAsync(),
-                        RequestUri = httpRequestMessage.RequestUri
-                    };
                 }
 
                 return response;

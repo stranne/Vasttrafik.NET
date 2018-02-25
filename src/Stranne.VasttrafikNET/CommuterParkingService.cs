@@ -74,17 +74,17 @@ namespace Stranne.VasttrafikNET
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        public async Task<int> GetAvailableCapacityAsync(int id)
+        public async Task<int?> GetAvailableCapacityAsync(int id)
         {
             var options = new CommuterParkingOptions
             {
                 Id = id
             };
-            return await CommuterParkingHandlingService.GetAsync<int>("/availableCapacity", options);
+            return await CommuterParkingHandlingService.GetAsync<int?>("/availableCapacity", options);
         }
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        public int GetAvailableCapacity(int id)
+        public int? GetAvailableCapacity(int id)
         {
             return GetAvailableCapacityAsync(id).GetAwaiter().GetResult();
         }
