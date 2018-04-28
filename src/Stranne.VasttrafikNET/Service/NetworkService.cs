@@ -160,6 +160,9 @@ namespace Stranne.VasttrafikNET.Service
 
         private static void ThrowIfServerErrors(string json)
         {
+            if (string.IsNullOrWhiteSpace(json))
+                return;
+
             var token = JToken.Parse(json);
             if (token.Type != JTokenType.Object)
                 return;

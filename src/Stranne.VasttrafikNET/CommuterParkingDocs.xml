@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Docs>
+  <Member name="GetForecastFullTime" >
+    <summary>
+      Returns a forecast when a commuter parking area or one parking lot will be full. The forecast is delivered as the next even quarter (15 mins). The forecast is based on the previous day and can be given a maximum of one week into the future.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="date">Day for forecast</param>
+  </Member>
   <Member name="GetParkings" >
     <summary>
       Returns all commuter parking areas with parking lots and stop areas.
@@ -11,6 +18,13 @@
       Returns all commuter parking areas with parking lots and stop areas.
     </summary>
     <param name="id">Id of parking area or a parking lot</param>
+  </Member>
+  <Member name="GetForecastAvailabilityAsync" >
+    <summary>
+      Returns a forecast for the number of free spaces for one commuter parking area or one parking lot. The forecast is based on free spaces the previous day and can be given a maximum of one week into the future.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="timestamp">Time of forecast</param>
   </Member>
   <Member name="GetHistoricalAvailability" >
     <summary>

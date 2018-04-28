@@ -1,4 +1,4 @@
-﻿namespace Stranne.VasttrafikNET.Tests.Json
+﻿namespace Stranne.VasttrafikNET.Tests.Jsons
 {
     public enum JsonFile
     {
@@ -6,6 +6,8 @@
         AvailableCapacity,
         DefaultToken,
         DepartureBoard,
+        ForecastAvailability,
+        ForecastFullTime,
         Geometry,
         HistoricalAvailability,
         JourneyDetailError,

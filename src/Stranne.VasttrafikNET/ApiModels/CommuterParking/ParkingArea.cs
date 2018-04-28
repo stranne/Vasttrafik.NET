@@ -13,6 +13,11 @@ namespace Stranne.VasttrafikNET.ApiModels.CommuterParking
         public string Name { get; set; }
 
         /// <summary>
+        /// Departures from the parking area, sorted by minutes until departure.
+        /// </summary>
+        public IEnumerable<DestinationDeparture> Departures { get; set; }
+
+        /// <summary>
         /// Related stop areas
         /// </summary>
         public IEnumerable<StopArea> StopAreas { get; set; }

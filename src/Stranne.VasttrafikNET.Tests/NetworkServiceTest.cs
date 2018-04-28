@@ -6,7 +6,7 @@ using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
 using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Helpers;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests
@@ -282,7 +282,7 @@ namespace Stranne.VasttrafikNET.Tests
                         else
                             responseMessage = new HttpResponseMessage
                             {
-                                Content = new StringContent(JsonHelper.GetJson(_jsonFile))
+                                Content = new StringContent(FileHelper.GetJson(_jsonFile))
                             };
 
                         firstTry = false;
@@ -298,7 +298,43 @@ namespace Stranne.VasttrafikNET.Tests
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
-            Assert.Equal(actual, JsonHelper.GetJson(_jsonFile));
+            Assert.Equal(actual, FileHelper.GetJson(_jsonFile));
+        }
+
+        [Fact]
+        public async Task EmptyResponse()
+        {
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
+                {
+                    var responseMessage = new HttpResponseMessage
+                    {
+                        Content = new StringContent(GetDefaultToken())
+                    };
+
+                    var uri = httpRequestMessage.RequestUri;
+                    if (!CompareUri(uri, TokenAbsoluteUrl))
+                    {
+                        responseMessage = new HttpResponseMessage
+                        {
+                            Content = new StringContent("")
+                        };
+                    }
+
+                    return responseMessage;
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var actual = await sut.DownloadStringAsync(AbsoluteUrl);
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 1);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
+            Assert.Equal(actual, "");
         }
 
         [Fact]
@@ -351,6 +387,6 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.False(actual);
         }
 
-        private string GetDefaultToken() => JsonHelper.GetJson(JsonFile.DefaultToken);
+        private string GetDefaultToken() => FileHelper.GetJson(JsonFile.DefaultToken);
     }
 }

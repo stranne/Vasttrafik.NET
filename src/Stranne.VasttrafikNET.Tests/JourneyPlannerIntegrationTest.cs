@@ -2,9 +2,9 @@
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
-using Stranne.VasttrafikNET.Tests.Json;
 using Xunit;
 using System.Linq;
+using Stranne.VasttrafikNET.Tests.Jsons;
 
 namespace Stranne.VasttrafikNET.Tests
 {

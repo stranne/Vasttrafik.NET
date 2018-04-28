@@ -1,13 +1,15 @@
 ﻿using System;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class LocationAllStopsJsonTest : BaseJsonTest
     {
-        protected override JsonFile JsonFile => JsonFile.LocationAllStops;
+        public LocationAllStopsJsonTest()
+            : base(JsonFile.LocationAllStops)
+        { }
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

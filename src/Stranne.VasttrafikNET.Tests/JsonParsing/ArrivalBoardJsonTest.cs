@@ -2,14 +2,16 @@
 using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class ArrivalBoardJsonTest : BaseJsonTest
     {
-        protected override JsonFile JsonFile => JsonFile.ArrivalBoard;
+        public ArrivalBoardJsonTest()
+            : base(JsonFile.ArrivalBoard)
+        { }
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
