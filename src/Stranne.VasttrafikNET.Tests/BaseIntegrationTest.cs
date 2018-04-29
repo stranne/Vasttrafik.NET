@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using Moq;
 using Stranne.VasttrafikNET.Service;
@@ -47,6 +48,14 @@ namespace Stranne.VasttrafikNET.Tests
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
         }
 
+        internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl)
+        {
+            return SetUpNetworkServiceMock(absoluteUrl, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.NotFound
+            });
+        }
+        
         internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, JsonFile jsonFile, string deviceId = DeviceId)
         {
             var json = FileHelper.GetJson(jsonFile);

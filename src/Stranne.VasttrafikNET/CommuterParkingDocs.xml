@@ -40,6 +40,7 @@
       Returns availible capacity for one commuter parking area or one parking lot.
     </summary>
     <param name="id">Id of parking area or a parking lot</param>
+    <returns>Number of available capacity, null if parking area or lot doesn't support this feature</returns>
   </Member>
   <Member name="GetParkingImage" >
     <summary>
