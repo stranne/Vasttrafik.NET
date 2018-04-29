@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/stranne/Vasttrafik.NET</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <Copyright>2017</Copyright>
+    <Copyright>2018</Copyright>
     <RepositoryUrl>git://github.com/stranne/Vasttrafik.NET</RepositoryUrl>
     <Product>Download Parking Image</Product>
     <Company>Olof Stranne</Company>
