@@ -1,18 +1,18 @@
 ﻿namespace Stranne.VasttrafikNET.ApiModels.CommuterParking
 {
     /// <summary>
-    /// Parking type
+    /// Departure destination
     /// </summary>
-    public class ParkingType
+    public class Destination
     {
         /// <summary>
-        /// Name, e.g. CARPARK or SMARTCARPARK.
+        /// Destination name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Number
+        /// Destination id
         /// </summary>
-        public int Number { get; set; }
+        public string Id { get; set; }
     }
 }

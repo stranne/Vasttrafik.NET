@@ -12,6 +12,11 @@ namespace Stranne.VasttrafikNET
     /// </summary>
     public interface ICommuterParkingService
     {
+        /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetForecastFullTime"]'/>
+        Task<DateTimeOffset?> GetForecastFullTimeAsync(int id, DateTimeOffset date);
+        /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetForecastFullTime"]'/>
+        DateTimeOffset? GetForecastFullTime(int id, DateTimeOffset date);
+
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
         Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions options);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
@@ -21,16 +26,21 @@ namespace Stranne.VasttrafikNET
         Task<ParkingArea> GetParkingsAsync(int id);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParking"]'/>
         ParkingArea GetParkings(int id);
-        
+
+        /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetForecastAvailabilityAsync"]'/>
+        Task<int?> GetForecastAvailabilityAsync(int id, DateTimeOffset timestamp);
+        /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetForecastAvailabilityAsync"]'/>
+        int? GetForecastAvailability(int id, DateTimeOffset timestamp);
+
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
         Task<IEnumerable<HistoricalAvailability>> GetHistoricalAvailabilityAsync(int id, DateTimeOffset from, DateTimeOffset to);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>
         IEnumerable<HistoricalAvailability> GetHistoricalAvailability(int id, DateTimeOffset from, DateTimeOffset to);
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        Task<int> GetAvailableCapacityAsync(int id);
+        Task<int?> GetAvailableCapacityAsync(int id);
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetAvailableCapacity"]'/>
-        int GetAvailableCapacity(int id);
+        int? GetAvailableCapacity(int id);
         
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkingImage"]'/>
         Task<Stream> GetParkingImageAsync(int id, int cameraId);

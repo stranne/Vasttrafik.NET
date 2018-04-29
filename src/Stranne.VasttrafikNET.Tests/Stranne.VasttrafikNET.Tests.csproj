@@ -52,55 +52,61 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Json\ArrivalBoard.json">
+    <None Update="Jsons\ArrivalBoard.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\AvailableCapacity.json">
+    <None Update="Jsons\AvailableCapacity.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\DefaultToken.json">
+    <None Update="Jsons\DefaultToken.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\DepartureBoard.json">
+    <None Update="Jsons\DepartureBoard.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\Geometry.json">
+    <None Update="Jsons\ForecastAvailability.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\HistoricalAvailability.json">
+    <None Update="Jsons\ForecastFullTime.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\JourneyDetail.json">
+    <None Update="Jsons\Geometry.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\JourneyDetailError.json">
+    <None Update="Jsons\HistoricalAvailability.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\LiveMap.json">
+    <None Update="Jsons\JourneyDetail.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\LocationAllStops.json">
+    <None Update="Jsons\JourneyDetailError.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\LocationName.json">
+    <None Update="Jsons\LiveMap.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\LocationNearbyAddress.json">
+    <None Update="Jsons\LocationAllStops.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\LocationNearbyStops.json">
+    <None Update="Jsons\LocationName.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\Parking.json">
+    <None Update="Jsons\LocationNearbyAddress.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\Parkings.json">
+    <None Update="Jsons\LocationNearbyStops.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\SystemInfo.json">
+    <None Update="Jsons\Parking.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Json\Trip.json">
+    <None Update="Jsons\Parkings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Jsons\SystemInfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Jsons\Trip.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

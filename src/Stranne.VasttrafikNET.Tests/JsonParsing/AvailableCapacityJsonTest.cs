@@ -1,11 +1,13 @@
-﻿using Stranne.VasttrafikNET.Tests.Json;
+﻿using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class AvailableCapacityJsonTest : BaseJsonTest
     {
-        protected override JsonFile JsonFile => JsonFile.AvailableCapacity;
+        public AvailableCapacityJsonTest()
+            : base(JsonFile.AvailableCapacity)
+        { }
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
