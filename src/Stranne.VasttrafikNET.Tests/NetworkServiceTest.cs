@@ -336,42 +336,6 @@ namespace Stranne.VasttrafikNET.Tests
         }
 
         [Fact]
-        public async Task EmptyResponse()
-        {
-            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
-            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
-            HttpMessageHandler = new MockHttpMessageHandler
-            {
-                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
-                {
-                    var responseMessage = new HttpResponseMessage
-                    {
-                        Content = new StringContent(GetDefaultToken())
-                    };
-
-                    var uri = httpRequestMessage.RequestUri;
-                    if (!CompareUri(uri, TokenAbsoluteUrl))
-                    {
-                        responseMessage = new HttpResponseMessage
-                        {
-                            Content = new StringContent("")
-                        };
-                    }
-
-                    return responseMessage;
-                }
-            };
-            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
-            var sut = mock.Object;
-
-            var actual = await sut.DownloadStringAsync(AbsoluteUrl);
-
-            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 1);
-            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
-            Assert.Equal(actual, "");
-        }
-
-        [Fact]
         public async Task RootObjectListResponse()
         {
             const string json = "{ List: [] }";
