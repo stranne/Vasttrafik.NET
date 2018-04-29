@@ -132,8 +132,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
             { "Departures[5].StopArea.Name", "Radiomotet" },
             { "Departures[5].StopArea.Municipality", "Göteborg" },
             { "Departures[5].Destination.Id", "9022014001950010" },
-            { "Departures[5].Destination.Name", "Centralstationen, Göteborg" },
-
+            { "Departures[5].Destination.Name", "Centralstationen, Göteborg" }
         };
 
         [Theory, MemberData(nameof(TestParameters))]
