@@ -52,6 +52,9 @@ namespace Stranne.VasttrafikNET.Service
                 return (dynamic)await NetworkService.DownloadStreamAsync(absolutePathUrl);
 
             var json = await NetworkService.DownloadStringAsync(absolutePathUrl);
+            if (json == null)
+                return default(T);
+
             var data = JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
             return data;
         }

@@ -88,6 +88,40 @@ namespace Stranne.VasttrafikNET.Tests
         }
 
         [Fact]
+        public async Task MainRequestNotFoundResponse()
+        {
+            var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
+            mock.Setup(x => x.IsTokenValid(It.IsAny<Token>())).Returns<Token>(token => token != null);
+            HttpMessageHandler = new MockHttpMessageHandler
+            {
+                SendAsyncAction = (httpRequestMessage, cancellationToken) =>
+                {
+                    var uri = httpRequestMessage.RequestUri;
+                    if (!CompareUri(uri, TokenAbsoluteUrl))
+                    {
+                        return new HttpResponseMessage
+                        {
+                            StatusCode = HttpStatusCode.NotFound
+                        };
+                    }
+
+                    return new HttpResponseMessage
+                    {
+                        Content = new StringContent(GetDefaultToken())
+                    };
+                }
+            };
+            mock.SetupProperty(x => x.HttpClient, new HttpClient(HttpMessageHandler));
+            var sut = mock.Object;
+
+            var actual = await sut.DownloadStringAsync(AbsoluteUrl);
+
+            HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get);
+            HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 0, 1);
+            Assert.Null(actual);
+        }
+
+        [Fact]
         public async Task TokenNotFound()
         {
             var mock = SetUpNetworkServiceMock(AbsoluteUrl, _jsonFile);
