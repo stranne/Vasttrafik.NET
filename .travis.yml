@@ -4,12 +4,13 @@ matrix:
   include:
     - os: linux
       mono: latest
-      dotnet: 2.1.0
+      dotnet: latest
       script: ./build.sh -t "Travis"
     - os: osx
       mono: latest
-      dotnet: 2.1.0
+      dotnet: latest
       script: ./build.sh -t "Travis"
     - os: windows
-      dotnet: 2.1.0
+      mono: latest
+      dotnet: latest
       script: ./build.sh -t "Travis"
