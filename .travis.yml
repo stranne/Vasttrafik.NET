@@ -10,3 +10,6 @@ matrix:
       mono: latest
       dotnet: 2.1.0
       script: ./build.sh -t "Travis"
+    - os: windows
+      dotnet: 2.1.0
+      script: ./build.sh -t "Travis"
