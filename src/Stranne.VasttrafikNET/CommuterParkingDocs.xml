@@ -1,16 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Docs>
+  <Member name="GetForecastFullTime" >
+    <summary>
+      Returns a forecast when a commuter parking area or one parking lot will be full. The forecast is delivered as the next even quarter (15 mins). The forecast is based on the previous day and can be given a maximum of one week into the future.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="date">Day for forecast</param>
+    <returns>Date and time when it's forecastedto be full, or null if not filled or no forecast is available.</returns>
+  </Member>
   <Member name="GetParkings" >
     <summary>
       Returns all commuter parking areas with parking lots and stop areas.
     </summary>
     <param name="options">Search parameters</param>
+    <returns>Found parking areas.</returns>
   </Member>
   <Member name="GetParking" >
     <summary>
-      Returns all commuter parking areas with parking lots and stop areas.
+      Returns a single commuter parking areas with parking lots and stop areas.
     </summary>
     <param name="id">Id of parking area or a parking lot</param>
+    <returns>Found parking area.</returns>
+  </Member>
+  <Member name="GetForecastAvailabilityAsync" >
+    <summary>
+      Returns a forecast for the number of free spaces for one commuter parking area or one parking lot. The forecast is based on free spaces the previous day and can be given a maximum of one week into the future.
+    </summary>
+    <param name="id">Id of parking area or a parking lot</param>
+    <param name="timestamp">Time of forecast</param>
+    <returns>Number of forecasted free spaces, or null if no forecast is available.</returns>
   </Member>
   <Member name="GetHistoricalAvailability" >
     <summary>
@@ -27,6 +45,7 @@
     </summary>
     <param name="id">Id of parking area or a parking lot</param>
     <returns>Number of available capacity, null if parking area or lot doesn't support this feature</returns>
+    <returns>Number of currently free spaces, or null if feature isn't available.</returns>
   </Member>
   <Member name="GetParkingImage" >
     <summary>
@@ -34,5 +53,6 @@
     </summary>
     <param name="id">Id of parking area or a parking lot</param>
     <param name="cameraId">Cameras are numbered from 1 and up within each parking lot</param>
+    <returns>Image stream for latest image.</returns>
   </Member>
 </Docs>

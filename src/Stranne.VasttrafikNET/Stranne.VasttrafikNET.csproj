@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://github.com/stranne/Vasttrafik.NET</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <Copyright>2017</Copyright>
+    <Copyright>2018</Copyright>
     <RepositoryUrl>git://github.com/stranne/Vasttrafik.NET</RepositoryUrl>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

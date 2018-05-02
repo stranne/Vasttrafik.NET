@@ -6,18 +6,23 @@ using Xunit;
 using System.Reflection;
 using System.Linq;
 using Stranne.VasttrafikNET.Tests.Helpers;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public abstract class BaseJsonTest
     {
-        protected abstract JsonFile JsonFile { get; }
+        protected BaseJsonTest(JsonFile jsonFile)
+        {
+            JsonFile = jsonFile;
+        }
+
+        private JsonFile JsonFile { get; }
         private static JsonSerializerSettings JsonSerializerSettings => new JourneyPlannerHandlingService("Key", "Secret", "DeviceId").JsonSerializerSettings;
 
         protected void TestValue<T>(string property, object expected)
         {
-            var json = JsonHelper.GetJson(JsonFile);
+            var json = FileHelper.GetJson(JsonFile);
             var sut = JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
 
             var actual = GetValue(sut, property);

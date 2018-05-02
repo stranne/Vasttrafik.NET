@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using Stranne.VasttrafikNET.ApiModels.CommuterParking;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class ParkingsJsonTest : BaseJsonTest
     {
-        protected override JsonFile JsonFile => JsonFile.Parkings;
+        public ParkingsJsonTest()
+            : base(JsonFile.Parkings)
+        { }
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

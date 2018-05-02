@@ -35,6 +35,8 @@ namespace Stranne.VasttrafikNET.Tests
             typeof(ParkingLot),
             typeof(ParkingType),
             typeof(StopArea),
+            typeof(Destination),
+            typeof(DestinationDeparture),
 
             typeof(AbstractLocation),
             typeof(Arrival),

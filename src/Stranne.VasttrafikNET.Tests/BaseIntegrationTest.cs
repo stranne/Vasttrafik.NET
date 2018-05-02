@@ -4,7 +4,7 @@ using System.Net.Http;
 using Moq;
 using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Helpers;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 
 namespace Stranne.VasttrafikNET.Tests
 {
@@ -58,7 +58,7 @@ namespace Stranne.VasttrafikNET.Tests
         
         internal Mock<NetworkService> SetUpNetworkServiceMock(string absoluteUrl, JsonFile jsonFile, string deviceId = DeviceId)
         {
-            var json = JsonHelper.GetJson(jsonFile);
+            var json = FileHelper.GetJson(jsonFile);
             return SetUpNetworkServiceMock(absoluteUrl, json, deviceId);
         }
 
@@ -88,7 +88,7 @@ namespace Stranne.VasttrafikNET.Tests
                     if (CompareUri(uri, TokenAbsoluteUrl) && httpRequestMessage.Method == HttpMethod.Post)
                         responseMessage = new HttpResponseMessage
                         {
-                            Content = new StringContent(JsonHelper.GetJson(JsonFile.DefaultToken))
+                            Content = new StringContent(FileHelper.GetJson(JsonFile.DefaultToken))
                         };
                     else if (CompareUri(uri, absoluteUrl) && httpRequestMessage.Method == HttpMethod.Get)
                         responseMessage = mainResponseMessage;

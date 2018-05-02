@@ -27,6 +27,23 @@ namespace Stranne.VasttrafikNET
             CommuterParkingHandlingService = new CommuterParkingHandlingService(key, secret, deviceId);
         }
 
+        /// <inheritdoc />
+        public async Task<DateTimeOffset?> GetForecastFullTimeAsync(int id, DateTimeOffset date)
+        {
+            var options = new CommuterParkingOptions
+            {
+                Id = id,
+                Date = date
+            };
+            return await CommuterParkingHandlingService.GetAsync<DateTimeOffset?>("/forecastFullTime", options);
+        }
+
+        /// <inheritdoc />
+        public DateTimeOffset? GetForecastFullTime(int id, DateTimeOffset date)
+        {
+            return GetForecastFullTimeAsync(id, date).GetAwaiter().GetResult();
+        }
+
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetParkings"]'/>
         public async Task<IEnumerable<ParkingArea>> GetParkingsAsync(ParkingOptions options)
         {
@@ -53,6 +70,23 @@ namespace Stranne.VasttrafikNET
         public ParkingArea GetParkings(int id)
         {
             return GetParkingsAsync(id).GetAwaiter().GetResult();
+        }
+
+        /// <inheritdoc />
+        public async Task<int?> GetForecastAvailabilityAsync(int id, DateTimeOffset timestamp)
+        {
+            var options = new CommuterParkingOptions
+            {
+                Id = id,
+                Timestamp = timestamp
+            };
+            return await CommuterParkingHandlingService.GetAsync<int>("/forecastAvailability", options);
+        }
+        
+        /// <inheritdoc />
+        public int? GetForecastAvailability(int id, DateTimeOffset timestamp)
+        {
+            return GetForecastAvailabilityAsync(id, timestamp).GetAwaiter().GetResult();
         }
 
         /// <include file='CommuterParkingDocs.xml' path='/Docs/Member[@name="GetHistoricalAvailability"]'/>

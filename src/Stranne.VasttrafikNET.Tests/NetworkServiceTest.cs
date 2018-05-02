@@ -6,7 +6,7 @@ using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
 using Stranne.VasttrafikNET.Service;
 using Stranne.VasttrafikNET.Tests.Helpers;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests
@@ -316,7 +316,7 @@ namespace Stranne.VasttrafikNET.Tests
                         else
                             responseMessage = new HttpResponseMessage
                             {
-                                Content = new StringContent(JsonHelper.GetJson(_jsonFile))
+                                Content = new StringContent(FileHelper.GetJson(_jsonFile))
                             };
 
                         firstTry = false;
@@ -332,7 +332,7 @@ namespace Stranne.VasttrafikNET.Tests
 
             HttpMessageHandler.VerifyRequest(AbsoluteUrl, HttpMethod.Get, 2);
             HttpMessageHandler.VerifyRequest(TokenAbsoluteUrl, HttpMethod.Post, 1, 2);
-            Assert.Equal(actual, JsonHelper.GetJson(_jsonFile));
+            Assert.Equal(actual, FileHelper.GetJson(_jsonFile));
         }
 
         [Fact]
@@ -385,6 +385,6 @@ namespace Stranne.VasttrafikNET.Tests
             Assert.False(actual);
         }
 
-        private string GetDefaultToken() => JsonHelper.GetJson(JsonFile.DefaultToken);
+        private string GetDefaultToken() => FileHelper.GetJson(JsonFile.DefaultToken);
     }
 }

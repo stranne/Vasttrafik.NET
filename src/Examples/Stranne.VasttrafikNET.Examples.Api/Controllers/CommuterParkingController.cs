@@ -20,6 +20,15 @@ namespace Stranne.VasttrafikNET.Examples.Api.Controllers
         }
 
         [HttpGet]
+        [Produces(typeof(DateTimeOffset?))]
+        [Route("ForecastFullTime/{id}/{dateString}")]
+        public async Task<IActionResult> GetForecastFullTime(int id, string dateString)
+        {
+            var date = DateTimeOffset.Parse(dateString);
+            return Ok(await _commuterParkingService.GetForecastFullTimeAsync(id, date));
+        }
+
+        [HttpGet]
         [Produces(typeof(IEnumerable<ParkingArea>))]
         [Route("")]
         public async Task<IActionResult> GetParkings(ParkingOptions options)
@@ -33,6 +42,15 @@ namespace Stranne.VasttrafikNET.Examples.Api.Controllers
         public async Task<IActionResult> GetParking(int id)
         {
             return Ok(await _commuterParkingService.GetParkingsAsync(id));
+        }
+
+        [HttpGet]
+        [Produces(typeof(int?))]
+        [Route("ForecastAvailability/{id}/{dateString}")]
+        public async Task<IActionResult> GetForecastAvailability(int id, string dateString)
+        {
+            var timestamp = DateTimeOffset.Parse(dateString);
+            return Ok(await _commuterParkingService.GetForecastAvailabilityAsync(id, timestamp));
         }
 
         [HttpGet]

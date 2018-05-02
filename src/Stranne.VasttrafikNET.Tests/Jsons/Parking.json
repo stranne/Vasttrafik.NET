@@ -1,0 +1,170 @@
+﻿{
+  "Id": 209,
+  "Name": "Radiomotet",
+  "StopAreas": [
+    {
+      "Gid": 9021014002525000,
+      "Name": "Frölunda Smedja",
+      "Municipality": "Göteborg"
+    },
+    {
+      "Gid": 9021014005421000,
+      "Name": "Radiomotet",
+      "Municipality": "Göteborg"
+    }
+  ],
+  "ParkingLots": [
+    {
+      "Id": 6090,
+      "Name": "Radiomotet-P1",
+      "Lat": 57.6485713,
+      "Lon": 11.933876099999999,
+      "TotalCapacity": 134,
+      "FreeSpaces": 131,
+      "IsRestrictedByBarrier": false,
+      "ParkingType": {
+        "Name": "SMARTCARPARK",
+        "Number": 2
+      },
+      "ParkingCameras":
+      [
+        {
+          "Id": 1
+        },
+        {
+          "Id": 2
+        }
+      ]
+    },
+    {
+      "Id": 10120,
+      "Name": "Radiomotet-P2",
+      "Lat": 57.6475794,
+      "Lon": 11.9330043,
+      "TotalCapacity": 12,
+      "IsRestrictedByBarrier": false,
+      "ParkingType": {
+        "Name": "CARPARK",
+        "Number": 1
+      },
+      "ParkingCameras": []
+    },
+    {
+      "Id": 10130,
+      "Name": "Radiomotet-P3",
+      "Lat": 57.6465677,
+      "Lon": 11.9353863,
+      "TotalCapacity": 40,
+      "IsRestrictedByBarrier": false,
+      "ParkingType": {
+        "Name": "CARPARK",
+        "Number": 1
+      },
+      "ParkingCameras": []
+    }
+  ],
+  "Departures": [
+    {
+      "Name": "Blå express",
+      "ShortName": "BLÅ",
+      "Type": "BUS",
+      "DepartureTime": "22:10",
+      "DepartsInMinutes": 5,
+      "ArrivalTime": "22:29",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014001950010",
+        "Name": "Centralstationen, Göteborg"
+      }
+    },
+    {
+      "Name": "Rosa express",
+      "ShortName": "ROSA",
+      "Type": "BUS",
+      "DepartureTime": "22:26",
+      "DepartsInMinutes": 21,
+      "ArrivalTime": "22:40",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014004945004",
+        "Name": "Nordstan, Göteborg"
+      }
+    },
+    {
+      "Name": "Blå express",
+      "ShortName": "BLÅ",
+      "Type": "BUS",
+      "DepartureTime": "22:39",
+      "DepartsInMinutes": 34,
+      "ArrivalTime": "22:58",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014001950010",
+        "Name": "Centralstationen, Göteborg"
+      }
+    },
+    {
+      "Name": "Rosa express",
+      "ShortName": "ROSA",
+      "Type": "BUS",
+      "DepartureTime": "22:41",
+      "DepartsInMinutes": 36,
+      "ArrivalTime": "23:00",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014004945004",
+        "Name": "Nordstan, Göteborg"
+      }
+    },
+    {
+      "Name": "Rosa express",
+      "ShortName": "ROSA",
+      "Type": "BUS",
+      "DepartureTime": "23:01",
+      "DepartsInMinutes": 56,
+      "ArrivalTime": "23:20",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014004945004",
+        "Name": "Nordstan, Göteborg"
+      }
+    },
+    {
+      "Name": "Blå express",
+      "ShortName": "BLÅ",
+      "Type": "BUS",
+      "DepartureTime": "23:08",
+      "DepartsInMinutes": 63,
+      "ArrivalTime": "23:28",
+      "StopArea": {
+        "Gid": 9022014005421000,
+        "Name": "Radiomotet",
+        "Municipality": "Göteborg"
+      },
+      "Destination": {
+        "Id": "9022014001950010",
+        "Name": "Centralstationen, Göteborg"
+      }
+    }
+  ]
+}

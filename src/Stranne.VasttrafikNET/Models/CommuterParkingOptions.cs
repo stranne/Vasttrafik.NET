@@ -13,6 +13,14 @@ namespace Stranne.VasttrafikNET.Models
         [Parameter(queryString: false, order: 2)]
         public int? CameraId { get; set; }
 
+        [JsonConverter(typeof(VtDateTimeShortJsonConverter))]
+        [Parameter(queryString: false, order: 2)]
+        public DateTimeOffset? Date { get; set; }
+
+        [JsonConverter(typeof(VtDateTimeMediumJsonConverter))]
+        [Parameter(queryString: false, order: 2)]
+        public DateTimeOffset? Timestamp { get; set; }
+
         [JsonConverter(typeof(VtDateTimeLongJsonConverter))]
         [Parameter(queryString: false, order: 2)]
         public DateTimeOffset? From { get; set; }

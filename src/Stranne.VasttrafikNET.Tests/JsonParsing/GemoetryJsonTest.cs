@@ -1,14 +1,16 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 
 namespace Stranne.VasttrafikNET.Tests.JsonParsing
 {
     public class GemoetryJsonTest : BaseJsonTest
     {
-        protected override JsonFile JsonFile => JsonFile.Geometry;
+        public GemoetryJsonTest()
+            : base(JsonFile.Geometry)
+        { }
 
         public static TheoryData TestParameters => new TheoryData<string, object>
         {

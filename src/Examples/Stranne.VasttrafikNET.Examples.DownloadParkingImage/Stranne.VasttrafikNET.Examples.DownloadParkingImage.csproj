@@ -2,17 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Authors>Olof Stranne</Authors>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <Description>Example project to illustrate how to download camera images with VästtrafikNET</Description>
-    <PackageIconUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/resources/logo.png</PackageIconUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/stranne/Vasttrafik.NET/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/stranne/Vasttrafik.NET</PackageProjectUrl>
-    <RepositoryType>git</RepositoryType>
-    <Copyright>2017</Copyright>
-    <RepositoryUrl>git://github.com/stranne/Vasttrafik.NET</RepositoryUrl>
-    <Product>Download Parking Image</Product>
-    <Company>Olof Stranne</Company>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

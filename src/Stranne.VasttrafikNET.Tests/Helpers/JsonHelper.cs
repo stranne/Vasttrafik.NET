@@ -1,14 +1,14 @@
 ﻿using System.IO;
-using Stranne.VasttrafikNET.Tests.Json;
+using Stranne.VasttrafikNET.Tests.Jsons;
 
 namespace Stranne.VasttrafikNET.Tests.Helpers
 {
-    public static class JsonHelper
+    public static class FileHelper
     {
         public static string GetJson(JsonFile jsonFile)
         {
             var fileName = $"{jsonFile}.json";
-            var json = File.ReadAllText($@"Json/{fileName}");
+            var json = File.ReadAllText($@"Jsons/{fileName}");
             return json;
         }
     }
