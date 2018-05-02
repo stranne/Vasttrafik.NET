@@ -3,14 +3,14 @@ language: csharp
 matrix:
   include:
     - os: linux
-      mono: latest
-      dotnet: latest
+      mono: none
+      dotnet: 2.0.7
       script: ./build.sh -t "Travis"
     - os: osx
-      mono: latest
-      dotnet: latest
+      mono: none
+      dotnet: 2.0.7
       script: ./build.sh -t "Travis"
     - os: windows
-      mono: latest
-      dotnet: latest
+      mono: none
+      dotnet: 2.0.7
       script: ./build.sh -t "Travis"
