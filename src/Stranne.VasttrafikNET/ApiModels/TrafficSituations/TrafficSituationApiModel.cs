@@ -59,13 +59,5 @@ namespace Stranne.VasttrafikNET.ApiModels.TrafficSituations
         /// Traffic situation number. Example data: "2001186014".
         /// </summary>
         public string SituationNumber { get; set; }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            if (AffectedLines == null) AffectedLines = new List<LineApiModel>();
-            if (AffectedStopPoints == null) AffectedStopPoints = new List<StopPointApiModel>();
-            if (AffectedJourneys == null) AffectedJourneys = new List<JourneyApiModel>();
-        }
     }
 }

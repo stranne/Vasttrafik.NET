@@ -68,13 +68,5 @@ namespace Stranne.VasttrafikNET.ApiModels.TrafficSituations
         /// List of affected stop points global identifiers.
         /// </summary>
         public IEnumerable<string> AffectedStopPointGids { get; set; }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            if (Directions == null) Directions = new List<DirectionApiModel>();
-            if (Directions == null) Municipalities = new List<MunicipalityApiModel>();
-            if (AffectedStopPointGids == null) AffectedStopPointGids = new List<string>();
-        }
     }
 }

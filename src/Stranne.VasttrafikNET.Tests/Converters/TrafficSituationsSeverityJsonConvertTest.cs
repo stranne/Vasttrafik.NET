@@ -12,7 +12,7 @@ namespace Stranne.VasttrafikNET.Tests.Converters
         [Fact]
         public void CanWriteJson()
         {
-            Assert.False(new BoolInvertJsonConverter().CanWrite);
+            Assert.False(new TrafficSituationsSeverityJsonConverter().CanWrite);
         }
 
         [Fact]
