@@ -16,11 +16,11 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
         public static TheoryData TestParameters => new TheoryData<string, object>
         {
             { "", 1 },
-            { "[0].SituationNumber", "RT1193380" },
-            { "[0].CreationTime", new DateTimeOffset(2018, 5, 16, 6, 10, 39, 282, new TimeSpan(2, 0, 0)) },
-            { "[0].StartTime", new DateTimeOffset(2018, 4, 30, 16, 6, 0, new TimeSpan(2, 0, 0)) },
-            { "[0].EndTime", new DateTimeOffset(2018, 5, 30, 23, 59, 0, new TimeSpan(2, 0, 0)) },
-            { "[0].Severity", TrafficSituationSeverity.Severe },
+            { "[0].SituationNumber", "RT1193381" },
+            { "[0].CreationTime", new DateTimeOffset(2018, 5, 16, 6, 10, 39, 283, new TimeSpan(2, 0, 0)) },
+            { "[0].StartTime", new DateTimeOffset(2018, 3, 30, 16, 6, 0, new TimeSpan(2, 0, 0)) },
+            { "[0].EndTime", new DateTimeOffset(2018, 6, 30, 23, 59, 0, new TimeSpan(2, 0, 0)) },
+            { "[0].Severity", TrafficSituationSeverity.Normal },
             { "[0].Title", "Linje 82 och 758 stannar inte vid Fältspatsgatan i båda riktningar." },
             { "[0].Description", "Närmaste hållplats är Olof Asklunds gata. Detta gäller från 20 november klockan 09:00 och tillsvidare." },
             { "[0].AffectedStopPoints", 0 },

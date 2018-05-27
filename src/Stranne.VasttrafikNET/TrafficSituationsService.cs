@@ -13,7 +13,6 @@ namespace Stranne.VasttrafikNET
     {
         internal TrafficSituationsHandlingService TrafficSituationsHandlingService { get; }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TrafficSituationsService"/>.
         /// </summary>

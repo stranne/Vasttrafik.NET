@@ -20,7 +20,7 @@ namespace Stranne.VasttrafikNET.Service
         protected abstract string ApiPathUrl { get; }
 
         public NetworkService NetworkService { get; set; }
-        
+
         internal readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {
             Converters = new JsonConverter[]
@@ -83,8 +83,11 @@ namespace Stranne.VasttrafikNET.Service
                 var parameterName = parameterAttribute.ParameterName ?? property.Name.ToCamelCase();
 
                 if (parameterAttribute.Required && (
-                    actualValue == null ||
-                    property.PropertyType == typeof(DateTimeOffset) && Equals(actualValue, new DateTimeOffset())
+                        actualValue == null ||
+                        (
+                            property.PropertyType == typeof(DateTimeOffset) &&
+                            Equals(actualValue, new DateTimeOffset())
+                        )
                     ))
                 {
                     missingParameters.Add(property.Name);
@@ -110,7 +113,7 @@ namespace Stranne.VasttrafikNET.Service
                     actualValue = ((double?)actualValue).Value.ToString(new CultureInfo("en-US"));
                 else if (property.PropertyType == typeof(DateTimeOffset) || property.PropertyType == typeof(DateTimeOffset?))
                 {
-                    var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();                    
+                    var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();
                     queryParameters.Add("date", dateTimeOffset.ToString("yyyy-MM-dd"));
                     queryParameters.Add("time", dateTimeOffset.ToString("HH:mm"));
                     continue;
@@ -130,7 +133,7 @@ namespace Stranne.VasttrafikNET.Service
                     queryParameters.Add($"{parameterName}CoordLong", ((Coordinate)actualValue).Longitude.ToString(new CultureInfo("en-US")));
                     continue;
                 }
-                
+
                 queryParameters.Add(parameterName, actualValue.ToString());
             }
 
