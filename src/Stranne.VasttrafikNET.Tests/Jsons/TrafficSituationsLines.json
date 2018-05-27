@@ -5,15 +5,15 @@
     "startTime": "2018-03-30T16:06:00+02:00",
     "endTime": "2018-06-30T23:59:00+02:00",
     "severity": "normal",
-    "title": "Linje 82 och 758 stannar inte vid Fältspatsgatan i båda riktningar.",
-    "description": "Närmaste hållplats är Olof Asklunds gata. Detta gäller från 20 november klockan 09:00 och tillsvidare.",
+    "title": "Linje 83 och 758 stannar inte vid Fältspatsgatan i båda riktningar.",
+    "description": "Närmaste hållplats är Olof Asklunds gata. Detta gäller från 20 november klockan 09:01 och tillsvidare.",
     "affectedStopPoints": [],
     "affectedLines": [
       {
-        "gid": "9011014508200000",
+        "gid": "9011014508200001",
         "name": null,
-        "technicalNumber": 5082,
-        "designation": "82",
+        "technicalNumber": 5083,
+        "designation": "83",
         "defaultTransportModeCode": "bus",
         "transportAuthorityCode": "vt",
         "transportAuthorityName": "Västtrafik",
@@ -21,12 +21,12 @@
         "backgroundColor": "00A5DC",
         "directions": [
           {
-            "gid": "9014014508210000",
+            "gid": "9014014508220000",
             "directionCode": 1,
             "name": "Marklandsgatan - Brottkärr"
           },
           {
-            "gid": "9014014508220000",
+            "gid": "9014014508230000",
             "directionCode": 2,
             "name": "Brottkärr - Marklandsgatan"
           }
