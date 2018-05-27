@@ -1,5 +1,4 @@
-﻿using System;
-using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
+﻿using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;
 

@@ -1,0 +1,130 @@
+﻿[
+  {
+    "situationNumber": "RT1292472",
+    "creationTime": "2018-05-22T08:06:58.06+02:00",
+    "startTime": "2018-05-18T08:05:00+02:00",
+    "endTime": "2018-05-30T13:50:00+02:00",
+    "severity": "slight",
+    "title": "Västtåg, körs med olika fordonstyp från Uddevalla mot Borås klockan 13:17 (tåg 3831).",
+    "description": "Vi byter fordon från Grästorp mot Borås. Orsaken är växelfel.",
+    "affectedStopPoints":
+    [
+      {
+        "gid": "9022014021120003",
+        "name": "Uddevalla central (tåg)",
+        "shortName": "Uddevalla C tåg",
+        "stopAreaGid": "9021014021120000",
+        "stopAreaName": "Uddevalla central (tåg)",
+        "stopAreaShortName": "Uddevalla C tåg",
+        "municipalityName": "Uddevalla",
+        "municipalityNumber": 1485
+      },
+      {
+        "gid": "9022014080800003",
+        "name": "Öxnered station (tåg)",
+        "shortName": "Öxnered stn",
+        "stopAreaGid": "9021014080800000",
+        "stopAreaName": "Öxnered station (tåg)",
+        "stopAreaShortName": "Öxnered stn",
+        "municipalityName": "Vänersborg",
+        "municipalityNumber": 1487
+      },
+      {
+        "gid": "9022014080802001",
+        "name": "Vänersborg central",
+        "shortName": "Vänersborg C",
+        "stopAreaGid": "9021014080802000",
+        "stopAreaName": "Vänersborg central",
+        "stopAreaShortName": "Vänersborg C",
+        "municipalityName": "Vänersborg",
+        "municipalityNumber": 1487
+      },
+      {
+        "gid": "9022014080801002",
+        "name": "Vargön station",
+        "shortName": "Vargön station",
+        "stopAreaGid": "9021014080801000",
+        "stopAreaName": "Vargön station",
+        "stopAreaShortName": "Vargön station",
+        "municipalityName": "Vänersborg",
+        "municipalityNumber": 1487
+      }
+    ],
+    "affectedLines":
+    [
+    ],
+    "affectedJourneys":
+    [
+      {
+        "gid": "9015014167103831",
+        "line":
+        {
+          "gid": "9011014167100000",
+          "name": "Västtågen",
+          "technicalNumber": 1671,
+          "designation": "TÅG",
+          "defaultTransportModeCode": "train",
+          "transportAuthorityCode": "vt",
+          "transportAuthorityName": "Västtrafik",
+          "textColor": "FFFFFF",
+          "backgroundColor": "00A5DC",
+          "directions":
+          [
+            {
+              "gid": "9014014167110000",
+              "directionCode": 1,
+              "name": "Uddevalla - Borås - Varberg"
+            },
+            {
+              "gid": "9014014167120000",
+              "directionCode": 2,
+              "name": "Varberg - Borås - Uddevalla"
+            }
+          ],
+          "municipalities":
+          [
+            {
+              "municipalityNumber": 1470,
+              "municipalityName": "Vara"
+            },
+            {
+              "municipalityNumber": 1463,
+              "municipalityName": "Mark"
+            },
+            {
+              "municipalityNumber": 1466,
+              "municipalityName": "Herrljunga"
+            },
+            {
+              "municipalityNumber": 1487,
+              "municipalityName": "Vänersborg"
+            },
+            {
+              "municipalityNumber": 1490,
+              "municipalityName": "Borås"
+            },
+            {
+              "municipalityNumber": 1383,
+              "municipalityName": "Varberg"
+            },
+            {
+              "municipalityNumber": 1485,
+              "municipalityName": "Uddevalla"
+            },
+            {
+              "municipalityNumber": 1444,
+              "municipalityName": "Grästorp"
+            }
+          ],
+          "affectedStopPointGids":
+          [
+            "9022014021120003",
+            "9022014080800003",
+            "9022014080802001",
+            "9022014080801002"
+          ]
+        }
+      }
+    ]
+  }
+]

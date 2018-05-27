@@ -6,7 +6,7 @@ using Stranne.VasttrafikNET.Models;
 namespace Stranne.VasttrafikNET
 {
     /// <summary>
-    /// Provides access to Västtrafik journey planner
+    /// Provides access to Västtrafik journey planner.
     /// </summary>
     public interface IJourneyPlannerService
     {

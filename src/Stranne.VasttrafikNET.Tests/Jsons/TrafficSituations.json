@@ -1,0 +1,363 @@
+﻿[
+  {
+    "situationNumber": "RT1193380",
+    "creationTime": "2018-05-16T06:10:39.282+02:00",
+    "startTime": "2018-04-30T16:06:00+02:00",
+    "endTime": "2018-05-30T23:59:00+02:00",
+    "severity": "severe",
+    "title": "Linje 82 och 758 stannar inte vid Fältspatsgatan i båda riktningar.",
+    "description": "Närmaste hållplats är Olof Asklunds gata. Detta gäller från 20 november klockan 09:00 och tillsvidare.",
+    "affectedStopPoints": [],
+    "affectedLines": [
+      {
+        "gid": "9011014508200000",
+        "name": null,
+        "technicalNumber": 5082,
+        "designation": "82",
+        "defaultTransportModeCode": "bus",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014508210000",
+            "directionCode": 1,
+            "name": "Marklandsgatan - Brottkärr"
+          },
+          {
+            "gid": "9014014508220000",
+            "directionCode": 2,
+            "name": "Brottkärr - Marklandsgatan"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 1480,
+            "municipalityName": "Göteborg"
+          }
+        ],
+        "affectedStopPointGids": []
+      }
+    ],
+    "affectedJourneys": []
+  },
+  {
+    "situationNumber": "RT1270614",
+    "creationTime": "2018-05-16T06:10:39.001+02:00",
+    "startTime": "2018-04-16T15:27:00+02:00",
+    "endTime": "2018-12-08T22:00:00+01:00",
+    "severity": "severe",
+    "title": "Västtågen Säffle station - Öxnered station, flera inställda avgångar.",
+    "description": "Bussar ersätter. Detta gäller från 5 mars klockan 04:00 till 8 december klockan 22:00. Information om inställda avgångar och ersättningsbussar finns på vasttrafik.se. Orsaken är banarbete.",
+    "affectedStopPoints": [
+      {
+        "gid": "9022014016200002",
+        "name": "Bohus station",
+        "shortName": "Bohus station",
+        "stopAreaGid": "9021014016200000",
+        "stopAreaName": "Bohus station",
+        "stopAreaShortName": "Bohus station",
+        "municipalityName": "Ale",
+        "municipalityNumber": 1440
+      },
+      {
+        "gid": "9022014016200003",
+        "name": "Bohus station",
+        "shortName": "Bohus station",
+        "stopAreaGid": "9021014016200000",
+        "stopAreaName": "Bohus station",
+        "stopAreaShortName": "Bohus station",
+        "municipalityName": "Ale",
+        "municipalityNumber": 1440
+      },
+      {
+        "gid": "9022014002672001",
+        "name": "Gamlestaden Station",
+        "shortName": "Gamlestaden stn",
+        "stopAreaGid": "9021014002672000",
+        "stopAreaName": "Gamlestaden Station",
+        "stopAreaShortName": "Gamlestaden stn",
+        "municipalityName": "Göteborg",
+        "municipalityNumber": 1480
+      },
+      {
+        "gid": "9022014002672002",
+        "name": "Gamlestaden Station",
+        "shortName": "Gamlestaden stn",
+        "stopAreaGid": "9021014002672000",
+        "stopAreaName": "Gamlestaden Station",
+        "stopAreaShortName": "Gamlestaden stn",
+        "municipalityName": "Göteborg",
+        "municipalityNumber": 1480
+      },
+      {
+        "gid": "9022014062717001",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014062717002",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014062717003",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014062717004",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014062717005",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014061900001",
+        "name": "Mellerud station (tåg)",
+        "shortName": "Mellerud station",
+        "stopAreaGid": "9021014061900000",
+        "stopAreaName": "Mellerud station (tåg)",
+        "stopAreaShortName": "Mellerud station",
+        "municipalityName": "Mellerud",
+        "municipalityNumber": 1461
+      }
+    ],
+    "affectedLines": [],
+    "affectedJourneys": []
+  },
+  {
+    "situationNumber": "RT1198789",
+    "creationTime": "2018-05-16T06:10:39.142+02:00",
+    "startTime": "2018-01-08T11:00:00+01:00",
+    "endTime": "2018-06-24T13:00:00+02:00",
+    "severity": "severe",
+    "title": "Västtågen Laxå - Mariestad, flera inställda avgångar.",
+    "description": "Bussar ersätter. Detta gäller från 8 januari klockan 11:00 till 24 juni klockan 13:00. Information om inställda avgångar och ersättningsbussar finns på vasttrafik.se. Orsaken är banarbete.",
+    "affectedStopPoints": [],
+    "affectedLines": [
+      {
+        "gid": "9011014163200000",
+        "name": "Västtågen",
+        "technicalNumber": 1632,
+        "designation": "TÅG",
+        "defaultTransportModeCode": "train",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014163210000",
+            "directionCode": 1,
+            "name": "Örebro - Lidköping - Göteborg"
+          },
+          {
+            "gid": "9014014163220000",
+            "directionCode": 2,
+            "name": "Göteborg - Lidköping - Örebro"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 1489,
+            "municipalityName": "Alingsås"
+          },
+          {
+            "municipalityNumber": 1447,
+            "municipalityName": "Gullspång"
+          },
+          {
+            "municipalityNumber": 1493,
+            "municipalityName": "Mariestad"
+          },
+          {
+            "municipalityNumber": 1471,
+            "municipalityName": "Götene"
+          },
+          {
+            "municipalityNumber": 1494,
+            "municipalityName": "Lidköping"
+          },
+          {
+            "municipalityNumber": 1470,
+            "municipalityName": "Vara"
+          },
+          {
+            "municipalityNumber": 1466,
+            "municipalityName": "Herrljunga"
+          },
+          {
+            "municipalityNumber": 1880,
+            "municipalityName": "Örebro"
+          },
+          {
+            "municipalityNumber": 1881,
+            "municipalityName": "Kumla"
+          },
+          {
+            "municipalityNumber": 1480,
+            "municipalityName": "Göteborg"
+          },
+          {
+            "municipalityNumber": 1860,
+            "municipalityName": "Laxå"
+          },
+          {
+            "municipalityNumber": 1861,
+            "municipalityName": "Hallsberg"
+          }
+        ],
+        "affectedStopPointGids": []
+      }
+    ],
+    "affectedJourneys": []
+  },
+  {
+    "situationNumber": "RT1273112",
+    "creationTime": "2018-05-16T06:10:39.095+02:00",
+    "startTime": "2018-06-03T11:00:00+02:00",
+    "endTime": "2018-06-03T12:00:00+02:00",
+    "severity": "severe",
+    "title": "Linje 200 stannar inte vid Bottnaryd industrigatan mot Borås/Jönköping.",
+    "description": "Närmaste hållplats är Västra Jära och Bottnaryd Nygatan. Detta gäller från 3 juni klockan 11:00 till 3 juni klockan 12:00. Orsaken är ett evenemang.",
+    "affectedStopPoints": [
+      {
+        "gid": "9022014075204001",
+        "name": "Bottnaryd industrigatan",
+        "shortName": "industrigatan",
+        "stopAreaGid": "9021014075204000",
+        "stopAreaName": "Bottnaryd industrigatan",
+        "stopAreaShortName": "industrigatan",
+        "municipalityName": "Jönköping",
+        "municipalityNumber": 680
+      },
+      {
+        "gid": "9022014075204002",
+        "name": "Bottnaryd industrigatan",
+        "shortName": "industrigatan",
+        "stopAreaGid": "9021014075204000",
+        "stopAreaName": "Bottnaryd industrigatan",
+        "stopAreaShortName": "industrigatan",
+        "municipalityName": "Jönköping",
+        "municipalityNumber": 680
+      }
+    ],
+    "affectedLines": [
+      {
+        "gid": "9011014220000000",
+        "name": null,
+        "technicalNumber": 2200,
+        "designation": "200",
+        "defaultTransportModeCode": "bus",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014220010000",
+            "directionCode": 1,
+            "name": "Borås - Ulricehamn - Jönköping"
+          },
+          {
+            "gid": "9014014220020000",
+            "directionCode": 2,
+            "name": "Jönköping - Ulricehamn - Borås"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 680,
+            "municipalityName": "Jönköping"
+          },
+          {
+            "municipalityNumber": 1490,
+            "municipalityName": "Borås"
+          },
+          {
+            "municipalityNumber": 1491,
+            "municipalityName": "Ulricehamn"
+          }
+        ],
+        "affectedStopPointGids": [
+          "9022014075204001",
+          "9022014075204002"
+        ]
+      }
+    ],
+    "affectedJourneys": []
+  },
+  {
+    "situationNumber": "RT1173237",
+    "creationTime": "2018-05-16T06:10:39.017+02:00",
+    "startTime": "2017-10-12T14:24:00+02:00",
+    "endTime": "2018-08-31T16:00:00+02:00",
+    "severity": "severe",
+    "title": "Linje 31 stannar inte vid Högskolan i båda riktningar.",
+    "description": "Närmaste hållplats är Polishuset. Detta gäller till den 31 augusti klockan 16:00. Orsaken är vägarbete.",
+    "affectedStopPoints": [],
+    "affectedLines": [
+      {
+        "gid": "9011014203100000",
+        "name": null,
+        "technicalNumber": 2031,
+        "designation": "31",
+        "defaultTransportModeCode": "bus",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014203110000",
+            "directionCode": 1,
+            "name": "Tosseryd - Sjöbo - Centrum"
+          },
+          {
+            "gid": "9014014203120000",
+            "directionCode": 2,
+            "name": "Centrum - Sjöbo - Tosseryd"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 1490,
+            "municipalityName": "Borås"
+          }
+        ],
+        "affectedStopPointGids": []
+      }
+    ],
+    "affectedJourneys": []
+  }
+]

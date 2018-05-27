@@ -8,7 +8,7 @@ using Stranne.VasttrafikNET.Models;
 namespace Stranne.VasttrafikNET
 {
     /// <summary>
-    /// Provides access to Västtrafik commuter parking API
+    /// Provides access to Västtrafik commuter parking API.
     /// </summary>
     public interface ICommuterParkingService
     {

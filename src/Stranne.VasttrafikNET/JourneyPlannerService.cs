@@ -9,14 +9,14 @@ using System.Linq;
 namespace Stranne.VasttrafikNET
 {
     /// <summary>
-    /// Provides access to Västtrafik journey planner
+    /// Provides access to Västtrafik journey planner.
     /// </summary>
     public class JourneyPlannerService : IJourneyPlannerService, IDisposable
     {
         internal JourneyPlannerHandlingService JourneyPlannerHandlingService { get; }
 
         /// <summary>
-        /// Initializes a new instance of the Journey Planner Service
+        /// Initializes a new instance of the <see cref="JourneyPlannerService"/>.
         /// </summary>
         /// <param name="key">Key to Västtrafik API</param>
         /// <param name="secret">Secret to Västtrafik API</param>
@@ -69,7 +69,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetGeometry"]'/>
         public async Task<Geometry> GetGeometryAsync(GeometryReference geometryRef)
         {
-            var geometryRoot = await JourneyPlannerHandlingService.GetAsync<GeometryRoot>(geometryRef.Reference);
+            var geometryRoot = await JourneyPlannerHandlingService.GetAsyncAbsolute<GeometryRoot>(geometryRef.Reference);
             return geometryRoot.Geometry;
         }
         
@@ -82,7 +82,7 @@ namespace Stranne.VasttrafikNET
         /// <include file='JourneyPlannerDocs.xml' path='/Docs/Member[@name="GetJourneyDetail"]'/>
         public async Task<JourneyDetail> GetJourneyDetailAsync(JourneyDetailReference journeyDetailRef)
         {
-            var journeyDetailRoot = await JourneyPlannerHandlingService.GetAsync<JourneyDetailRoot>(journeyDetailRef.Reference);
+            var journeyDetailRoot = await JourneyPlannerHandlingService.GetAsyncAbsolute<JourneyDetailRoot>(journeyDetailRef.Reference);
             return journeyDetailRoot.JourneyDetail;
         }
         

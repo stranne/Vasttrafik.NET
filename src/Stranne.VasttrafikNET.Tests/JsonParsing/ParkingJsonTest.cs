@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Stranne.VasttrafikNET.ApiModels.CommuterParking;
+﻿using Stranne.VasttrafikNET.ApiModels.CommuterParking;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
 using Stranne.VasttrafikNET.Tests.Jsons;
 using Xunit;

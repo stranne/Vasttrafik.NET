@@ -37,6 +37,14 @@ namespace Stranne.VasttrafikNET.Tests
             };
         }
 
+        internal TrafficSituationsService GetTrafficSituationsService()
+        {
+            return new TrafficSituationsService(Key, Secret)
+            {
+                TrafficSituationsHandlingService = {NetworkService = CreateNetworkService()}
+            };
+        }
+
         private NetworkService CreateNetworkService() => new NetworkService(Key, Secret, DeviceId)
         {
             HttpClient = new HttpClient(HttpMessageHandler)

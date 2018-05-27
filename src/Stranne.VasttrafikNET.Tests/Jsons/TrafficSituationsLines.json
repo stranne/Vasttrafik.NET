@@ -1,0 +1,45 @@
+﻿[
+  {
+    "situationNumber": "RT1193380",
+    "creationTime": "2018-05-16T06:10:39.282+02:00",
+    "startTime": "2018-04-30T16:06:00+02:00",
+    "endTime": "2018-05-30T23:59:00+02:00",
+    "severity": "severe",
+    "title": "Linje 82 och 758 stannar inte vid Fältspatsgatan i båda riktningar.",
+    "description": "Närmaste hållplats är Olof Asklunds gata. Detta gäller från 20 november klockan 09:00 och tillsvidare.",
+    "affectedStopPoints": [],
+    "affectedLines": [
+      {
+        "gid": "9011014508200000",
+        "name": null,
+        "technicalNumber": 5082,
+        "designation": "82",
+        "defaultTransportModeCode": "bus",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014508210000",
+            "directionCode": 1,
+            "name": "Marklandsgatan - Brottkärr"
+          },
+          {
+            "gid": "9014014508220000",
+            "directionCode": 2,
+            "name": "Brottkärr - Marklandsgatan"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 1480,
+            "municipalityName": "Göteborg"
+          }
+        ],
+        "affectedStopPointGids": []
+      }
+    ],
+    "affectedJourneys": []
+  }
+]

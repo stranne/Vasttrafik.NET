@@ -1,0 +1,207 @@
+﻿[
+  {
+    "situationNumber": "RT1270614",
+    "creationTime": "2018-05-16T06:10:39.001+02:00",
+    "startTime": "2018-04-16T15:27:00+02:00",
+    "endTime": "2018-12-08T22:00:00+01:00",
+    "severity": "severe",
+    "title": "Västtågen Säffle station - Öxnered station, flera inställda avgångar.",
+    "description": "Bussar ersätter. Detta gäller från 5 mars klockan 04:00 till 8 december klockan 22:00. Information om inställda avgångar och ersättningsbussar finns på vasttrafik.se. Orsaken är banarbete.",
+    "affectedStopPoints": [
+      {
+        "gid": "9022014016200002",
+        "name": "Bohus station",
+        "shortName": "Bohus station",
+        "stopAreaGid": "9021014016200000",
+        "stopAreaName": "Bohus station",
+        "stopAreaShortName": "Bohus station",
+        "municipalityName": "Ale",
+        "municipalityNumber": 1440
+      },
+      {
+        "gid": "9022014016200003",
+        "name": "Bohus station",
+        "shortName": "Bohus station",
+        "stopAreaGid": "9021014016200000",
+        "stopAreaName": "Bohus station",
+        "stopAreaShortName": "Bohus station",
+        "municipalityName": "Ale",
+        "municipalityNumber": 1440
+      },
+      {
+        "gid": "9022014002672001",
+        "name": "Gamlestaden Station",
+        "shortName": "Gamlestaden stn",
+        "stopAreaGid": "9021014002672000",
+        "stopAreaName": "Gamlestaden Station",
+        "stopAreaShortName": "Gamlestaden stn",
+        "municipalityName": "Göteborg",
+        "municipalityNumber": 1480
+      },
+      {
+        "gid": "9022014002672002",
+        "name": "Gamlestaden Station",
+        "shortName": "Gamlestaden stn",
+        "stopAreaGid": "9021014002672000",
+        "stopAreaName": "Gamlestaden Station",
+        "stopAreaShortName": "Gamlestaden stn",
+        "municipalityName": "Göteborg",
+        "municipalityNumber": 1480
+      },
+      {
+        "gid": "9022014062717001",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      }
+    ],
+    "affectedLines": [],
+    "affectedJourneys": []
+  },
+  {
+    "situationNumber": "RT1279160",
+    "creationTime": "2018-05-16T06:10:39.657+02:00",
+    "startTime": "2018-05-02T23:00:00+02:00",
+    "endTime": "2018-06-28T04:15:00+02:00",
+    "severity": "severe",
+    "title": "Västtågen Öxnered - Vänersborg, flera inställda avgångar nattetid.",
+    "description": "Bussar ersätter. Detta gäller från 2 maj klockan 23:00 till 28 juni klockan 04:15. Information om inställda avgångar och ersättningsbussar finns på vasttrafik.se. Orsaken är banarbete.",
+    "affectedStopPoints": [
+      {
+        "gid": "9022014080802001",
+        "name": "Vänersborg central",
+        "shortName": "Vänersborg C",
+        "stopAreaGid": "9021014080802000",
+        "stopAreaName": "Vänersborg central",
+        "stopAreaShortName": "Vänersborg C",
+        "municipalityName": "Vänersborg",
+        "municipalityNumber": 1487
+      },
+      {
+        "gid": "9022014080800004",
+        "name": "Öxnered station (tåg)",
+        "shortName": "Öxnered stn",
+        "stopAreaGid": "9021014080800000",
+        "stopAreaName": "Öxnered station (tåg)",
+        "stopAreaShortName": "Öxnered stn",
+        "municipalityName": "Vänersborg",
+        "municipalityNumber": 1487
+      },
+      {
+        "gid": "9022014081600002",
+        "name": "Trollhättan station",
+        "shortName": "Trollhättan Jvst",
+        "stopAreaGid": "9021014081600000",
+        "stopAreaName": "Trollhättan station",
+        "stopAreaShortName": "Trollhättan Jvst",
+        "municipalityName": "Trollhättan",
+        "municipalityNumber": 1488
+      },
+      {
+        "gid": "9022014062717001",
+        "name": "Lödöse södra station",
+        "shortName": "Lödöse södra stn",
+        "stopAreaGid": "9021014062717000",
+        "stopAreaName": "Lödöse södra station",
+        "stopAreaShortName": "Lödöse södra stn",
+        "municipalityName": "Lilla Edet",
+        "municipalityNumber": 1462
+      },
+      {
+        "gid": "9022014016611003",
+        "name": "Älvängen station",
+        "shortName": "Älvängen station",
+        "stopAreaGid": "9021014016611000",
+        "stopAreaName": "Älvängen station",
+        "stopAreaShortName": "Älvängen station",
+        "municipalityName": "Ale",
+        "municipalityNumber": 1440
+      }
+    ],
+    "affectedLines": [
+      {
+        "gid": "9011014172100000",
+        "name": "Västtågen",
+        "technicalNumber": 1721,
+        "designation": "TÅG",
+        "defaultTransportModeCode": "train",
+        "transportAuthorityCode": "vt",
+        "transportAuthorityName": "Västtrafik",
+        "textColor": "FFFFFF",
+        "backgroundColor": "00A5DC",
+        "directions": [
+          {
+            "gid": "9014014172110000",
+            "directionCode": 1,
+            "name": "Åmål/Vänersborg - Göteborg"
+          },
+          {
+            "gid": "9014014172120000",
+            "directionCode": 2,
+            "name": "Göteborg - Vänersborg/Åmål"
+          }
+        ],
+        "municipalities": [
+          {
+            "municipalityNumber": 1480,
+            "municipalityName": "Göteborg"
+          },
+          {
+            "municipalityNumber": 1440,
+            "municipalityName": "Ale"
+          },
+          {
+            "municipalityNumber": 1462,
+            "municipalityName": "Lilla Edet"
+          },
+          {
+            "municipalityNumber": 1785,
+            "municipalityName": "Säffle"
+          },
+          {
+            "municipalityNumber": 1487,
+            "municipalityName": "Vänersborg"
+          },
+          {
+            "municipalityNumber": 1488,
+            "municipalityName": "Trollhättan"
+          },
+          {
+            "municipalityNumber": 1461,
+            "municipalityName": "Mellerud"
+          },
+          {
+            "municipalityNumber": 1485,
+            "municipalityName": "Uddevalla"
+          },
+          {
+            "municipalityNumber": 1492,
+            "municipalityName": "Åmål"
+          }
+        ],
+        "affectedStopPointGids": [
+          "9022014080802001",
+          "9022014080800004",
+          "9022014081600002",
+          "9022014062717001",
+          "9022014016611003",
+          "9022014016200003",
+          "9022014002672001",
+          "9022014008000008",
+          "9022014008000012",
+          "9022014002672002",
+          "9022014016200002",
+          "9022014016611002",
+          "9022014062717002",
+          "9022014081600001",
+          "9022014080800003"
+        ]
+      }
+    ],
+    "affectedJourneys": []
+  }
+]

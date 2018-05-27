@@ -43,10 +43,15 @@ namespace Stranne.VasttrafikNET.Service
             var isFeatureUrlAbsolute = featureUrl.StartsWith("https://");
             var skipQueryStringQuestionMark = featureUrl.Contains("?");
             var absolutePathUrl = $"{(isFeatureUrlAbsolute ? "" : ApiPathUrl)}{featureUrl}{BuildParameterString(parameters, skipQueryStringQuestionMark)}";
-            return await GetAsync<T>(absolutePathUrl);
+            return await GetAsyncAbsolute<T>(absolutePathUrl);
         }
 
-        public async Task<T> GetAsync<T>(string absolutePathUrl)
+        public async Task<T> GetAsync<T>(string featureUrl)
+        {
+            return await GetAsyncAbsolute<T>($"{ApiPathUrl}{featureUrl}");
+        }
+
+        public async Task<T> GetAsyncAbsolute<T>(string absolutePathUrl)
         {
             if (typeof(T) == typeof(Stream))
                 return (dynamic)await NetworkService.DownloadStreamAsync(absolutePathUrl);

@@ -99,6 +99,7 @@ public void ConfigureServices(IServiceCollection services)
 
     services.AddSingleton<IJourneyPlannerService>(serviceProvider => new JourneyPlannerService(VtKey, VtSecret, VtDeviceId));
     services.AddSingleton<ICommuterParkingService>(serviceProvider => new CommuterParkingService(VtKey, VtSecret, VtDeviceId));
+    services.AddSingleton<ITrafficSituationsService>(provider => new TrafficSituationsService(VtKey, VtSecret, VtDeviceId));
 }
 
 ...

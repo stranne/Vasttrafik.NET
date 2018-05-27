@@ -5,6 +5,7 @@ using System.Reflection;
 using Stranne.VasttrafikNET.ApiModels.CommuterParking;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner;
 using Stranne.VasttrafikNET.ApiModels.JourneyPlanner.Enums;
+using Stranne.VasttrafikNET.ApiModels.TrafficSituations;
 using Stranne.VasttrafikNET.Exceptions;
 using Stranne.VasttrafikNET.Models;
 using Stranne.VasttrafikNET.Models.Enums;
@@ -21,6 +22,8 @@ namespace Stranne.VasttrafikNET.Tests
             typeof(IJourneyPlannerService),
             typeof(CommuterParkingService),
             typeof(ICommuterParkingService),
+            typeof(TrafficSituationsService),
+            typeof(ITrafficSituationsService),
             typeof(BoardOptions),
             typeof(Coordinate),
             typeof(ParkingOptions),
@@ -74,6 +77,14 @@ namespace Stranne.VasttrafikNET.Tests
             typeof(LocationType),
             typeof(NoteSeverity),
             typeof(TripType),
+
+            typeof(TrafficSituationsService),
+            typeof(DirectionApiModel),
+            typeof(JourneyApiModel),
+            typeof(LineApiModel),
+            typeof(StopPointApiModel),
+            typeof(TrafficSituationApiModel),
+            typeof(MunicipalityApiModel),
 
             typeof(AuthenticationException),
             typeof(MissingRequiredParameterException),

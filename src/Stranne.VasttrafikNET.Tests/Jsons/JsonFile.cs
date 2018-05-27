@@ -20,6 +20,12 @@
         Parking,
         Parkings,
         SystemInfo,
-        Trip
+        Trip,
+        TrafficSituation,
+        TrafficSituations,
+        TrafficSituationsJourneies,
+        TrafficSituationsLines,
+        TrafficSituationsStopAreas,
+        TrafficSituationsStopPoints
     }
 }
