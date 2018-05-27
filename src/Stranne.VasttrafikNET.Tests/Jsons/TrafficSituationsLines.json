@@ -10,31 +10,31 @@
     "affectedStopPoints": [],
     "affectedLines": [
       {
-        "gid": "9011014508200001",
-        "name": null,
-        "technicalNumber": 5083,
-        "designation": "83",
-        "defaultTransportModeCode": "bus",
+        "gid": "9011014163200000",
+        "name": "Västtågen",
+        "technicalNumber": 1632,
+        "designation": "TÅG",
+        "defaultTransportModeCode": "train",
         "transportAuthorityCode": "vt",
         "transportAuthorityName": "Västtrafik",
         "textColor": "FFFFFF",
         "backgroundColor": "00A5DC",
         "directions": [
           {
-            "gid": "9014014508220000",
+            "gid": "9014014203110000",
             "directionCode": 1,
-            "name": "Marklandsgatan - Brottkärr"
+            "name": "Tosseryd - Sjöbo - Centrum"
           },
           {
-            "gid": "9014014508230000",
+            "gid": "9014014203120000",
             "directionCode": 2,
-            "name": "Brottkärr - Marklandsgatan"
+            "name": "Centrum - Sjöbo - Tosseryd"
           }
         ],
         "municipalities": [
           {
-            "municipalityNumber": 1480,
-            "municipalityName": "Göteborg"
+            "municipalityNumber": 1487,
+            "municipalityName": "Vänersborg"
           }
         ],
         "affectedStopPointGids": []
