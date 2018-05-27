@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Docs>
+  <Member name="ForStationNumber" >
+    <summary>
+      Returns the traffic situation with the specified situation number, retrieved by a previous call to GET /traffic-situations.
+    </summary>
+    <param name="stationNumber">The situation number, e.g. "2001186014".</param>
+    <returns>Traffic situation, or null if not found.</returns>
+  </Member>
+  <Member name="ForStopPoint" >
+    <summary>
+      Returns the traffic situations for the stop point with the specified stop point gid, retrieved by a previous call to GET /traffic-situations.
+    </summary>
+    <param name="stopPointGid">The stop point gid, e.g. "9022014004850001".</param>
+    <returns>List of traffic situations.</returns>
+  </Member>
+  <Member name="All" >
+    <summary>
+      Returns all current or future traffic situations.
+    </summary>
+    <returns>List of traffic situations.</returns>
+  </Member>
+  <Member name="ForLineGid" >
+    <summary>
+      Returns the traffic situations for the line with the specified line gid, retrieved by a previous call to GET /traffic-situations.
+    </summary>
+    <param name="lineGid">The line gid, e.g. "9011014500100000".</param>
+    <returns>List of traffic situations.</returns>
+  </Member>
+  <Member name="ForJourney" >
+    <summary>
+      Returns the traffic situations for the journey with the specified journey gid, retrieved by a previous call to GET /traffic-situations.
+    </summary>
+    <param name="journeyGid">The journey gid, e.g. "9015014003310000".</param>
+    <returns>List of traffic situations.</returns>
+  </Member>
+  <Member name="ForStopArea" >
+    <summary>
+      Returns the traffic situations for the stop area with the specified stop area gid, retrieved by a previous call to GET /traffic-situations.
+    </summary>
+    <param name="stopPointGid">The stop point gid, e.g. "9021014003310000".</param>
+    <returns>List of traffic situations.</returns>
+  </Member>
+</Docs>
