@@ -10,14 +10,14 @@ using Stranne.VasttrafikNET.Service;
 namespace Stranne.VasttrafikNET
 {
     /// <summary>
-    /// Provides access to Västtrafik commuter parking API
+    /// Provides access to Västtrafik commuter parking API.
     /// </summary>
     public class CommuterParkingService : ICommuterParkingService, IDisposable
     {
         internal CommuterParkingHandlingService CommuterParkingHandlingService { get; }
 
         /// <summary>
-        /// Initializes a new instance of the Commuter Parking Service
+        /// Initializes a new instance of the <see cref="CommuterParkingService"/>.
         /// </summary>
         /// <param name="key">Key to Västtrafik API</param>
         /// <param name="secret">Secret to Västtrafik API</param>

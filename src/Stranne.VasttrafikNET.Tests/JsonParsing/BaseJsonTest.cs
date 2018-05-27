@@ -39,7 +39,7 @@ namespace Stranne.VasttrafikNET.Tests.JsonParsing
 
         private static object GetValue(object sut, string property)
         {
-            var steps = Regex.Split(property, @"\[|\]\.|\.")
+            var steps = Regex.Split(property, @"\[|\]\.?|\.")
                 .Where(step => !string.IsNullOrWhiteSpace(step));
             var currentProperty = sut;
             foreach (var step in steps)

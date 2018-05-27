@@ -1,0 +1,35 @@
+﻿[
+  {
+    "situationNumber": "RT1134469",
+    "creationTime": "2018-05-16T06:10:39.063+02:00",
+    "startTime": "2018-03-21T14:43:00+01:00",
+    "endTime": "2018-06-15T12:00:00+02:00",
+    "severity": "slight",
+    "title": "Västtåg förstärks med buss från Vara resecentrum mot Framnäs City klockan 07:16 (tåg 3356).",
+    "description": "Förstärkningsbuss går från Vara resecentrum klockan 07:20 direkt till Framnäs City. Tåget förstärks på grund av många resande.",
+    "affectedStopPoints": [
+      {
+        "gid": "9022014037386001",
+        "name": "Framnäs city",
+        "shortName": "Framnäs city",
+        "stopAreaGid": "9021014037386000",
+        "stopAreaName": "Framnäs city",
+        "stopAreaShortName": "Framnäs city",
+        "municipalityName": "Lidköping",
+        "municipalityNumber": 1494
+      },
+      {
+        "gid": "9022014040010002",
+        "name": "Vara resecentrum (tåg)",
+        "shortName": "Vara resecentrum",
+        "stopAreaGid": "9021014040010000",
+        "stopAreaName": "Vara resecentrum (tåg)",
+        "stopAreaShortName": "Vara resecentrum",
+        "municipalityName": "Vara",
+        "municipalityNumber": 1470
+      }
+    ],
+    "affectedLines": [],
+    "affectedJourneys": []
+  }
+]

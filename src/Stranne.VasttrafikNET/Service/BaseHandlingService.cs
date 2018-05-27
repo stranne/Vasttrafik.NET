@@ -20,7 +20,7 @@ namespace Stranne.VasttrafikNET.Service
         protected abstract string ApiPathUrl { get; }
 
         public NetworkService NetworkService { get; set; }
-        
+
         internal readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {
             Converters = new JsonConverter[]
@@ -43,10 +43,15 @@ namespace Stranne.VasttrafikNET.Service
             var isFeatureUrlAbsolute = featureUrl.StartsWith("https://");
             var skipQueryStringQuestionMark = featureUrl.Contains("?");
             var absolutePathUrl = $"{(isFeatureUrlAbsolute ? "" : ApiPathUrl)}{featureUrl}{BuildParameterString(parameters, skipQueryStringQuestionMark)}";
-            return await GetAsync<T>(absolutePathUrl);
+            return await GetAsyncAbsolute<T>(absolutePathUrl);
         }
 
-        public async Task<T> GetAsync<T>(string absolutePathUrl)
+        public async Task<T> GetAsync<T>(string featureUrl)
+        {
+            return await GetAsyncAbsolute<T>($"{ApiPathUrl}{featureUrl}");
+        }
+
+        public async Task<T> GetAsyncAbsolute<T>(string absolutePathUrl)
         {
             if (typeof(T) == typeof(Stream))
                 return (dynamic)await NetworkService.DownloadStreamAsync(absolutePathUrl);
@@ -78,8 +83,11 @@ namespace Stranne.VasttrafikNET.Service
                 var parameterName = parameterAttribute.ParameterName ?? property.Name.ToCamelCase();
 
                 if (parameterAttribute.Required && (
-                    actualValue == null ||
-                    property.PropertyType == typeof(DateTimeOffset) && Equals(actualValue, new DateTimeOffset())
+                        actualValue == null ||
+                        (
+                            property.PropertyType == typeof(DateTimeOffset) &&
+                            Equals(actualValue, new DateTimeOffset())
+                        )
                     ))
                 {
                     missingParameters.Add(property.Name);
@@ -105,7 +113,7 @@ namespace Stranne.VasttrafikNET.Service
                     actualValue = ((double?)actualValue).Value.ToString(new CultureInfo("en-US"));
                 else if (property.PropertyType == typeof(DateTimeOffset) || property.PropertyType == typeof(DateTimeOffset?))
                 {
-                    var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();                    
+                    var dateTimeOffset = ((DateTimeOffset)actualValue).ConvertToVasttrafikTimeZone();
                     queryParameters.Add("date", dateTimeOffset.ToString("yyyy-MM-dd"));
                     queryParameters.Add("time", dateTimeOffset.ToString("HH:mm"));
                     continue;
@@ -125,7 +133,7 @@ namespace Stranne.VasttrafikNET.Service
                     queryParameters.Add($"{parameterName}CoordLong", ((Coordinate)actualValue).Longitude.ToString(new CultureInfo("en-US")));
                     continue;
                 }
-                
+
                 queryParameters.Add(parameterName, actualValue.ToString());
             }
 
