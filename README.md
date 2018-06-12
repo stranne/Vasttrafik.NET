@@ -14,7 +14,7 @@ Library to acquire real-time information from Västtrafik’s APIs built on .NET
 
 ## Features
 
-### [Journey Planner](https://developer.vasttrafik.se/portal/#/api/Reseplaneraren/v2/landerss)
+### [Journey Planner v2](https://developer.vasttrafik.se/portal/#/api/Reseplaneraren/v2/landerss)
 
 * Arrival board
 * Departure board
@@ -29,13 +29,24 @@ Library to acquire real-time information from Västtrafik’s APIs built on .NET
 * System information
 * Trip
 
-### [Commuter Parking](https://developer.vasttrafik.se/portal/#/api/SPP/v2/landerss)
+### [Commuter Parking v3](https://developer.vasttrafik.se/portal/#/api/SPP/v3/landerss)
 
 * Search parking areas
 * Get parking area
+* Forecast full time
+* Forecast availability
 * Historical availability
 * Current available capacity
 * Parking image
+
+### [Traffic Situations v1](https://developer.vasttrafik.se/portal/#/api/TrafficSituations/v1/admin)
+
+* Get specific traffic situation
+* Get traffic situations for stop
+* Get traffic situations for line
+* Get traffic situations for journey
+* Get traffic situations for stop area
+* Get all traffic situations
 
 ## Supported frameworks
 
