@@ -1,4 +1,4 @@
-﻿{
+{
   "TripList":
   {
     "noNamespaceSchemaLocation": "http://api.vasttrafik.se/v1/hafasRestTrip.xsd",
@@ -11,6 +11,7 @@
         {
           "name": "Spårvagn 2",
           "sname": "2",
+          "journeyNumber": "53245",
           "type": "TRAM",
           "id": "9015014500204112",
           "direction": "Frölunda via Järntorget",
@@ -75,6 +76,7 @@
           "name": "Spårvagn 4",
           "sname": "4",
           "type": "TRAM",
+          "journeyNumber": "15985",
           "id": "9015014500404109",
           "direction": "Angered via Redbergsplatsen",
           "fgColor": "#14823c",
@@ -141,6 +143,7 @@
         {
           "name": "Spårvagn 2",
           "sname": "2",
+          "journeyNumber": "84254",
           "type": "TRAM",
           "id": "9015014500204114",
           "direction": "Frölunda via Järntorget",
