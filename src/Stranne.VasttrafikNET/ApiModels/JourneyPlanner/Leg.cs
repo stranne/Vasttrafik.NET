@@ -56,6 +56,11 @@ namespace Stranne.VasttrafikNET.ApiModels.JourneyPlanner
         public string Sname { get; set; }
 
         /// <summary>
+        /// Journey number that is especially useful for trains, where the number is often used in the communication from the train operators.
+        /// </summary>
+        public string JourneyNumber { get; set; }
+
+        /// <summary>
         /// Type of the leg
         /// </summary>
         public JourneyType Type { get; set; }
