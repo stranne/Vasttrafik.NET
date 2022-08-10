@@ -1,10 +1,7 @@
-#addin "nuget:?package=Cake.Codecov"
-#addin "nuget:?package=Cake.Incubator"
+#addin "nuget:?package=Cake.Codecov&version=1.0.1"
 
-#tool "nuget:?package=OpenCover"
-#tool "nuget:?package=ReportGenerator"
-#tool "nuget:?package=GitVersion.CommandLine"
-#tool "nuget:?package=Codecov&version=1.0.1"
+#tool "nuget:?package=OpenCover&version=4.7.1221"
+#tool nuget:?package=Codecov&version=1.13.0
 
 GitVersion gitVersion = new GitVersion();
 const string ArtifactsFolder = "./artifacts";
@@ -40,7 +37,7 @@ Task("Version")
 Task("Restore")
     .Does(() =>
 {
-    DotNetCoreRestore();
+    DotNetRestore();
 });
 
 Task("Build-Debug")
@@ -48,9 +45,9 @@ Task("Build-Debug")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+    DotNetBuild("./Stranne.VasttrafikNET.sln", new DotNetBuildSettings {
         Configuration = "Debug",
-        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
+        Verbosity = Cake.Common.Tools.DotNet.DotNetVerbosity.Minimal
     });
 });
 
@@ -58,12 +55,11 @@ Task("Run-Tests")
     .IsDependentOn("Build-Debug")
     .Does(() =>
 {
-    DotNetCoreTest(
-        new DotNetCoreTestSettings {
-            NoBuild = true
-        },
+    DotNetTest(
         "./src/Stranne.VasttrafikNET.Tests/Stranne.VasttrafikNET.Tests.csproj",
-        new Cake.Common.Tools.XUnit.XUnit2Settings()
+        new DotNetTestSettings {
+            NoBuild = true
+        }
     );
 });
 
@@ -72,7 +68,7 @@ Task("Create-Open-Cover-Report")
     .Does(() =>
 {
     OpenCover(tool => {
-            tool.DotNetCoreTest("./src/Stranne.VasttrafikNET.Tests/Stranne.VasttrafikNET.Tests.csproj", new DotNetCoreTestSettings {
+            tool.DotNetTest("./src/Stranne.VasttrafikNET.Tests/Stranne.VasttrafikNET.Tests.csproj", new DotNetTestSettings {
                 NoBuild = true
             });
         },
@@ -88,7 +84,7 @@ Task("Create-Test-Report")
     .IsDependentOn("Create-Open-Cover-Report")
     .Does(() =>
 {
-    ReportGenerator(CoverageReportXmlFile, CoverageReportFolder, new ReportGeneratorSettings {
+    ReportGenerator(new FilePath(CoverageReportXmlFile), CoverageReportFolder, new ReportGeneratorSettings {
         Verbosity = Cake.Common.Tools.ReportGenerator.ReportGeneratorVerbosity.Info
     });
 });
@@ -98,9 +94,9 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    DotNetCoreBuild("./Stranne.VasttrafikNET.sln", new DotNetCoreBuildSettings {
+    DotNetBuild("./Stranne.VasttrafikNET.sln", new DotNetBuildSettings {
         Configuration = "Release",
-        Verbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Minimal
+        Verbosity = Cake.Common.Tools.DotNet.DotNetVerbosity.Minimal
     });
 });
 
@@ -108,7 +104,7 @@ Task("Create-Nuget-Package")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    DotNetCorePack("./src/Stranne.VasttrafikNET/Stranne.VasttrafikNET.csproj", new DotNetCorePackSettings {
+    DotNetPack("./src/Stranne.VasttrafikNET/Stranne.VasttrafikNET.csproj", new DotNetPackSettings {
         ArgumentCustomization = args => args
             .Append("--include-symbols")
             .Append("/p:NoPackageAnalysis=true")
@@ -131,8 +127,7 @@ Task("Send-To-Codecov")
     .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
     .Does(() =>
 {
-    Codecov(new CodecovSettings {
-        Files = new [] { CoverageReportXmlFile }    });
+    Codecov(CoverageReportXmlFile);
 });
 
 Task("Default")
@@ -150,11 +145,6 @@ Task("AppVeyor")
     .IsDependentOn("Package-Test-Report")
     .IsDependentOn("Create-Nuget-Package")
     .IsDependentOn("Send-To-Codecov");
-
-Task("Travis")
-    .IsDependentOn("Clean")
-    .IsDependentOn("Run-Tests")
-    .IsDependentOn("Create-Nuget-Package");
 
 var target = Argument("target", "Default");
 RunTarget(target);

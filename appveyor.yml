@@ -1,7 +1,9 @@
-os: Visual Studio 2017
+image:
+    - Visual Studio 2022
 build_script:
-    - ps: .\build.ps1 -target "AppVeyor"
-test: off
+    - ps: dotnet tool restore
+    - ps: dotnet cake --target=AppVeyor
+test: false
 artifacts:
     - path: artifacts\Stranne.VasttrafikNET_coverage.xml
     - path: 'artifacts\**\*.nupkg'

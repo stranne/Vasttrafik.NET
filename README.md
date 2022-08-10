@@ -1,7 +1,6 @@
 # Vasttrafik.NET
 
 [![Build status](https://ci.appveyor.com/api/projects/status/k10x9ttx3dof7aqu?svg=true)](https://ci.appveyor.com/project/stranne/vasttrafik-net)
-[![Build Status](https://travis-ci.org/stranne/Vasttrafik.NET.svg?branch=master)](https://travis-ci.org/stranne/Vasttrafik.NET)
 [![codecov](https://codecov.io/gh/stranne/Vasttrafik.NET/branch/master/graph/badge.svg)](https://codecov.io/gh/stranne/Vasttrafik.NET)
 [![CodeFactor](https://www.codefactor.io/repository/github/stranne/vasttrafik.net/badge/master)](https://www.codefactor.io/repository/github/stranne/vasttrafik.net/overview/master)
 [![NuGet](https://img.shields.io/nuget/v/Stranne.VasttrafikNET.svg?maxAge=259200)](https://www.nuget.org/packages/Stranne.VasttrafikNET)
